@@ -23,6 +23,7 @@
 #' @param rscale_est Numeric or character. Scale of the Cauchy prior for Bayesian estimation of the posterior distribution. Options: `"ultrawide"`, `"wide"`, `"medium"`, or a positive real number. Default is `"ultrawide"`. This argument is passed to `BayesFactor::correlationBF()`.
 #' @param rscale_bf Numeric or character. Scale of the Cauchy prior for Bayes factor calculation. Options: `"ultrawide"`, `"wide"`, `"medium"`, or a positive real number. Default is `"ultrawide"`. This argument is passed to `BayesFactor::correlationBF()`.
 #' @param iterations Integer. Number of samples to draw from the posterior distribution for Bayesian estimation. Default is `10000`.
+#' @param map_density_n An integer specifying the number of equally spaced grid points for MAP estimation (default is 512).
 #' @param ... Additional arguments passed to `cor.test()`.
 #'
 #' @return A list containing:
@@ -56,7 +57,7 @@ cor_test_all <- function(
     method = c("pearson", "kendall", "spearman"),
     exact = NULL, conf.level = 0.95, continuity = FALSE,
     rscale_est = "ultrawide", rscale_bf = "ultrawide",
-    iterations = 10000,
+    iterations = 10000, map_density_n = 512,
     ...
 ){
 
@@ -159,8 +160,7 @@ cor_test_all <- function(
           }
 
           if(cor_MAP){
-            map_dens <- function(z) density(z)$x[which.max(density(z)$y)]
-            out[out$row == i & out$col == j,]$cor_MAP = map_dens(mcmcsample[,"rho"])
+            out[out$row == i & out$col == j,]$cor_MAP = stat_mode(mcmcsample[,"rho"], map_density_n)
           }
           if(cor_MED){
             out[out$row == i & out$col == j,]$cor_MED = median(mcmcsample[,"rho"])
