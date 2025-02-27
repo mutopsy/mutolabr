@@ -6,12 +6,12 @@
 \usage{
 cor_test_all(
   dat,
-  cor = T,
-  cor_EAP = F,
-  cor_MAP = F,
-  cor_MED = F,
-  pd = F,
-  bf = F,
+  cor = TRUE,
+  cor_EAP = FALSE,
+  cor_MAP = FALSE,
+  cor_MED = FALSE,
+  pd = FALSE,
+  bf = FALSE,
   ci = c("freq", "bayes_central", "bayes_hdi"),
   triangle = c("upper", "lower", "full"),
   alternative = c("two.sided", "less", "greater"),
@@ -29,40 +29,44 @@ cor_test_all(
 \arguments{
 \item{dat}{A data frame or matrix containing numeric variables for correlation analysis.}
 
-\item{cor}{Logical. If \code{TRUE}, compute frequentist correlation coefficients. Default is \code{TRUE}.}
+\item{cor}{Logical. If \code{TRUE}, computes frequentist correlation coefficients (default: \code{TRUE}).}
 
-\item{cor_EAP}{Logical. If \code{TRUE}, compute the Expected A Posteriori (EAP) estimate of the correlation coefficient. Default is \code{FALSE}.}
+\item{cor_EAP, }{cor_MAP, cor_MED Logical. If \code{TRUE}, computes Bayesian estimates (EAP, MAP, MED) for the correlation coefficient (default: \code{FALSE}).}
 
-\item{cor_MAP}{Logical. If \code{TRUE}, compute the Maximum A Posteriori (MAP) estimate of the correlation coefficient. Default is \code{FALSE}.}
+\item{pd}{Logical. If \code{TRUE}, computes the probability of direction (pd) based on posterior distributions (default: \code{FALSE}).}
 
-\item{cor_MED}{Logical. If \code{TRUE}, compute the median of the posterior distribution of the correlation coefficient. Default is \code{FALSE}.}
+\item{bf}{Logical. If \code{TRUE}, computes Bayes factors for the presence of correlation versus the null hypothesis (default: \code{FALSE}).}
 
-\item{pd}{Logical. If \code{TRUE}, compute the probability of direction (pd) based on posterior distributions. Default is \code{FALSE}.}
+\item{ci}{Character. Specifies the type of confidence or credible interval:
+\code{"freq"} (frequentist confidence interval), \code{"bayes_central"} (Bayesian central credible interval),
+or \code{"bayes_hdi"} (highest density interval based on the posterior distribution) (default: \code{"freq"}).}
 
-\item{bf}{Logical. If \code{TRUE}, compute Bayes factors favoring the presence of correlation over the absence of correlation. Default is \code{FALSE}.}
+\item{triangle}{Character. Specifies which part of the correlation matrix to return:
+\code{"upper"}, \code{"lower"}, or \code{"full"} (default: \code{"upper"}).}
 
-\item{ci}{Character. Specifies the type of confidence or credible interval: \code{"freq"} (frequentist confidence interval),
-\code{"bayes_central"} (Bayesian central credible interval), or \code{"bayes_hdi"} (highest density interval based on the posterior distribution). Default is \code{"freq"}.}
+\item{alternative}{Character. Specifies the alternative hypothesis for the frequentist test:
+\code{"two.sided"}, \code{"less"}, or \code{"greater"} (default: \code{"two.sided"}).}
 
-\item{triangle}{Character. Specifies which part of the correlation matrix to return: \code{"upper"}, \code{"lower"}, or \code{"full"}. Default is \code{"upper"}.}
-
-\item{alternative}{Character. Specifies the alternative hypothesis for frequentist analysis: \code{"two.sided"}, \code{"less"}, or \code{"greater"}. Default is \code{"two.sided"}.}
-
-\item{method}{Character. Specifies the correlation method for frequentist analysis: \code{"pearson"}, \code{"kendall"}, or \code{"spearman"}. Default is \code{"pearson"}.}
+\item{method}{Character. Specifies the correlation method for the frequentist test:
+\code{"pearson"}, \code{"kendall"}, or \code{"spearman"} (default: \code{"pearson"}).}
 
 \item{exact}{Logical or \code{NULL}. If \code{TRUE}, computes exact p-values for small sample sizes when using Spearman or Kendall correlations.}
 
-\item{conf.level}{Numeric. Confidence level for frequentist confidence intervals or credibility levels for Bayesian credible intervals. Default is \code{0.95}.}
+\item{conf.level}{Numeric. The confidence level for frequentist intervals or credibility level for Bayesian intervals (default: \code{0.95}).}
 
-\item{continuity}{Logical. If \code{TRUE}, applies a continuity correction for Kendall correlations. Default is \code{FALSE}.}
+\item{continuity}{Logical. If \code{TRUE}, applies a continuity correction for Kendall correlations (default: \code{FALSE}).}
 
-\item{rscale_est}{Numeric or character. Scale of the Cauchy prior for Bayesian estimation of the posterior distribution. Options: \code{"ultrawide"}, \code{"wide"}, \code{"medium"}, or a positive real number. Default is \code{"ultrawide"}. This argument is passed to \code{BayesFactor::correlationBF()}.}
+\item{rscale_est}{Numeric or character. Specifies the Cauchy prior scale for Bayesian estimation of the posterior distribution.
+Options: \code{"ultrawide"}, \code{"wide"}, \code{"medium"}, or a positive real number (default: \code{"ultrawide"}).
+Passed to \code{BayesFactor::correlationBF()}.}
 
-\item{rscale_bf}{Numeric or character. Scale of the Cauchy prior for Bayes factor calculation. Options: \code{"ultrawide"}, \code{"wide"}, \code{"medium"}, or a positive real number. Default is \code{"ultrawide"}. This argument is passed to \code{BayesFactor::correlationBF()}.}
+\item{rscale_bf}{Numeric or character. Specifies the Cauchy prior scale for Bayes factor calculation.
+Options: \code{"ultrawide"}, \code{"wide"}, \code{"medium"}, or a positive real number (default: \code{"ultrawide"}).
+Passed to \code{BayesFactor::correlationBF()}.}
 
-\item{iterations}{Integer. Number of samples to draw from the posterior distribution for Bayesian estimation. Default is \code{10000}.}
+\item{iterations}{Integer. Number of MCMC samples for Bayesian estimation (default: \code{10000}).}
 
-\item{map_density_n}{An integer specifying the number of equally spaced grid points for MAP estimation (default is 512).}
+\item{map_density_n}{Integer. Number of bins for MAP density estimation (default: \code{512}).}
 
 \item{...}{Additional arguments passed to \code{cor.test()}.}
 }
@@ -71,15 +75,14 @@ A list containing:
 \describe{
 \item{all}{A data frame with all computed correlation statistics.}
 \item{table_XX}{A data frame corresponding to a table named "table_XX",
-where "XX" is derived from the output variables (e.g., "table_cor",
-"table_p", "table_BF10"). The content of the table depends on the provided inputs.}
+where "XX" is derived from the output variables (e.g., \code{"table_cor"}, \code{"table_p"}, \code{"table_BF10"}).
+The content of the table depends on the provided inputs.}
 }
 }
 \description{
-This function computes pairwise correlations for all variables in a given dataset.
-It supports both frequentist and Bayesian approaches, providing multiple correlation estimates,
-frequentist confidence intervals, Bayesian credible intervals based on posterior distributions,
-probability of direction (pd), and Bayes factors.
+This function computes pairwise correlations for all variables in a given dataset,
+supporting both frequentist and Bayesian approaches. It provides multiple correlation estimates,
+confidence intervals, Bayesian credible intervals, probability of direction (pd), and Bayes factors.
 }
 \examples{
 \dontrun{
