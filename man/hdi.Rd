@@ -7,27 +7,27 @@
 hdi(x, prob = 0.95)
 }
 \arguments{
-\item{x}{A numeric vector of samples from the distribution.}
+\item{x}{A numeric vector of data values for which the HDI will be calculated.}
 
-\item{prob}{A numeric value between 0 and 1 specifying the probability mass
-for the HDI (default is 0.95).}
+\item{prob}{The probability mass of the HDI to calculate. Default is 0.95.}
 }
 \value{
-A numeric vector containing the values within the HDI.
+A numeric vector of length 2 representing the lower and upper bounds of the HDI.
 }
 \description{
 This function calculates the highest density interval (HDI) for a given
 set of samples. The HDI is the interval that contains a specified
 proportion (default 95\%) of the highest density values from the distribution.
+}
+\details{
+The function first sorts the input data and computes the necessary quantiles using inear interpolation.
+It then identifies the interval that contains the highest density, ensuring that the HDI encompasses the specified probability mass.
 Note that this function does not support the case where two or more separate
 HDIs exist.
 }
 \examples{
-# Generate some random posterior samples
 set.seed(123)
-samples <- rnorm(1000, mean = 0, sd = 1)
-
-# Compute the 95\% HDI
-hdi(samples, prob = 0.95)
+data <- rnorm(1000)  # Generate random normal data
+hdi(data, prob = 0.95)
 
 }

@@ -251,10 +251,10 @@ t_test_all <- function(
 
     if(is.null(y)){
       if(mean_x_EAP) out$mean_x_EAP <- mean(mcmcsample[,"mu"])
-      if(mean_x_MAP) out$mean_x_MAP <- stat_mode(mcmcsample[,"mu"], n = map_density_n)
+      if(mean_x_MAP) out$mean_x_MAP <- mode_stat(mcmcsample[,"mu"], n = map_density_n)
       if(mean_x_MED) out$mean_x_MED <- median(mcmcsample[,"mu"])
       if(cohens_d_EAP) out$cohens_d_EAP <- mean(mcmcsample[,"delta"])
-      if(cohens_d_MAP) out$cohens_d_MAP <- stat_mode(mcmcsample[,"delta"], n = map_density_n)
+      if(cohens_d_MAP) out$cohens_d_MAP <- mode_stat(mcmcsample[,"delta"], n = map_density_n)
       if(cohens_d_MED) out$cohens_d_MED <- median(mcmcsample[,"delta"])
 
       if(ci == "bayes_central"){
@@ -280,10 +280,10 @@ t_test_all <- function(
     } else if(paired){
       mcmcsample_diff <- sqrt(mcmcsample[,"sig2"]) * mcmcsample[,"delta"]
       if(diff_EAP) out$diff_EAP <- mean(mcmcsample_diff)
-      if(diff_MAP) out$diff_MAP <- stat_mode(mcmcsample_diff, n = map_density_n)
+      if(diff_MAP) out$diff_MAP <- mode_stat(mcmcsample_diff, n = map_density_n)
       if(diff_MED) out$diff_MED <- median(mcmcsample_diff)
       if(cohens_dz_EAP) out$cohens_dz_EAP <- mean(mcmcsample[,"delta"])
-      if(cohens_dz_MAP) out$cohens_dz_MAP <- stat_mode(mcmcsample[,"delta"], n = map_density_n)
+      if(cohens_dz_MAP) out$cohens_dz_MAP <- mode_stat(mcmcsample[,"delta"], n = map_density_n)
       if(cohens_dz_MED) out$cohens_dz_MED <- median(mcmcsample[,"delta"])
 
       if(cohens_d_EAP|cohens_d_MAP|cohens_d_MED|
@@ -297,7 +297,7 @@ t_test_all <- function(
         )
 
         if(cohens_d_EAP) out$cohens_d_EAP <- mean(mcmcsample_between[,"delta"])
-        if(cohens_d_MAP) out$cohens_d_MAP <- stat_mode(mcmcsample_between[,"delta"], n = map_density_n)
+        if(cohens_d_MAP) out$cohens_d_MAP <- mode_stat(mcmcsample_between[,"delta"], n = map_density_n)
         if(cohens_d_MED) out$cohens_d_MED <- median(mcmcsample_between[,"delta"])
       }
 
@@ -332,10 +332,10 @@ t_test_all <- function(
 
     } else{
       if(diff_EAP) out$diff_EAP <- mean(mcmcsample[,"beta (x - y)"])
-      if(diff_MAP) out$diff_MAP <- stat_mode(mcmcsample[,"beta (x - y)", n = map_density_n])
+      if(diff_MAP) out$diff_MAP <- mode_stat(mcmcsample[,"beta (x - y)", n = map_density_n])
       if(diff_MED) out$diff_MED <- median(mcmcsample[,"beta (x - y)"])
       if(cohens_d_EAP) out$cohens_d_EAP <- mean(mcmcsample[,"delta"])
-      if(cohens_d_MAP) out$cohens_d_MAP <- stat_mode(mcmcsample[,"delta"], n = map_density_n)
+      if(cohens_d_MAP) out$cohens_d_MAP <- mode_stat(mcmcsample[,"delta"], n = map_density_n)
       if(cohens_d_MED) out$cohens_d_MED <- median(mcmcsample[,"delta"])
 
       if(ci == "bayes_central"){

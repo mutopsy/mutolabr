@@ -165,7 +165,7 @@ cor_test_all <- function(
           }
 
           if(cor_MAP){
-            out[out$row == i & out$col == j,]$cor_MAP = stat_mode(mcmcsample[,"rho"], map_density_n)
+            out[out$row == i & out$col == j,]$cor_MAP = mode_stat(mcmcsample[,"rho"], map_density_n)
           }
           if(cor_MED){
             out[out$row == i & out$col == j,]$cor_MED = median(mcmcsample[,"rho"])

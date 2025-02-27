@@ -15,8 +15,8 @@
 #' data <- rnorm(1000)
 #'
 #' # Compute the mode of the distribution
-#' stat_mode(data)
+#' mode_stat(data)
 #'
 #' @export
 
-stat_mode <- function(z, n = 512) density(z, n = n)$x[which.max(density(z, n = n)$y)]
+mode_stat <- function(z, n = 512) density(z, n = n)$x[which.max(density(z, n = n)$y)]

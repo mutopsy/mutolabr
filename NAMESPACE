@@ -2,10 +2,11 @@
 
 export(cor_test_all)
 export(hdi)
+export(loaded_packages_version)
+export(mode_stat)
 export(pdir)
 export(sd_desc)
-export(stat_mode)
-export(stat_summary)
+export(summary_stat)
 export(t_test_all)
 export(var_desc)
 import(BayesFactor)

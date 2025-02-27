@@ -25,12 +25,12 @@
 #' data <- c(rnorm(100, mean = 50, sd = 10), NA, NA)
 #'
 #' # Compute summary statistics
-#' stat_summary(data)
-#' stat_summary(data, descriptive = TRUE)
+#' summary_stat(data)
+#' summary_stat(data, descriptive = TRUE)
 #'
 #' @export
 
-stat_summary <- function(x, descriptive = FALSE){
+summary_stat <- function(x, descriptive = FALSE){
   x_val <- x[!is.na(x)]
   if(descriptive){
     sd2 <- sd_desc
