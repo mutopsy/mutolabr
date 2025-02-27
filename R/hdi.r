@@ -69,7 +69,7 @@ hdi <- function(x, prob = 0.95) {
 
     if (current_width < min_width) {
       min_width <- current_width
-      hdi_est <- current_interval
+      hdi_est <- range(current_interval)
     }
   }
 
