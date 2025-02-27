@@ -20,13 +20,15 @@ loaded_packages_version <- function() {
   loaded_packages <- loadedNamespaces()
 
   # Create a data frame with package names and their respective versions
-  package_versions <- data.frame(
-    package = loaded_packages,
+  out <- data.frame(
+    package = loaded_packages |> as.character(),
     version = sapply(loaded_packages, function(pkg) as.character(packageVersion(pkg)))
   )
 
-  rownames(package_versions) <- NULL
+  out <- out[order(out$package), ]
+
+  rownames(out) <- NULL
 
   # Return the result
-  return(package_versions)
+  return(out)
 }
