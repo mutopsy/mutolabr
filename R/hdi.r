@@ -31,7 +31,7 @@ hdi <- function(x, prob = 0.95) {
   sorted_x <- sort(x)
 
   # interval length
-  interval_length <- ceiling(prob * n)
+  interval_length <- round(prob * n)
 
   hdi_est <- NULL
   min_width <- Inf
