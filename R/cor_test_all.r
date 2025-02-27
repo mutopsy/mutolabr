@@ -1,37 +1,42 @@
 #' Perform Correlation Tests with Frequentist and Bayesian Methods
 #'
-#' This function computes pairwise correlations for all variables in a given dataset.
-#' It supports both frequentist and Bayesian approaches, providing multiple correlation estimates,
-#' frequentist confidence intervals, Bayesian credible intervals based on posterior distributions,
-#' probability of direction (pd), and Bayes factors.
+#' This function computes pairwise correlations for all variables in a given dataset,
+#' supporting both frequentist and Bayesian approaches. It provides multiple correlation estimates,
+#' confidence intervals, Bayesian credible intervals, probability of direction (pd), and Bayes factors.
 #'
 #' @param dat A data frame or matrix containing numeric variables for correlation analysis.
-#' @param cor Logical. If `TRUE`, compute frequentist correlation coefficients. Default is `TRUE`.
-#' @param cor_EAP Logical. If `TRUE`, compute the Expected A Posteriori (EAP) estimate of the correlation coefficient. Default is `FALSE`.
-#' @param cor_MAP Logical. If `TRUE`, compute the Maximum A Posteriori (MAP) estimate of the correlation coefficient. Default is `FALSE`.
-#' @param cor_MED Logical. If `TRUE`, compute the median of the posterior distribution of the correlation coefficient. Default is `FALSE`.
-#' @param pd Logical. If `TRUE`, compute the probability of direction (pd) based on posterior distributions. Default is `FALSE`.
-#' @param bf Logical. If `TRUE`, compute Bayes factors favoring the presence of correlation over the absence of correlation. Default is `FALSE`.
-#' @param ci Character. Specifies the type of confidence or credible interval: `"freq"` (frequentist confidence interval),
-#' `"bayes_central"` (Bayesian central credible interval), or `"bayes_hdi"` (highest density interval based on the posterior distribution). Default is `"freq"`.
-#' @param triangle Character. Specifies which part of the correlation matrix to return: `"upper"`, `"lower"`, or `"full"`. Default is `"upper"`.
-#' @param alternative Character. Specifies the alternative hypothesis for frequentist analysis: `"two.sided"`, `"less"`, or `"greater"`. Default is `"two.sided"`.
-#' @param method Character. Specifies the correlation method for frequentist analysis: `"pearson"`, `"kendall"`, or `"spearman"`. Default is `"pearson"`.
+#' @param cor Logical. If `TRUE`, computes frequentist correlation coefficients (default: `TRUE`).
+#' @param cor_EAP, cor_MAP, cor_MED Logical. If `TRUE`, computes Bayesian estimates (EAP, MAP, MED) for the correlation coefficient (default: `FALSE`).
+#' @param pd Logical. If `TRUE`, computes the probability of direction (pd) based on posterior distributions (default: `FALSE`).
+#' @param bf Logical. If `TRUE`, computes Bayes factors for the presence of correlation versus the null hypothesis (default: `FALSE`).
+#' @param ci Character. Specifies the type of confidence or credible interval:
+#' `"freq"` (frequentist confidence interval), `"bayes_central"` (Bayesian central credible interval),
+#' or `"bayes_hdi"` (highest density interval based on the posterior distribution) (default: `"freq"`).
+#' @param triangle Character. Specifies which part of the correlation matrix to return:
+#' `"upper"`, `"lower"`, or `"full"` (default: `"upper"`).
+#' @param alternative Character. Specifies the alternative hypothesis for the frequentist test:
+#' `"two.sided"`, `"less"`, or `"greater"` (default: `"two.sided"`).
+#' @param method Character. Specifies the correlation method for the frequentist test:
+#' `"pearson"`, `"kendall"`, or `"spearman"` (default: `"pearson"`).
 #' @param exact Logical or `NULL`. If `TRUE`, computes exact p-values for small sample sizes when using Spearman or Kendall correlations.
-#' @param conf.level Numeric. Confidence level for frequentist confidence intervals or credibility levels for Bayesian credible intervals. Default is `0.95`.
-#' @param continuity Logical. If `TRUE`, applies a continuity correction for Kendall correlations. Default is `FALSE`.
-#' @param rscale_est Numeric or character. Scale of the Cauchy prior for Bayesian estimation of the posterior distribution. Options: `"ultrawide"`, `"wide"`, `"medium"`, or a positive real number. Default is `"ultrawide"`. This argument is passed to `BayesFactor::correlationBF()`.
-#' @param rscale_bf Numeric or character. Scale of the Cauchy prior for Bayes factor calculation. Options: `"ultrawide"`, `"wide"`, `"medium"`, or a positive real number. Default is `"ultrawide"`. This argument is passed to `BayesFactor::correlationBF()`.
-#' @param iterations Integer. Number of samples to draw from the posterior distribution for Bayesian estimation. Default is `10000`.
-#' @param map_density_n An integer specifying the number of equally spaced grid points for MAP estimation (default is 512).
+#' @param conf.level Numeric. The confidence level for frequentist intervals or credibility level for Bayesian intervals (default: `0.95`).
+#' @param continuity Logical. If `TRUE`, applies a continuity correction for Kendall correlations (default: `FALSE`).
+#' @param rscale_est Numeric or character. Specifies the Cauchy prior scale for Bayesian estimation of the posterior distribution.
+#' Options: `"ultrawide"`, `"wide"`, `"medium"`, or a positive real number (default: `"ultrawide"`).
+#' Passed to `BayesFactor::correlationBF()`.
+#' @param rscale_bf Numeric or character. Specifies the Cauchy prior scale for Bayes factor calculation.
+#' Options: `"ultrawide"`, `"wide"`, `"medium"`, or a positive real number (default: `"ultrawide"`).
+#' Passed to `BayesFactor::correlationBF()`.
+#' @param iterations Integer. Number of MCMC samples for Bayesian estimation (default: `10000`).
+#' @param map_density_n Integer. Number of bins for MAP density estimation (default: `512`).
 #' @param ... Additional arguments passed to `cor.test()`.
 #'
 #' @return A list containing:
 #' \describe{
 #'   \item{all}{A data frame with all computed correlation statistics.}
 #'   \item{table_XX}{A data frame corresponding to a table named "table_XX",
-#'   where "XX" is derived from the output variables (e.g., "table_cor",
-#'   "table_p", "table_BF10"). The content of the table depends on the provided inputs.}
+#'   where "XX" is derived from the output variables (e.g., `"table_cor"`, `"table_p"`, `"table_BF10"`).
+#'   The content of the table depends on the provided inputs.}
 #' }
 #'
 #' @examples
@@ -50,7 +55,7 @@
 
 cor_test_all <- function(
     dat,
-    cor = T, cor_EAP = F, cor_MAP = F, cor_MED = F, pd = F, bf = F,
+    cor = TRUE, cor_EAP = FALSE, cor_MAP = FALSE, cor_MED = FALSE, pd = FALSE, bf = FALSE,
     ci = c("freq","bayes_central",  "bayes_hdi"),
     triangle = c("upper", "lower", "full"),
     alternative = c("two.sided", "less", "greater"),
@@ -167,13 +172,7 @@ cor_test_all <- function(
           }
 
           if(pd){
-            pd_posterior <- function(x){
-              out <- mean(x > 0)
-              if(out < 0.5) out <- 1 - out
-              return(out)
-            }
-
-            out[out$row == i & out$col == j,]$pd = pd_posterior(mcmcsample[,"rho"])
+            out[out$row == i & out$col == j,]$pd = pdir(mcmcsample[,"rho"], na.rm = T)
           }
 
           if(ci == "bayes_central"){
