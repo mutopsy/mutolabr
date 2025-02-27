@@ -28,11 +28,9 @@
 #' @return A list containing:
 #' \describe{
 #'   \item{all}{A data frame with all computed correlation statistics.}
-#'   \item{table_cor}{A matrix representation of correlation coefficients.}
-#'   \item{table_p}{A matrix representation of p-values.}
-#'   \item{table_BF10}{A matrix representation of Bayes factors (if computed).}
-#'   \item{table_lower}{A matrix representation of lower confidence or credible interval bounds.}
-#'   \item{table_upper}{A matrix representation of upper confidence or credible interval bounds.}
+#'   \item{table_XX}{A data frame corresponding to a table named "table_XX",
+#'   where "XX" is derived from the output variables (e.g., "table_cor",
+#'   "table_p", "table_BF10"). The content of the table depends on the provided inputs.}
 #' }
 #'
 #' @examples
@@ -47,7 +45,6 @@
 #' @import tidyr
 #' @import tibble
 #' @import BayesFactor
-#' @import HDInterval
 #' @export
 
 cor_test_all <- function(
@@ -186,7 +183,7 @@ cor_test_all <- function(
             )
           }
           if(ci == "bayes_hdi"){
-            interval <- HDInterval::hdi(mcmcsample[,"rho"], credMass = conf.level)
+            interval <- hdi(mcmcsample[,"rho"], prob = conf.level)
           }
 
 
