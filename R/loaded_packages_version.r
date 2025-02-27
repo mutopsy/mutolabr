@@ -25,6 +25,8 @@ loaded_packages_version <- function() {
     version = sapply(loaded_packages, function(pkg) as.character(packageVersion(pkg)))
   )
 
+  rownames(package_versions) <- NULL
+
   # Return the result
   return(package_versions)
 }
