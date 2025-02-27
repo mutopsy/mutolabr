@@ -17,7 +17,7 @@
 #' @examples
 #' set.seed(123)
 #' data <- rnorm(1000)  # Generate random normal data
-#' hdi2(data, prob = 0.95)
+#' hdi(data, prob = 0.95)
 #'
 #' @export
 
