@@ -2,7 +2,7 @@
 
 ## Overview  
 
-The `mutolabr` R package provides convenient functions frequently used in mutolab. This package includes functions to:  
+The `mutolabr` R package provides convenient functions frequently used in [mutolab](https://mutopsy.net/). This package includes functions to:  
 
 * Conduct frequentist and Bayesian t-tests with effect size estimation (`t_test_all`).  
 * Perform correlation tests using frequentist and Bayesian methods for all variables in a given dataset (`cor_test_all`).  
