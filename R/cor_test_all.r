@@ -51,7 +51,6 @@
 #'
 #' @import dplyr
 #' @import tidyr
-#' @import tibble
 #' @import BayesFactor
 #' @export
 
@@ -74,7 +73,7 @@ cor_test_all <- function(
   triangle <- triangle[1]
 
   var.label <- colnames(dat)
-  d.varnames <- tibble(
+  d.varnames <- data.frame(
     varname = var.label
   ) %>%
     dplyr::mutate(num = 1:dplyr::n())
