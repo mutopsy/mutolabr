@@ -44,4 +44,4 @@ library(mutolabr)
 
 ### For statistical tests
 
-* `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation
+* `t_test_all`: [Perform Frequentist and Bayesian t-tests with Effect Size Estimation](reference/t_test_all.html)
