@@ -42,6 +42,8 @@ library(mutolabr)
 
 ## List of functions
 
+For details of each function, see [the function references](https://mutopsy.github.io/mutolabr/reference/).
+
 ### For statistical tests
 
-* `t_test_all`: [Perform Frequentist and Bayesian t-tests with Effect Size Estimation](reference/t_test_all.html)
+* `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation [Document](reference/t_test_all.html)
