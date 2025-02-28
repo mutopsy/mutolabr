@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Convinient Functions for Statistical Analysis Used in mutolab • mutolabr</title>
+<title>Convenient Functions for Statistical Analysis Used in mutolab • mutolabr</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Convinient Functions for Statistical Analysis Used in mutolab">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Convenient Functions for Statistical Analysis Used in mutolab">
 <meta name="description" content="Convenient functions frequently used in mutolab.">
 <meta property="og:description" content="Convenient functions frequently used in mutolab.">
 </head>
@@ -22,7 +22,7 @@
 
     <a class="navbar-brand me-2" href="index.html">mutolabr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +82,6 @@
 * R (&gt;= 4.1.0)<br>
 * <code>dplyr</code><br>
 * <code>tidyr</code><br>
-* <code>tibble</code><br>
 * <code>BayesFactor</code><br>
 * <code>effectsize</code></p>
 </div>
@@ -91,17 +90,38 @@
 </h2>
 <p>After installation, you can load this package using the <code>library</code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">mutolabr</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mutopsy/mutolabr">mutolabr</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="list-of-functions">List of functions<a class="anchor" aria-label="anchor" href="#list-of-functions"></a>
+<h2 id="list-of-functions">List of Functions<a class="anchor" aria-label="anchor" href="#list-of-functions"></a>
 </h2>
+<p>For details on each function, refer to <a href="https://mutopsy.github.io/mutolabr/reference/" class="external-link">the function references</a>.</p>
 <div class="section level3">
-<h3 id="for-statistical-tests">For statistical tests<a class="anchor" aria-label="anchor" href="#for-statistical-tests"></a>
+<h3 id="statistical-tests">Statistical Tests<a class="anchor" aria-label="anchor" href="#statistical-tests"></a>
 </h3>
 <ul>
 <li>
-<code>t_test_all</code>: Perform Frequentist and Bayesian t-tests with Effect Size Estimation</li>
+<code>t_test_all</code>: Perform Frequentist and Bayesian t-tests with Effect Size Estimation [<a href="https://mutopsy.github.io/mutolabr/reference/t_test_all.html" class="external-link">Document</a>]</li>
+<li>
+<code>cor_test_all</code>: Perform Correlation Tests with Frequentist and Bayesian Methods [<a href="https://mutopsy.github.io/mutolabr/reference/cor_test_all.html" class="external-link">Document</a>]</li>
+</ul>
+</div>
+<div class="section level3">
+<h3 id="compute-summary-statistics">Compute Summary Statistics<a class="anchor" aria-label="anchor" href="#compute-summary-statistics"></a>
+</h3>
+<ul>
+<li>
+<code>summary_stat</code>: Compute Summary Statistics [<a href="https://mutopsy.github.io/mutolabr/reference/summary_stat.html" class="external-link">Document</a>]</li>
+<li>
+<code>var_desc</code>: Compute Population Variance [<a href="https://mutopsy.github.io/mutolabr/reference/var_desc.html" class="external-link">Document</a>]</li>
+<li>
+<code>sd_desc</code>: Compute Population Standard Deviation [<a href="https://mutopsy.github.io/mutolabr/reference/sd_desc.html" class="external-link">Document</a>]</li>
+<li>
+<code>mode_stat</code>: Compute the Mode of a Distribution [<a href="https://mutopsy.github.io/mutolabr/reference/mode_stat.html" class="external-link">Document</a>]</li>
+<li>
+<code>hdi</code>: Compute the Highest Density Interval (HDI) [<a href="https://mutopsy.github.io/mutolabr/reference/hdi.html" class="external-link">Document</a>]</li>
+<li>
+<code>pdir</code>: Probability of Direction (pd) Calculation [<a href="https://mutopsy.github.io/mutolabr/reference/pdir.html" class="external-link">Document</a>]</li>
 </ul>
 </div>
 </div>

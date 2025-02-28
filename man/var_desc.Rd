@@ -17,7 +17,7 @@ A numeric value representing the population variance of \code{x}.
 \description{
 This function calculates the population variance of a numeric vector.
 Unlike the default \code{var()} function in R, which computes the sample variance,
-this function adjusts the calculation to use \( n \) instead of \( n-1 \) in the denominator.
+this function adjusts the calculation to use $$n$$ instead of $$n-1$$ in the denominator.
 }
 \examples{
 data <- c(10, 20, 30, 40, 50, NA)
