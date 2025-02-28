@@ -112,6 +112,10 @@ This function performs frequentist and Bayesian t-tests, with options for effect
 confidence intervals, Bayesian credible intervals, probability of direction (pd), and Bayes factors.
 }
 \examples{
+set.seed(123)
+x <- rnorm(30,0, 1)
+y <- x + rnorm(30,0.5, 1)
+
 # Welch's t-test with effect size estimation
 t_test_all(x, y)
 

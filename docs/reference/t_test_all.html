@@ -214,23 +214,131 @@ Options: <code>"ultrawide"</code>, <code>"wide"</code>, <code>"medium"</code>, o
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Welch's t-test with effect size estimation</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">30</span>,<span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">30</span>,<span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Welch's t-test with effect size estimation</span></span></span>
 <span class="r-in"><span><span class="fu">t_test_all</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'y' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Two-sample t-test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Welch's method applied in the frequentist analysis)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H0: mu_x - mu_y = 0, H1: mu_x - mu_y != 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n_x = 30, n_y = 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t = -2.416334, df = 56.0632, p = 0.01895871</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = -0.04710376</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of y = 0.6312346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diff (x-y) = -0.6783383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.240695, -0.1159818]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d = -0.62389485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.139925, -0.1027481]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the frequentist confidence interval.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Confidence level = 0.95)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Welch's t-test with Bayesian independent t-test (Bayes factor and pd)</span></span></span>
 <span class="r-in"><span><span class="co"># and 95% highest density intervals</span></span></span>
 <span class="r-in"><span><span class="fu">t_test_all</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, diff_MAP <span class="op">=</span> <span class="cn">TRUE</span>, cohens_d_MAP <span class="op">=</span> <span class="cn">TRUE</span>, bf <span class="op">=</span> <span class="cn">TRUE</span>, pd <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="st">"bayes_hdi"</span>, rscale_bf <span class="op">=</span> <span class="st">"medium"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'y' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Two-sample t-test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Welch's method applied in the frequentist analysis)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H0: mu_x - mu_y = 0, H1: mu_x - mu_y != 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> n_x = 30, n_y = 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t = -2.416334, df = 56.0632, p = 0.01895871</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pd = 0.9902</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 2.869844 (rscale = 0.7071068)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note: BF is sensitive to the rscale parameter of the prior.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = -0.04710376</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of y = 0.6312346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diff (x-y) = -0.6783383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MAP of diff = -0.6916485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.22348, -0.1196791]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d = -0.62389485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MAP of delta = -0.6500264</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.1427925, -0.1035713]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the Beyesian posterior highest density interval.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Probability = 0.95)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The posterior was approximated using 10000 samples,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> given prior rscale = Inf.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Paired t-test with effect size estimation</span></span></span>
 <span class="r-in"><span><span class="fu">t_test_all</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'y' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Paired t-test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H0: mu_x - mu_y = 0, H1: mu_x - mu_y != 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N = 30 (pairs)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t = -4.448914, df = 29, p = 0.0001169206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = 0.7175137</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = -0.04710376</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of y = 0.6312346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diff (x-y) = -0.6783383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-0.9901802, -0.3664964]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d_z = -0.8122568</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.224918, -0.3995955]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the frequentist confidence interval.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Confidence level = 0.95)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Paired t-test with Bayesian paired t-test (Bayes factor and pd)</span></span></span>
 <span class="r-in"><span><span class="co"># and 95% central credible intervals</span></span></span>
 <span class="r-in"><span><span class="fu">t_test_all</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, diff_MAP <span class="op">=</span> <span class="cn">TRUE</span>, cohens_dz_MAP <span class="op">=</span> <span class="cn">TRUE</span>, bf <span class="op">=</span> <span class="cn">TRUE</span>, pd <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="st">"bayes_central"</span>, rscale_bf <span class="op">=</span> <span class="st">"medium"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'y' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Paired t-test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> H0: mu_x - mu_y = 0, H1: mu_x - mu_y != 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N = 30 (pairs)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> t = -4.448914, df = 29, p = 0.0001169206</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = 0.7175137</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> pd = 0.9999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 225.371 (rscale = 0.7071068)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note: BF is sensitive to the rscale parameter of the prior.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = -0.04710376</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of y = 0.6312346</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Diff (x-y) = -0.6783383</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MAP of diff = -0.6957117</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-0.9809708, -0.3694457]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d_z = -0.8122568</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> MAP of delta_z = -0.8325525</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.231449, -0.4140352]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the Beyesian central posterior interval.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Probability = 0.95)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The posterior was approximated using 10000 samples,</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> given prior rscale = Inf.</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -41,6 +41,10 @@
 #' @return A data frame containing test statistics, effect sizes, confidence intervals, and Bayesian estimates.
 #'
 #' @examples
+#' set.seed(123)
+#' x <- rnorm(30,0, 1)
+#' y <- x + rnorm(30,0.5, 1)
+#'
 #' # Welch's t-test with effect size estimation
 #' t_test_all(x, y)
 #'
