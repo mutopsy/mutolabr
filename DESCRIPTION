@@ -1,6 +1,6 @@
 Package: mutolabr
 Title: Convinient Functions for Statistical Analysis Used in mutolab
-Version: 0.0.0
+Version: 1.0.0
 Authors@R: 
     person("Hiroyuki", "Muto", , "mutopsy@omu.ac.jp", role = c("aut", "cre"))
 Description: Convenient functions frequently used in mutolab.
