@@ -40,8 +40,20 @@ After installation, you can load this package using the `library` function.
 library(mutolabr)
 ```
 
-## List of functions
+## List of Functions
 
-### For statistical tests
+For details on each function, refer to [the function references](https://mutopsy.github.io/mutolabr/reference/).
 
-* `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation
+### Statistical Tests
+
+* `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all.html)]
+* `cor_test_all`: Perform Correlation Tests with Frequentist and Bayesian Methods [[Document](https://mutopsy.github.io/mutolabr/reference/cor_test_all.html)]
+
+### Compute Summary Statistics
+
+* `summary_stat`: Compute Summary Statistics [[Document](https://mutopsy.github.io/mutolabr/reference/summary_stat.html)]
+* `var_desc`: Compute Population Variance [[Document](https://mutopsy.github.io/mutolabr/reference/var_desc.html)]
+* `sd_desc`: Compute Population Standard Deviation [[Document](https://mutopsy.github.io/mutolabr/reference/sd_desc.html)]
+* `mode_stat`: Compute the Mode of a Distribution [[Document](https://mutopsy.github.io/mutolabr/reference/mode_stat.html)]
+* `hdi`: Compute the Highest Density Interval (HDI) [[Document](https://mutopsy.github.io/mutolabr/reference/hdi.html)]
+* `pdir`: Probability of Direction (pd) Calculation [[Document](https://mutopsy.github.io/mutolabr/reference/pdir.html)]
