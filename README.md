@@ -1,4 +1,4 @@
-# mutolabr: Convenient R Functions for Statistical Analysis Used in mutolab
+# mutolabr: Convenient R Functions Frequently Used in mutolab
 
 ## Overview  
 
