@@ -24,7 +24,8 @@ the distribution of the same sign as its median’s and varies from 0.50 to 1.00
 This is an index of effect existence, proposed by Makowski et al. (2019).
 }
 \examples{
-x <- c(1, -2, 3, 0, -1, 2)
+set.seed(123)
+x <- rnorm(1000)
 pdir(x)  # Returns the Probability of Direction for x
 pdir(x, na.rm = TRUE)  # Removes NA values before calculation
 

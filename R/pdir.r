@@ -14,7 +14,8 @@
 #'         the proportion if it is less than 0.5.
 #'
 #' @examples
-#' x <- c(1, -2, 3, 0, -1, 2)
+#' set.seed(123)
+#' x <- rnorm(1000)
 #' pdir(x)  # Returns the Probability of Direction for x
 #' pdir(x, na.rm = TRUE)  # Removes NA values before calculation
 #'

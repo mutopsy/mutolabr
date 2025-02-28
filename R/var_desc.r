@@ -2,7 +2,7 @@
 #'
 #' This function calculates the population variance of a numeric vector.
 #' Unlike the default `var()` function in R, which computes the sample variance,
-#' this function adjusts the calculation to use $$n$$ instead of $$n-1$$ in the denominator.
+#' this function adjusts the calculation to use n instead of n-1 in the denominator.
 #'
 #' @param x A numeric vector containing the data.
 #' @param na.rm A logical value indicating whether to remove missing values (`NA`) before computation. Default is `FALSE`.
