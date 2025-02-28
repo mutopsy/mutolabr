@@ -57,7 +57,8 @@
 #'
 #' # Paired t-test with Bayesian paired t-test (Bayes factor and pd)
 #' # and 95% central credible intervals
-#' t_test_all(x, y, paired = TRUE, diff_MAP = TRUE, cohens_dz_MAP = TRUE, bf = TRUE, pd = TRUE, ci = "bayes_central", rscale_bf = "medium")
+#' t_test_all(x, y, paired = TRUE, diff_MAP = TRUE, cohens_dz_MAP = TRUE,
+#'            bf = TRUE, pd = TRUE, ci = "bayes_central", rscale_bf = "medium")
 #'
 #' @import effectsize
 #' @import BayesFactor
