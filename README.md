@@ -56,3 +56,10 @@ For details on each function, refer to [the function references](https://mutopsy
 * `mode_stat`: Compute the Mode of a Distribution [[Document](https://mutopsy.github.io/mutolabr/reference/mode_stat.html)]
 * `hdi`: Compute the Highest Density Interval (HDI) [[Document](https://mutopsy.github.io/mutolabr/reference/hdi.html)]
 * `pdir`: Probability of Direction (pd) Calculation [[Document](https://mutopsy.github.io/mutolabr/reference/pdir.html)]
+
+## Version History
+
+### v1.0.0 (2025-02-28)  
+- Initial release of `mutolabr` package.  
+- Implemented `t_test_all()`, `cor_test_all()`, `summary_stat()`, `var_desc()`, `sd_desc()`, `mode_stat()`, `hdi()`, and `pdir()`.
+
