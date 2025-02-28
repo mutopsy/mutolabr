@@ -171,12 +171,37 @@ The content of the table depends on the provided inputs.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">cor_test_all</span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">all</span>  <span class="co"># View detailed correlation statistics</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Frequentist analysis</span></span></span>
+<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">cor_test_all</span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">all</span>  <span class="co"># View detailed results in a tidy format</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   var_row var_col row col        cor upper         S pd BF10 n_pair n_na</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    disp      hp   1   2  0.9066841     1 0.2772104  3    0      1    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    disp    drat   1   3 -0.8793220     1 0.3159924  3    0      1    1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      hp    drat   2   3 -0.5963894     1 0.5932029  3    0      2    2</span>
 <span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">table_cor</span>  <span class="co"># View correlation matrix</span></span></span>
-<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      disp        hp       drat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> disp   NA 0.9066841 -0.8793220</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hp     NA        NA -0.5963894</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> drat   NA        NA         NA</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Calculation of Bayesian statistics</span></span></span>
+<span class="r-in"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu">cor_test_all</span><span class="op">(</span><span class="va">mtcars</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, cor_MAP <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="st">"bayes_hdi"</span>,</span></span>
+<span class="r-in"><span>                        bf <span class="op">=</span> <span class="cn">TRUE</span>, pd <span class="op">=</span> <span class="cn">TRUE</span>, rscale_est <span class="op">=</span> <span class="st">"ultrawide"</span>,</span></span>
+<span class="r-in"><span>                        rscale_bf <span class="op">=</span> <span class="st">"ultrawide"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">all</span>  <span class="co"># View detailed results in a tidy format</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   var_row var_col row col        cor    cor_MAP      lower     upper          t</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    disp      hp   1   2  0.9066841  0.8119465 -0.5058066 0.9797273  2.1495062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2    disp    drat   1   3 -0.8793220 -0.7432319 -0.9861332 0.4788444 -1.8464315</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3      hp    drat   2   3 -0.5963894 -0.4865746 -0.9307007 0.6561924 -0.7429835</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   df         p     pd      BF10 n_pair n_na</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1 0.2772104 0.7917 1.1478416      3    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  1 0.3159924 0.7878 1.0814723      3    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  1 0.5932029 0.6763 0.7869999      3    0</span>
+<span class="r-in"><span><span class="va">results</span><span class="op">$</span><span class="va">table_BF10</span>  <span class="co"># View Bayes factor matrix</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      disp       hp      drat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> disp   NA 1.147842 1.0814723</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> hp     NA       NA 0.7869999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> drat   NA       NA        NA</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

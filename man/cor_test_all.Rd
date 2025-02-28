@@ -89,11 +89,16 @@ supporting both frequentist and Bayesian approaches. It provides multiple correl
 confidence intervals, Bayesian credible intervals, probability of direction (pd), and Bayes factors.
 }
 \examples{
-\dontrun{
-data(mtcars)
-results <- cor_test_all(mtcars)
-results$all  # View detailed correlation statistics
+# Frequentist analysis
+results <- cor_test_all(mtcars[3:5, 3:5])
+results$all  # View detailed results in a tidy format
 results$table_cor  # View correlation matrix
-}
+
+# Calculation of Bayesian statistics
+results <- cor_test_all(mtcars[3:5, 3:5], cor_MAP = TRUE, ci = "bayes_hdi",
+                        bf = TRUE, pd = TRUE, rscale_est = "ultrawide",
+                        rscale_bf = "ultrawide")
+results$all  # View detailed results in a tidy format
+results$table_BF10  # View Bayes factor matrix
 
 }

@@ -1,9 +1,9 @@
 Package: mutolabr
-Title: Convenient Functions for Statistical Analysis Used in mutolab
+Title: Convenient R Functions Frequently Used in mutolab
 Version: 1.0.0
 Authors@R: 
     person("Hiroyuki", "Muto", , "mutopsy@omu.ac.jp", role = c("aut", "cre"))
-Description: Convenient functions frequently used in mutolab.
+Description: Convenient R functions frequently used in mutolab.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Encoding: UTF-8
