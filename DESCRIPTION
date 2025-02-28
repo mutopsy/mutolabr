@@ -1,5 +1,5 @@
 Package: mutolabr
-Title: Convinient Functions for Statistical Analysis Used in mutolab
+Title: Convenient Functions for Statistical Analysis Used in mutolab
 Version: 1.0.0
 Authors@R: 
     person("Hiroyuki", "Muto", , "mutopsy@omu.ac.jp", role = c("aut", "cre"))
