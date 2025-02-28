@@ -350,7 +350,7 @@ t_test_all <- function(
 
     } else{
       if(diff_EAP) out$diff_EAP <- mean(mcmcsample[,"beta (x - y)"])
-      if(diff_MAP) out$diff_MAP <- mode_stat(mcmcsample[,"beta (x - y)", n = map_density_n])
+      if(diff_MAP) out$diff_MAP <- mode_stat(mcmcsample[,"beta (x - y)"], n = map_density_n)
       if(diff_MED) out$diff_MED <- median(mcmcsample[,"beta (x - y)"])
       if(cohens_d_EAP) out$cohens_d_EAP <- mean(mcmcsample[,"delta"])
       if(cohens_d_MAP) out$cohens_d_MAP <- mode_stat(mcmcsample[,"delta"], n = map_density_n)
