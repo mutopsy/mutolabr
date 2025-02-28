@@ -1,24 +1,27 @@
-#' Compute the Highest Density Interval (HDI)
+#' Probability of Direction (pd) Calculation
 #'
-#' This function calculates the highest density interval (HDI) for a given
-#' set of samples. The HDI is the interval that contains a specified
-#' proportion (default 95%) of the highest density values from the distribution.
-#' Note that this function does not support the case where two or more separate
-#' HDIs exist.
+#' This function calculates the Probability of Direction (Pd), which is the proportion of
+#' the distribution of the same sign as its median’s and varies from 0.50 to 1.00.
+#' This is an index of effect existence, proposed by Makowski et al. (2019).
 #'
-#' @param x A numeric vector of samples from the distribution.
-#' @param prob A numeric value between 0 and 1 specifying the probability mass
-#'   for the HDI (default is 0.95).
+#' @param x A numeric vector of values. The function will calculate the proportion of positive
+#'          values in this vector.
+#' @param na.rm A logical value indicating whether NA values should be removed before calculation.
+#'              Default is FALSE.
 #'
-#' @return A numeric vector containing the values within the HDI.
+#' @return A numeric value between 0 and 1, representing the Probability of Direction (Pd).
+#'         The value is calculated as the proportion of positive values in `x`, or 1 minus
+#'         the proportion if it is less than 0.5.
 #'
 #' @examples
-#' # Generate some random posterior samples
-#' set.seed(123)
-#' samples <- rnorm(1000, mean = 0, sd = 1)
+#' x <- c(1, -2, 3, 0, -1, 2)
+#' pdir(x)  # Returns the Probability of Direction for x
+#' pdir(x, na.rm = TRUE)  # Removes NA values before calculation
 #'
-#' # Compute the 95% HDI
-#' hdi(samples, prob = 0.95)
+#' @references
+#' Makowski, D., Ben-Shachar, M. S., Chen, S. H. A., & Lüdecke, D. (2019). Indices of effect
+#' existence and significance in the Bayesian framework. Frontiers in Psychology, 10, Article
+#' 2767. https://doi.org/10.3389/fpsyg.2019.02767
 #'
 #' @export
 

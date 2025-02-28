@@ -64,17 +64,33 @@ t_test_all(
 
 \item{cor}{Logical. If \code{TRUE}, computes Pearson correlation for paired samples.}
 
-\item{mean_x_EAP, }{mean_x_MAP, mean_x_MED Logical. If \code{TRUE}, computes Bayesian estimates (EAP, MAP, MED) for \code{x}.}
+\item{mean_x_EAP}{Logical. If \code{TRUE}, computes the expected a posteriori (EAP) estimate of the mean of \code{x} (default: \code{FALSE}).}
 
-\item{diff_EAP, }{diff_MAP, diff_MED Logical. If \code{TRUE}, computes Bayesian estimates for the mean difference.}
+\item{mean_x_MAP}{Logical. If \code{TRUE}, computes the maximum a posteriori (MAP) estimate of the mean of \code{x} (default: \code{FALSE}).}
+
+\item{mean_x_MED}{Logical. If \code{TRUE}, computes the median of the posterior distribution (MED) for the mean of \code{x} (default: \code{FALSE}).}
+
+\item{diff_EAP}{Logical. If \code{TRUE}, computes the expected a posteriori (EAP) estimate of the mean difference (default: \code{FALSE}).}
+
+\item{diff_MAP}{Logical. If \code{TRUE}, computes the maximum a posteriori (MAP) estimate of the mean difference (default: \code{FALSE}).}
+
+\item{diff_MED}{Logical. If \code{TRUE}, computes the median of the posterior distribution (MED) for the mean difference (default: \code{FALSE}).}
 
 \item{cohens_d}{Logical. If \code{TRUE}, computes Cohen's d for independent samples.}
 
-\item{cohens_d_EAP, }{cohens_d_MAP, cohens_d_MED Logical. If \code{TRUE}, computes Bayesian estimates for Cohen's d.}
+\item{cohens_d_EAP}{Logical. If \code{TRUE}, computes the expected a posteriori (EAP) estimate of Cohen's d (default: \code{FALSE}).}
+
+\item{cohens_d_MAP}{Logical. If \code{TRUE}, computes the maximum a posteriori (MAP) estimate of Cohen's d (default: \code{FALSE}).}
+
+\item{cohens_d_MED}{Logical. If \code{TRUE}, computes the median of the posterior distribution (MED) for Cohen's d (default: \code{FALSE}).}
 
 \item{cohens_dz}{Logical. If \code{TRUE}, computes Cohen's dz for paired samples.}
 
-\item{cohens_dz_EAP, }{cohens_dz_MAP, cohens_dz_MED Logical. If \code{TRUE}, computes Bayesian estimates for Cohen's dz.}
+\item{cohens_dz_EAP}{Logical. If \code{TRUE}, computes the expected a posteriori (EAP) estimate of Cohen's dz (default: \code{FALSE}).}
+
+\item{cohens_dz_MAP}{Logical. If \code{TRUE}, computes the maximum a posteriori (MAP) estimate of Cohen's dz (default: \code{FALSE}).}
+
+\item{cohens_dz_MED}{Logical. If \code{TRUE}, computes the median of the posterior distribution (MED) for Cohen's dz (default: \code{FALSE}).}
 
 \item{rscale_est}{Numeric or character. Specifies the Cauchy prior scale for Bayesian estimation of the posterior distribution.
 Options: \code{"ultrawide"}, \code{"wide"}, \code{"medium"}, or a positive real number (default: \code{Inf}). Passed to \code{BayesFactor::ttestBF()}.}

@@ -31,7 +31,11 @@ cor_test_all(
 
 \item{cor}{Logical. If \code{TRUE}, computes frequentist correlation coefficients (default: \code{TRUE}).}
 
-\item{cor_EAP, }{cor_MAP, cor_MED Logical. If \code{TRUE}, computes Bayesian estimates (EAP, MAP, MED) for the correlation coefficient (default: \code{FALSE}).}
+\item{cor_EAP}{Logical. If \code{TRUE}, computes the expected a posteriori (EAP) estimate of the correlation coefficient (default: \code{FALSE}).}
+
+\item{cor_MAP}{Logical. If \code{TRUE}, computes the maximum a posteriori (MAP) estimate of the correlation coefficient (default: \code{FALSE}).}
+
+\item{cor_MED}{Logical. If \code{TRUE}, computes the median of the posterior distribution (MED) for the correlation coefficient (default: \code{FALSE}).}
 
 \item{pd}{Logical. If \code{TRUE}, computes the probability of direction (pd) based on posterior distributions (default: \code{FALSE}).}
 

@@ -16,12 +16,20 @@
 #' @param pd Logical. If `TRUE`, computes the probability of direction (pd) based on posterior distributions (default: `FALSE`).
 #' @param bf Logical. If `TRUE`, computes Bayes factors for the presence of a difference versus the null hypothesis (default: `FALSE`).
 #' @param cor Logical. If `TRUE`, computes Pearson correlation for paired samples.
-#' @param mean_x_EAP, mean_x_MAP, mean_x_MED Logical. If `TRUE`, computes Bayesian estimates (EAP, MAP, MED) for `x`.
-#' @param diff_EAP, diff_MAP, diff_MED Logical. If `TRUE`, computes Bayesian estimates for the mean difference.
+#' @param mean_x_EAP Logical. If `TRUE`, computes the expected a posteriori (EAP) estimate of the mean of `x` (default: `FALSE`).
+#' @param mean_x_MAP Logical. If `TRUE`, computes the maximum a posteriori (MAP) estimate of the mean of `x` (default: `FALSE`).
+#' @param mean_x_MED Logical. If `TRUE`, computes the median of the posterior distribution (MED) for the mean of `x` (default: `FALSE`).
+#' @param diff_EAP Logical. If `TRUE`, computes the expected a posteriori (EAP) estimate of the mean difference (default: `FALSE`).
+#' @param diff_MAP Logical. If `TRUE`, computes the maximum a posteriori (MAP) estimate of the mean difference (default: `FALSE`).
+#' @param diff_MED Logical. If `TRUE`, computes the median of the posterior distribution (MED) for the mean difference (default: `FALSE`).
 #' @param cohens_d Logical. If `TRUE`, computes Cohen's d for independent samples.
-#' @param cohens_d_EAP, cohens_d_MAP, cohens_d_MED Logical. If `TRUE`, computes Bayesian estimates for Cohen's d.
+#' @param cohens_d_EAP Logical. If `TRUE`, computes the expected a posteriori (EAP) estimate of Cohen's d (default: `FALSE`).
+#' @param cohens_d_MAP Logical. If `TRUE`, computes the maximum a posteriori (MAP) estimate of Cohen's d (default: `FALSE`).
+#' @param cohens_d_MED Logical. If `TRUE`, computes the median of the posterior distribution (MED) for Cohen's d (default: `FALSE`).
 #' @param cohens_dz Logical. If `TRUE`, computes Cohen's dz for paired samples.
-#' @param cohens_dz_EAP, cohens_dz_MAP, cohens_dz_MED Logical. If `TRUE`, computes Bayesian estimates for Cohen's dz.
+#' @param cohens_dz_EAP Logical. If `TRUE`, computes the expected a posteriori (EAP) estimate of Cohen's dz (default: `FALSE`).
+#' @param cohens_dz_MAP Logical. If `TRUE`, computes the maximum a posteriori (MAP) estimate of Cohen's dz (default: `FALSE`).
+#' @param cohens_dz_MED Logical. If `TRUE`, computes the median of the posterior distribution (MED) for Cohen's dz (default: `FALSE`).
 #' @param rscale_est Numeric or character. Specifies the Cauchy prior scale for Bayesian estimation of the posterior distribution.
 #' Options: `"ultrawide"`, `"wide"`, `"medium"`, or a positive real number (default: `Inf`). Passed to `BayesFactor::ttestBF()`.
 #' @param rscale_bf Numeric or character. Specifies the Cauchy prior scale for Bayes factor calculation.
@@ -37,6 +45,7 @@
 #' y <- rnorm(30, mean = 0.5)
 #' t_test_all(x, y, paired = FALSE, ci = "freq", alternative = "two.sided")
 #'
+#' @import stats
 #' @import effectsize
 #' @import BayesFactor
 #' @import dplyr
@@ -315,7 +324,7 @@ t_test_all <- function(
       }
 
       if(ci == "bayes_hdi"){
-        tmp <- HDInterval::hdi(mcmcsample_diff, credMass = conf.level)
+        tmp <- hdi(mcmcsample_diff, prob = conf.level)
         out$diff_lower <- tmp[1]
         out$diff_upper <- tmp[2]
         if(cohens_d | cohens_d_EAP | cohens_d_MAP | cohens_d_MED){

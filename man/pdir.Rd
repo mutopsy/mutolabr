@@ -2,32 +2,35 @@
 % Please edit documentation in R/pdir.r
 \name{pdir}
 \alias{pdir}
-\title{Compute the Highest Density Interval (HDI)}
+\title{Probability of Direction (pd) Calculation}
 \usage{
 pdir(x, na.rm = FALSE)
 }
 \arguments{
-\item{x}{A numeric vector of samples from the distribution.}
+\item{x}{A numeric vector of values. The function will calculate the proportion of positive
+values in this vector.}
 
-\item{prob}{A numeric value between 0 and 1 specifying the probability mass
-for the HDI (default is 0.95).}
+\item{na.rm}{A logical value indicating whether NA values should be removed before calculation.
+Default is FALSE.}
 }
 \value{
-A numeric vector containing the values within the HDI.
+A numeric value between 0 and 1, representing the Probability of Direction (Pd).
+The value is calculated as the proportion of positive values in \code{x}, or 1 minus
+the proportion if it is less than 0.5.
 }
 \description{
-This function calculates the highest density interval (HDI) for a given
-set of samples. The HDI is the interval that contains a specified
-proportion (default 95\%) of the highest density values from the distribution.
-Note that this function does not support the case where two or more separate
-HDIs exist.
+This function calculates the Probability of Direction (Pd), which is the proportion of
+the distribution of the same sign as its median’s and varies from 0.50 to 1.00.
+This is an index of effect existence, proposed by Makowski et al. (2019).
 }
 \examples{
-# Generate some random posterior samples
-set.seed(123)
-samples <- rnorm(1000, mean = 0, sd = 1)
+x <- c(1, -2, 3, 0, -1, 2)
+pdir(x)  # Returns the Probability of Direction for x
+pdir(x, na.rm = TRUE)  # Removes NA values before calculation
 
-# Compute the 95\% HDI
-hdi(samples, prob = 0.95)
-
+}
+\references{
+Makowski, D., Ben-Shachar, M. S., Chen, S. H. A., & Lüdecke, D. (2019). Indices of effect
+existence and significance in the Bayesian framework. Frontiers in Psychology, 10, Article
+2767. https://doi.org/10.3389/fpsyg.2019.02767
 }

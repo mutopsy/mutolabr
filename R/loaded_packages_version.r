@@ -13,6 +13,8 @@
 #' # Get the list of loaded packages with versions
 #' loaded_packages_version()
 #'
+#' @import utils
+#'
 #' @export
 
 loaded_packages_version <- function() {

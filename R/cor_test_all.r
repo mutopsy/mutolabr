@@ -6,7 +6,9 @@
 #'
 #' @param dat A data frame or matrix containing numeric variables for correlation analysis.
 #' @param cor Logical. If `TRUE`, computes frequentist correlation coefficients (default: `TRUE`).
-#' @param cor_EAP, cor_MAP, cor_MED Logical. If `TRUE`, computes Bayesian estimates (EAP, MAP, MED) for the correlation coefficient (default: `FALSE`).
+#' @param cor_EAP Logical. If `TRUE`, computes the expected a posteriori (EAP) estimate of the correlation coefficient (default: `FALSE`).
+#' @param cor_MAP Logical. If `TRUE`, computes the maximum a posteriori (MAP) estimate of the correlation coefficient (default: `FALSE`).
+#' @param cor_MED Logical. If `TRUE`, computes the median of the posterior distribution (MED) for the correlation coefficient (default: `FALSE`).
 #' @param pd Logical. If `TRUE`, computes the probability of direction (pd) based on posterior distributions (default: `FALSE`).
 #' @param bf Logical. If `TRUE`, computes Bayes factors for the presence of correlation versus the null hypothesis (default: `FALSE`).
 #' @param ci Character. Specifies the type of confidence or credible interval:
@@ -66,7 +68,6 @@ cor_test_all <- function(
     ...
 ){
 
-  library(tidyverse)
   method <- method[1]
   alternative <- alternative[1]
   ci <- ci[1]
@@ -210,10 +211,10 @@ cor_test_all <- function(
   out <- out %>%
     select_if(~ !any(is.na(.))) %>%
     left_join(d.varnames, by = join_by(row == num)) %>%
-    dplyr::rename(var_row = varname) %>%
+    dplyr::rename(var_row = "varname") %>%
     left_join(d.varnames, by = join_by(col == num)) %>%
-    dplyr::rename(var_col = varname) %>%
-    dplyr::select(var_row, var_col, everything())
+    dplyr::rename(var_col = "varname") %>%
+    dplyr::select("var_row", "var_col", everything())
 
   # Making table formats
   out_with_table <- list()

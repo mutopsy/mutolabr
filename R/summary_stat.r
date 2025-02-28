@@ -41,16 +41,16 @@ summary_stat <- function(x, descriptive = FALSE){
   out <- data.frame(
     mean = mean(x_val),
     sd = sd2(x_val),
-    min = min(x),
-    q25 = quantile(x, probs = 0.25),
-    q50 = quantile(x, probs = 0.50),
-    q75 = quantile(x, probs = 0.75),
-    max = max(x),
+    min = min(x_val),
+    q25 = quantile(x_val, probs = 0.25),
+    q50 = quantile(x_val, probs = 0.50),
+    q75 = quantile(x_val, probs = 0.75),
+    max = max(x_val),
     n_val = length(x_val),
     n_na = sum(is.na(x))
   )
 
-  rawnames(out) <- NULL
+  rownames(out) <- NULL
 
   return(out)
 }
