@@ -41,11 +41,20 @@
 #' @return A data frame containing test statistics, effect sizes, confidence intervals, and Bayesian estimates.
 #'
 #' @examples
-#' x <- rnorm(30)
-#' y <- rnorm(30, mean = 0.5)
-#' t_test_all(x, y, paired = FALSE, ci = "freq", alternative = "two.sided")
+#' # Welch's t-test with effect size estimation
+#' t_test_all(x, y)
 #'
-#' @import stats
+#' # Welch's t-test with Bayesian independent t-test (Bayes factor and pd)
+#' # and 95% highest density intervals
+#' t_test_all(x, y, diff_MAP = TRUE, cohens_d_MAP = TRUE, bf = TRUE, pd = TRUE, ci = "bayes_hdi", rscale_bf = "medium")
+#'
+#' # Paired t-test with effect size estimation
+#' t_test_all(x, y, paired = TRUE)
+#'
+#' # Paired t-test with Bayesian paired t-test (Bayes factor and pd)
+#' # and 95% central credible intervals
+#' t_test_all(x, y, paired = TRUE, diff_MAP = TRUE, cohens_dz_MAP = TRUE, bf = TRUE, pd = TRUE, ci = "bayes_central", rscale_bf = "medium")
+#'
 #' @import effectsize
 #' @import BayesFactor
 #' @import dplyr
