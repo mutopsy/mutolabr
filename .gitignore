@@ -50,4 +50,5 @@ rsconnect/
 ^mutolabr\.Rproj$
 ^\.Rproj\.user$
 ^develop/
-^\.Rproj
+*.Rproj
+
