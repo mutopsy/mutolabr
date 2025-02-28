@@ -121,7 +121,8 @@ t_test_all(x, y)
 
 # Welch's t-test with Bayesian independent t-test (Bayes factor and pd)
 # and 95\% highest density intervals
-t_test_all(x, y, diff_MAP = TRUE, cohens_d_MAP = TRUE, bf = TRUE, pd = TRUE, ci = "bayes_hdi", rscale_bf = "medium")
+t_test_all(x, y, diff_MAP = TRUE, cohens_d_MAP = TRUE,
+           bf = TRUE, pd = TRUE, ci = "bayes_hdi", rscale_bf = "medium")
 
 # Paired t-test with effect size estimation
 t_test_all(x, y, paired = TRUE)

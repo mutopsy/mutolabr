@@ -214,9 +214,9 @@ cor_test_all <- function(
 
   out <- out %>%
     select_if(~ !any(is.na(.))) %>%
-    left_join(d.varnames, by = join_by(row == num)) %>%
+    left_join(d.varnames, by = join_by(x$row == y$num)) %>%
     dplyr::rename(var_row = "varname") %>%
-    left_join(d.varnames, by = join_by(col == num)) %>%
+    left_join(d.varnames, by = join_by(x$col == y$num)) %>%
     dplyr::rename(var_col = "varname") %>%
     dplyr::select("var_row", "var_col", everything())
 
