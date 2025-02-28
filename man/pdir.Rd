@@ -7,11 +7,10 @@
 pdir(x, na.rm = FALSE)
 }
 \arguments{
-\item{x}{A numeric vector of values. The function will calculate the proportion of positive
-values in this vector.}
+\item{x}{A numeric vector of values.}
 
-\item{na.rm}{A logical value indicating whether NA values should be removed before calculation.
-Default is FALSE.}
+\item{na.rm}{A logical value indicating whether \code{NA} values should be removed before calculation.
+Default is \code{FALSE}.}
 }
 \value{
 A numeric value between 0 and 1, representing the Probability of Direction (Pd).
@@ -19,7 +18,7 @@ The value is calculated as the proportion of positive values in \code{x}, or 1 m
 the proportion if it is less than 0.5.
 }
 \description{
-This function calculates the Probability of Direction (Pd), which is the proportion of
+This function calculates the probability of direction (pd), which is the proportion of
 the distribution of the same sign as its median’s and varies from 0.50 to 1.00.
 This is an index of effect existence, proposed by Makowski et al. (2019).
 }

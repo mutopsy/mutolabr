@@ -49,6 +49,6 @@ rsconnect/
 # Others
 ^mutolabr\.Rproj$
 ^\.Rproj\.user$
-^develop/
+develop/
 *.Rproj
 
