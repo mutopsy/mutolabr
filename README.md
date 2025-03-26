@@ -5,7 +5,8 @@
 The `mutolabr` R package provides convenient functions frequently used in [mutolab](https://mutopsy.net/). This package includes functions to:  
 
 * Conduct frequentist and Bayesian t-tests with effect size estimation (`t_test_all`).  
-* Perform correlation tests using frequentist and Bayesian methods for all variables in a given dataset (`cor_test_all`).  
+* Perform correlation tests using frequentist and Bayesian methods for all variables in a given dataset (`cor_test_all`).
+* Perform contrast tests using frequentist method (`contrast_test`).  
 * Compute summary statistics for a single variable, including the highest density interval (`hdi`), mode (`mode_stat`), population variance (`var_desc`), and population standard deviation (`sd_desc`).  
 * Calculate the probability of direction (pd) from MCMC samples of a posterior distribution.  
 * Retrieve a list of currently loaded R packages along with their versions (`loaded_packages_version`).  
@@ -47,6 +48,7 @@ For details on each function, refer to [the function references](https://mutopsy
 
 * `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all.html)]
 * `cor_test_all`: Perform Correlation Tests with Frequentist and Bayesian Methods [[Document](https://mutopsy.github.io/mutolabr/reference/cor_test_all.html)]
+* `contrast_test`: Perform Contrast Tests with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test.html)]
 
 ### Compute Summary Statistics
 
@@ -58,6 +60,9 @@ For details on each function, refer to [the function references](https://mutopsy
 * `pdir`: Probability of Direction (pd) Calculation [[Document](https://mutopsy.github.io/mutolabr/reference/pdir.html)]
 
 ## Version History
+
+### v1.0.0 (2025-03-26)   
+- Implemented `contrast_test()`.
 
 ### v1.0.0 (2025-02-28)  
 - Initial release of `mutolabr` package.  
