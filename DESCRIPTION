@@ -1,6 +1,6 @@
 Package: mutolabr
 Title: Convenient R Functions Frequently Used in mutolab
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
     person("Hiroyuki", "Muto", , "mutopsy@omu.ac.jp", role = c("aut", "cre"))
 Description: Convenient R functions frequently used in mutolab.
