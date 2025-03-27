@@ -49,6 +49,7 @@ For details on each function, refer to [the function references](https://mutopsy
 * `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all.html)]
 * `cor_test_all`: Perform Correlation Tests with Frequentist and Bayesian Methods [[Document](https://mutopsy.github.io/mutolabr/reference/cor_test_all.html)]
 * `contrast_test`: Perform Contrast Tests with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test.html)]
+* `trend_test`: Perform Trend Analysis using Contrast Test with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/trend_test.html)]
 
 ### Compute Summary Statistics
 
@@ -61,7 +62,10 @@ For details on each function, refer to [the function references](https://mutopsy
 
 ## Version History
 
-### v1.0.0 (2025-03-26)   
+### v1.2.0 (2025-03-27)   
+- Implemented `trend_test()`.
+- 
+### v1.1.0 (2025-03-26)   
 - Implemented `contrast_test()`.
 
 ### v1.0.0 (2025-02-28)  
