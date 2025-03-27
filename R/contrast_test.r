@@ -21,7 +21,10 @@
 #'   \item{df_error}{The degrees of freedom for the error.}
 #'   \item{SS_contrast}{The sum of squares for the contrast component.}
 #'   \item{SS_error}{The sum of squares for the error.}
+#'   \item{SS_effect}{The sum of squares for the effect.}
+#'   \item{SS_total}{The toal sum of squares for the data.}
 #'   \item{p}{The p-value for the contrast test.}
+#'   \item{eta2}{The eta squared effect size.}
 #'   \item{peta2}{The partial eta squared effect size.}
 #'   \item{cohens_f}{The Cohen's f effect size.}
 #'   \item{n_total}{The total number of observations in the unpaired data.}
@@ -33,6 +36,9 @@
 #' @details
 #' This function performs a contrast analysis on a given dataset using the provided weights. It computes statistics such as the t-value, F-value, confidence intervals, and effect sizes (Cohen's f and partial eta squared).
 #' If the data is paired, pair-wise exclusion is applied. The function supports two-tailed and one-tailed tests depending on the value of the `alternative` parameter.
+#'
+#' @seealso
+#' [`trend_test()`] for trend analysis using contrast tests.
 #'
 #' @examples
 #' # Example of linear trend analysis with unpaired data
@@ -60,7 +66,7 @@ contrast_test <- function(
   nvar <- ncol(dat)
   alpha <- 1 - conf.level
 
-  if(sum(weight) != 0){
+  if(abs(sum(weight)) > 0.00001){
     stop("The sum of the weights must be zero!")
   }
 
@@ -79,6 +85,8 @@ contrast_test <- function(
     df_error = NA_real_,
     SS_contrast = NA_real_,
     SS_error = NA_real_,
+    SS_total = NA_real_,
+    SS_effect = NA_real_,
     p = NA_real_,
     peta2 = NA_real_,
     cohens_f = NA_real_,
@@ -139,6 +147,10 @@ contrast_test <- function(
   MS_e <- SS_e / df
   S <- sqrt(MS_e)
 
+  # Calculation of SS_total and SS_effect
+  SS_total <- sum((dat_long$value - mean(dat_long$value))^2)
+  SS_effect <- SS_total - SS_e
+
   # Summary statistics
   smry <- dat_long %>%
     dplyr::group_by(variable) %>%
@@ -192,11 +204,14 @@ contrast_test <- function(
   # Calculation of F statistics
 
   out$F <- MS_C/MS_e
+  out$eta2 <- SS_C / (SS_total)
   out$peta2 <- SS_C / (SS_C + SS_e)
   out$cohens_f <- sqrt(SS_C / SS_e)
 
   out$SS_contrast <- SS_C
   out$SS_error <- SS_e
+  out$SS_total <- SS_total
+  out$SS_effect <- SS_effect
 
   # out$p_F <- 1-pf(out$F, 1, df) # for check
 
@@ -225,6 +240,9 @@ contrast_test <- function(
     cat(paste0("t = ", format(out$t, digit = 4, nsmall = 2), ", df = ", out$df_error, ", p = ", format(out$p, nsmall = 3), "\n(F = ", format(out$F, digit = 4, nsmall = 2), ")\n"))
     cat("-----------------------------------------------\n")
     cat(paste0("SS_contrast = ", format(out$SS_contrast, digit = 4, nsmall = 2), ", SS_error = ", format(out$SS_error, digit = 4, nsmall = 2), "\n"))
+    cat(paste0("SS_total = ", format(out$SS_total, digit = 4, nsmall = 2), ", SS_effect = ", format(out$SS_effect, digit = 4, nsmall = 2), "\n"))
+    cat("-----------------------------------------------\n")
+    cat(paste0("eta squared = ", format(out$eta2, digit = 4, nsmall = 2), "\n"))
     cat(paste0("partial eta squared = ", format(out$peta2, digit = 4, nsmall = 2), ", Cohen's f = ", format(out$cohens_f, digit = 4, nsmall = 2), "\n"))
     cat("-----------------------------------------------\n")
     cat("Note:\nThe CI represents the frequentist confidence interval.")

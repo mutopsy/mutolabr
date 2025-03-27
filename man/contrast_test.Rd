@@ -38,7 +38,10 @@ A data frame containing the following columns:
 \item{df_error}{The degrees of freedom for the error.}
 \item{SS_contrast}{The sum of squares for the contrast component.}
 \item{SS_error}{The sum of squares for the error.}
+\item{SS_effect}{The sum of squares for the effect.}
+\item{SS_total}{The toal sum of squares for the data.}
 \item{p}{The p-value for the contrast test.}
+\item{eta2}{The eta squared effect size.}
 \item{peta2}{The partial eta squared effect size.}
 \item{cohens_f}{The Cohen's f effect size.}
 \item{n_total}{The total number of observations in the unpaired data.}
@@ -66,4 +69,7 @@ dat <- data.frame(A = rnorm(50), B = rnorm(50), C = rnorm(50))
 weight <- c(1, -2, 1)
 contrast_test(dat, weight, paired = TRUE)
 
+}
+\seealso{
+\code{\link[=trend_test]{trend_test()}} for trend analysis using contrast tests.
 }

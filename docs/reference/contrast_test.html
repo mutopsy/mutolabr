@@ -9,7 +9,7 @@ It calculates several statistics, including the t-value, F-value, p-value, confi
 
     <a class="navbar-brand me-2" href="../index.html">mutolabr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,8 +108,17 @@ It calculates several statistics, including the t-value, F-value, p-value, confi
 <dt>SS_error</dt>
 <dd><p>The sum of squares for the error.</p></dd>
 
+<dt>SS_effect</dt>
+<dd><p>The sum of squares for the effect.</p></dd>
+
+<dt>SS_total</dt>
+<dd><p>The toal sum of squares for the data.</p></dd>
+
 <dt>p</dt>
 <dd><p>The p-value for the contrast test.</p></dd>
+
+<dt>eta2</dt>
+<dd><p>The eta squared effect size.</p></dd>
 
 <dt>peta2</dt>
 <dd><p>The partial eta squared effect size.</p></dd>
@@ -136,6 +145,10 @@ It calculates several statistics, including the t-value, F-value, p-value, confi
     <p>This function performs a contrast analysis on a given dataset using the provided weights. It computes statistics such as the t-value, F-value, confidence intervals, and effect sizes (Cohen's f and partial eta squared).
 If the data is paired, pair-wise exclusion is applied. The function supports two-tailed and one-tailed tests depending on the value of the <code>alternative</code> parameter.</p>
     </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="trend_test.html">trend_test()</a></code> for trend analysis using contrast tests.</p></div>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -158,6 +171,9 @@ If the data is paired, pair-wise exclusion is applied. The function supports two
 <span class="r-out co"><span class="r-pr">#&gt;</span> (F = 0.08996)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SS_contrast = 0.0971, SS_error = 320.56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SS_total = 321.66, SS_effect = 1.104</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> eta squared = 0.0003019</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> partial eta squared = 0.0003028, Cohen's f = 0.0174</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
@@ -183,6 +199,9 @@ If the data is paired, pair-wise exclusion is applied. The function supports two
 <span class="r-out co"><span class="r-pr">#&gt;</span> (F = 1.833)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SS_contrast = 1.767, SS_error = 94.48</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> SS_total = 158.83, SS_effect = 64.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> eta squared = 0.01113</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> partial eta squared = 0.01836, Cohen's f = 0.1368</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
