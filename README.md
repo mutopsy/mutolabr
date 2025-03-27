@@ -61,7 +61,10 @@ For details on each function, refer to [the function references](https://mutopsy
 
 ## Version History
 
-### v1.0.0 (2025-03-26)   
+### v1.2.0 (2025-03-27)   
+- Implemented `trend_test()`.
+- 
+### v1.1.0 (2025-03-26)   
 - Implemented `contrast_test()`.
 
 ### v1.0.0 (2025-02-28)  
