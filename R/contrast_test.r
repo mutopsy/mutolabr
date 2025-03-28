@@ -88,6 +88,7 @@ contrast_test <- function(
     SS_total = NA_real_,
     SS_effect = NA_real_,
     p = NA_real_,
+    eta2 = NA_real_,
     peta2 = NA_real_,
     cohens_f = NA_real_,
     n_total = NA_real_,
