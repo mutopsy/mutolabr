@@ -62,6 +62,9 @@ For details on each function, refer to [the function references](https://mutopsy
 
 ## Version History
 
+### v1.2.1 (2025-03-28)   
+- Refined output formatting in `contrast_test()`.
+
 ### v1.2.0 (2025-03-27)   
 - Implemented `trend_test()`.
 
