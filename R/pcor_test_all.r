@@ -49,6 +49,10 @@ pcor_test_all <- function(
   cor <- TRUE
   ci <- "freq"
 
+  if(sum(is.na(control)) != 0) {
+    stop("Covariates contain NA values!")
+  }
+
   method <- method[1]
   alternative <- alternative[1]
   triangle <- triangle[1]
@@ -93,9 +97,15 @@ pcor_test_all <- function(
   for(i in 1:ncol(dat)){
     for(j in 1:ncol(dat)){
       if(j > i){
+        index_valid <- (dat[,c(i,j)] %>% is.na() %>% rowSums()) == 0
         mat <- dat[,c(i,j)] %>%
           tidyr::drop_na() %>% # Pair-wise exclusion
           as.matrix()
+        if(k==1){
+          z <- control[index_valid]
+        } else if(k >= 2){
+          z <- control[index_valid,]
+        }
 
         out[out$row == i & out$col == j,]$n_pair <- nrow(mat)
         out[out$row == i & out$col == j,]$n_na <- nrow(dat) - nrow(mat)
@@ -107,7 +117,7 @@ pcor_test_all <- function(
         if(cor){
           if(!is.null(control)){
             list_cortest <- ppcor::pcor.test(
-              x = mat[,1], y = mat[,2], z = control,
+              x = mat[,1], y = mat[,2], z = z,
               method = method
             )
 
