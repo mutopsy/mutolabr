@@ -163,8 +163,13 @@ contrast_test <- function(
 
   # Calculation of SS and MS of contrast
 
-  C <- sum(smry$mean * smry$weight)
-  SS_C <- C^2 / sum(smry$weight^2 / smry$n)
+  C <- sum(smry$mean * smry$weight) # numerator of covariance
+  b <- C / sum(smry$weight^2) # regression coefficient
+
+  SS_C <- sum(smry$n*(b * smry$weight)^2)
+
+  # C^2 / sum(smry$weight^2 / smry$n) ## SSの同値表現??
+
   MS_C <- SS_C / 1
 
   # t-test

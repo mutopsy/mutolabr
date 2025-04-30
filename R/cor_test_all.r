@@ -102,7 +102,7 @@ cor_test_all <- function(
       t = NA_real_,
       df = NA_real_,
       S = NA_real_,
-      T = NA_real_,
+      z = NA_real_,
       p = NA_real_,
       pd = NA_real_,
       BF10 = NA_real_,
@@ -148,7 +148,7 @@ cor_test_all <- function(
           }
 
           if(method == "kendall"){
-            out[out$row == i & out$col == j,]$T <- list_cortest$statistic
+            out[out$row == i & out$col == j,]$z <- list_cortest$statistic
           }
 
         }
