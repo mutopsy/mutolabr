@@ -102,7 +102,7 @@ pcor_test_all <- function(
           tidyr::drop_na() %>% # Pair-wise exclusion
           as.matrix()
         if(k==1){
-          z <- control[index_valid]
+          z <- control[index_valid,1]
         } else if(k >= 2){
           z <- control[index_valid,]
         }
