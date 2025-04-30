@@ -182,8 +182,24 @@ pcor_test_all <- function(
           if(method == "spearman"){
             if(is.null(control)){
               out[out$row == i & out$col == j,]$S <- list_cortest$statistic
+              out[out$row == i & out$col == j,]$p <- list_cortest$p.value
             } else{
               out[out$row == i & out$col == j,]$t <- list_cortest$statistic
+              p <- list_cortest$p.value
+              if(alternative == "less"){
+                if(list_cortest$statistic > 0){
+                  p <- 1 - p/2
+                } else{
+                  p <- p/2
+                }
+              } else if(alternative == "greater"){
+                if(list_cortest$statistic > 0){
+                  p <- p/2
+                } else{
+                  p <- 1 - p/2
+                }
+              }
+              out[out$row == i & out$col == j,]$p <- p
             }
 
           }
@@ -191,8 +207,25 @@ pcor_test_all <- function(
           if(method == "kendall"){
             if(is.null(control)){
               out[out$row == i & out$col == j,]$z <- list_cortest$statistic
+              out[out$row == i & out$col == j,]$p <- list_cortest$p.value
             } else{
               out[out$row == i & out$col == j,]$t <- list_cortest$statistic
+              p <- list_cortest$p.value
+              if(alternative == "less"){
+                if(list_cortest$statistic > 0){
+                  p <- 1 - p/2
+                } else{
+                  p <- p/2
+                }
+              } else if(alternative == "greater"){
+                if(list_cortest$statistic > 0){
+                  p <- p/2
+                } else{
+                  p <- 1 - p/2
+                }
+              }
+              out[out$row == i & out$col == j,]$p <- p
+            }
             }
           }
         }
