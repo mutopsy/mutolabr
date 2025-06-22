@@ -70,7 +70,7 @@ For details on each function, refer to [the function references](https://mutopsy
 ## Version History
 
 ### v1.4.0 (2025-06-22)   
-- Implemented `rmANOVA_bf()`, `summary_generalTestBF`, and `theme_gg0`.
+- Implemented `rmANOVA_bf()`, `summary_generalTestBF()`, and `theme_gg0()`.
 
 ### v1.3.0 (2025-04-30)   
 - Implemented `pcor_test_all()`.
