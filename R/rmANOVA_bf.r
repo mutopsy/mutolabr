@@ -38,7 +38,6 @@
 #' @seealso \code{\link[BayesFactor]{generalTestBF}}, \code{\link{summary_generalTestBF}}
 #'
 #' @examples
-#' \dontrun{
 #' library(BayesFactor)
 #' # Simulated data with subject, 2 factors, and outcome
 #' set.seed(123)
@@ -50,7 +49,6 @@
 #' )
 #' res <- rmANOVA_bf(dat)
 #' print(res)
-#' }
 #'
 #' @export
 

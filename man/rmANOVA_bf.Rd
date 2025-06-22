@@ -61,7 +61,6 @@ The subject column is automatically renamed to \code{"s"}, factor columns to \co
 and the outcome variable to \code{"y"} internally for formula construction.
 }
 \examples{
-\dontrun{
 library(BayesFactor)
 # Simulated data with subject, 2 factors, and outcome
 set.seed(123)
@@ -73,7 +72,6 @@ dat <- data.frame(
 )
 res <- rmANOVA_bf(dat)
 print(res)
-}
 
 }
 \seealso{
