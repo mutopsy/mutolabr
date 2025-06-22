@@ -30,7 +30,8 @@ This package requires:
 * `dplyr`  
 * `tidyr`  
 * `BayesFactor`  
-* `effectsize`  
+* `effectsize`
+* `withr`
 
 ## Usage
 
