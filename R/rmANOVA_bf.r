@@ -127,7 +127,7 @@ rmANOVA_bf <- function(
     rand_vars = rand_vars
   )
 
-  BF_df <- summary_generalTestBF(res_BF_list)
+  BF_df <- mutolabr::summary_generalTestBF(res_BF_list)
 
   return(BF_df)
 }
