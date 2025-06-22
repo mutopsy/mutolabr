@@ -44,7 +44,7 @@ summary_generalTestBF <- function(x){
   } else{
     res_BF <- x
     variables <- colnames(res_BF@data)[2:(ncol(res_BF@data)-1)]
-    full_model_vars <- gsub(" ", "", a@denominator@shortName)
+    full_model_vars <- gsub(" ", "", res_BF@denominator@shortName)
     full_model_vars <- unlist(strsplit(full_model_vars, "\\+")) %>% unique()
   }
 
