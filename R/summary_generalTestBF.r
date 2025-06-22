@@ -99,7 +99,7 @@ summary_generalTestBF <- function(x, inc_ranef = FALSE){
 
   if(!inc_ranef){
     BF_df <- BF_df %>%
-      filter(type == "fixed")
+      dplyr::filter(type == "fixed")
   }
 
   return(BF_df)
