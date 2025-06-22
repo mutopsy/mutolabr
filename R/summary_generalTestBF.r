@@ -80,7 +80,7 @@ summary_generalTestBF <- function(x){
     ) %>%
     arrange(effect)
 
-  names(variables) <- BF_df$effect[1:length(variables)]
+  names(variables) <- colnames(res_BF@data)[2:(length(variables)+1)]
 
   BF_df <- BF_df %>%
     mutate(
