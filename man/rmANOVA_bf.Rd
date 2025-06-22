@@ -14,6 +14,7 @@ rmANOVA_bf(
   progress = TRUE,
   multicore = FALSE,
   summarize = TRUE,
+  inc_ranef = FALSE,
   seed = NULL
 )
 }
@@ -36,6 +37,8 @@ The last column should be the dependent variable, and the columns in between sho
 \item{multicore}{Logical. Whether to use multicore processing. Default is \code{FALSE}.}
 
 \item{summarize}{Logical. Whether to output summarized results or not. Default is 'TRUE'.}
+
+\item{inc_ranef}{Logical. Whether to output results of random effects.}
 
 \item{seed}{Optional. A numeric seed to fix the random number generator state for reproducibility.}
 }

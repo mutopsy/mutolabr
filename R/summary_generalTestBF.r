@@ -10,6 +10,7 @@
 #'     \item{variables}{Character vector of variable names}
 #'     \item{full_model_vars}{Character vector of variables in the full model}
 #'   }
+#' @param inc_ranef Logical. Whether to output results of random effects.
 #'
 #' @return A tibble with one row per model comparison. Columns include:
 #' \describe{
@@ -48,7 +49,7 @@
 #'
 #' @export
 
-summary_generalTestBF <- function(x){
+summary_generalTestBF <- function(x, inc_ranef = FALSE){
   if(is.list(x)){
     res_BF <- x$res_BF
     variables <- x$variables
@@ -95,5 +96,11 @@ summary_generalTestBF <- function(x){
       evidence = if_else(abs(log10_BF) > log(30, 10), "very strong", evidence),
       evidence = if_else(abs(log10_BF) > log(100, 10), "extreme", evidence)
     )
+
+  if(!inc_ranef){
+    BF_df <- BF_df %>%
+      filter(type == "fixed")
+  }
+
   return(BF_df)
 }

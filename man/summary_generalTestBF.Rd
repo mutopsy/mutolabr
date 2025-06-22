@@ -4,7 +4,7 @@
 \alias{summary_generalTestBF}
 \title{Summarize Results from generalTestBF}
 \usage{
-summary_generalTestBF(x)
+summary_generalTestBF(x, inc_ranef = FALSE)
 }
 \arguments{
 \item{x}{An object returned by \code{generalTestBF()}, or a named list containing:
@@ -13,6 +13,8 @@ summary_generalTestBF(x)
 \item{variables}{Character vector of variable names}
 \item{full_model_vars}{Character vector of variables in the full model}
 }}
+
+\item{inc_ranef}{Logical. Whether to output results of random effects.}
 }
 \value{
 A tibble with one row per model comparison. Columns include:

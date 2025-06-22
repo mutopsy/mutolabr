@@ -13,6 +13,7 @@
 #' @param progress Logical. Whether to display progress bar. Default is `TRUE`.
 #' @param multicore Logical. Whether to use multicore processing. Default is `FALSE`.
 #' @param summarize Logical. Whether to output summarized results or not. Default is 'TRUE'.
+#' @param inc_ranef Logical. Whether to output results of random effects.
 #' @param seed Optional. A numeric seed to fix the random number generator state for reproducibility.
 #'
 #' @return A tibble summarizing Bayes factors for each model compared to the full model.
@@ -62,6 +63,7 @@ rmANOVA_bf <- function(
     progress = TRUE,
     multicore = FALSE,
     summarize = TRUE,
+    inc_ranef = FALSE,
     seed = NULL
 ){
 
@@ -128,7 +130,7 @@ rmANOVA_bf <- function(
       rand_vars = rand_vars
     )
 
-    BF_df <- mutolabr::summary_generalTestBF(res_BF_list)
+    BF_df <- mutolabr::summary_generalTestBF(res_BF_list, inc_ranef = inc_ranef)
 
     return(BF_df)
 

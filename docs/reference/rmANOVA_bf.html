@@ -51,6 +51,7 @@ assuming one subject column, multiple within-subject factor columns, and one dep
 <span>  progress <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  multicore <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  summarize <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  inc_ranef <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  seed <span class="op">=</span> <span class="cn">NULL</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -94,6 +95,10 @@ The last column should be the dependent variable, and the columns in between sho
 
 <dt id="arg-summarize">summarize<a class="anchor" aria-label="anchor" href="#arg-summarize"></a></dt>
 <dd><p>Logical. Whether to output summarized results or not. Default is 'TRUE'.</p></dd>
+
+
+<dt id="arg-inc-ranef">inc_ranef<a class="anchor" aria-label="anchor" href="#arg-inc-ranef"></a></dt>
+<dd><p>Logical. Whether to output results of random effects.</p></dd>
 
 
 <dt id="arg-seed">seed<a class="anchor" aria-label="anchor" href="#arg-seed"></a></dt>
@@ -147,16 +152,9 @@ and the outcome variable to <code>"y"</code> internally for formula construction
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">rmANOVA_bf</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |==========                                                            |  14%  |                                                                              |====================                                                  |  29%  |                                                                              |==============================                                        |  43%  |                                                                              |========================================                              |  57%  |                                                                              |==================================================                    |  71%  |                                                                              |============================================================          |  86%  |                                                                              |======================================================================| 100%</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in str_detect(full_model_vars, "s"):</span> could not find function "str_detect"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   effect     BF error log10_BF favor evidence   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> A      0.239  0.043   -<span style="color: #BB0000;">0.622</span> null  moderate   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> B      0.248  0.039   -<span style="color: #BB0000;">0.605</span> null  moderate   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> A:B    0.477  0.022   -<span style="color: #BB0000;">0.321</span> null  anecdotal  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> s      0.033<span style="text-decoration: underline;">1</span> 0.038   -<span style="color: #BB0000;">1.48</span>  null  very strong</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> A:s    0.473  0.028   -<span style="color: #BB0000;">0.325</span> null  anecdotal  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> B:s    4.87   0.024    0.687 alt.  moderate   </span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in h(simpleError(msg, call)):</span> error in evaluating the argument 'x' in selecting a method for function 'print': object 'res' not found</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
