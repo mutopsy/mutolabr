@@ -78,15 +78,13 @@ summary_generalTestBF <- function(x){
       log10_BF = log(BF, 10),
       BF = BF %>% signif(3)
     ) %>%
-    arrange(effect) %>%
+    arrange(effect)
+
+  names(variables) <- BF_df$effect
+
+  BF_df <- BF_df %>%
     mutate(
-      # effect = str_replace_all(effect, variables),
-      effect = mapply(
-        str_replace_all,
-        as.character(effect),
-        as.character(effect),
-        as.character(variables)
-        ),
+      effect = str_replace_all(effect, variables),
       favor = if_else(BF > 1, "alt.", "null"),
       evidence = "anecdotal",
       evidence = if_else(abs(log10_BF) > log(3, 10), "moderate", evidence),
