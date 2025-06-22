@@ -33,8 +33,17 @@ and classifies the strength of evidence based on the log BF scale.
 \examples{
 \dontrun{
   library(BayesFactor)
-  data(sleep)
-  res <- generalTestBF(extra ~ group + ID, data = sleep, whichModels = "top")
+  # Simulated data with subject, 2 factors, and outcome
+  set.seed(123)
+  dat <- data.frame(
+    id = rep(1:30, each = 4),
+    A = rep(c("low", "high"), times = 60),
+    B = rep(c("left", "right"), each = 2, times = 30),
+    y = rnorm(120)
+  )
+  res <- generalTestBF(
+    dat,
+    y ~ A + B + A:B + id + A:id + B:id, data = sleep, whichModels = "top")
   summary_generalTestBF(res)
 }
 

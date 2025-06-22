@@ -12,6 +12,7 @@
 #' @param method Method for computing Bayes factors. See `BayesFactor::generalTestBF()`. Default is `"auto"`.
 #' @param progress Logical. Whether to display progress bar. Default is `TRUE`.
 #' @param multicore Logical. Whether to use multicore processing. Default is `FALSE`.
+#' @param summarize Logical. Whether to output summarized results or not. Default is 'TRUE'.
 #' @param seed Optional. A numeric seed to fix the random number generator state for reproducibility.
 #'
 #' @return A tibble summarizing Bayes factors for each model compared to the full model.
@@ -62,6 +63,7 @@ rmANOVA_bf <- function(
     method = "auto",
     progress = TRUE,
     multicore = FALSE,
+    summarize = TRUE,
     seed = NULL
 ){
 
@@ -120,14 +122,20 @@ rmANOVA_bf <- function(
     )
   }
 
-  res_BF_list <- list(
-    res_BF = res_BF,
-    variables = variables,
-    full_model_vars = full_model_vars,
-    rand_vars = rand_vars
-  )
+  if(summarize){
+    res_BF_list <- list(
+      res_BF = res_BF,
+      variables = variables,
+      full_model_vars = full_model_vars,
+      rand_vars = rand_vars
+    )
 
-  BF_df <- mutolabr::summary_generalTestBF(res_BF_list)
+    BF_df <- mutolabr::summary_generalTestBF(res_BF_list)
 
-  return(BF_df)
+    return(BF_df)
+
+  } else{
+    return(res_BF)
+  }
+
 }

@@ -13,6 +13,7 @@ rmANOVA_bf(
   method = "auto",
   progress = TRUE,
   multicore = FALSE,
+  summarize = TRUE,
   seed = NULL
 )
 }
@@ -33,6 +34,8 @@ The last column should be the dependent variable, and the columns in between sho
 \item{progress}{Logical. Whether to display progress bar. Default is \code{TRUE}.}
 
 \item{multicore}{Logical. Whether to use multicore processing. Default is \code{FALSE}.}
+
+\item{summarize}{Logical. Whether to output summarized results or not. Default is 'TRUE'.}
 
 \item{seed}{Optional. A numeric seed to fix the random number generator state for reproducibility.}
 }
