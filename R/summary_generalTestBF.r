@@ -45,6 +45,7 @@
 #'   )
 #'
 #'   summary_generalTestBF(res)
+#'   }
 #'
 #' @export
 

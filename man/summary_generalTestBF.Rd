@@ -30,3 +30,25 @@ This function summarizes the output of \code{generalTestBF(..., whichModels = "t
 It computes the Bayes factor (BF) in favor of excluding each variable from the full model,
 and classifies the strength of evidence based on the log BF scale.
 }
+\examples{
+\dontrun{
+  library(BayesFactor)
+  set.seed(123)
+  dat <- data.frame(
+    id = as.factor(rep(1:30, each = 4)),
+    A = as.factor(rep(c("low", "high"), times = 60)),
+    B = as.factor(rep(c("left", "right"), each = 2, times = 30)),
+    y = rnorm(120)
+  )
+
+  res <- generalTestBF(
+    y ~ A + B + A:B + id + A:id + B:id,
+    data = dat,
+    whichRandom = c("id", "A:id", "B:id"),
+    whichModels = "top"
+  )
+
+  summary_generalTestBF(res)
+  }
+
+}
