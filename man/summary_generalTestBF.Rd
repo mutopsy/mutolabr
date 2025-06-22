@@ -18,6 +18,7 @@ summary_generalTestBF(x)
 A tibble with one row per model comparison. Columns include:
 \describe{
 \item{effect}{The effect excluded from the full model}
+\item{type}{Indicates whether the term is Fixed or random effect}
 \item{BF}{Bayes factor for the null (exclusion) over the alternative hypothesis}
 \item{error}{Estimated numerical error}
 \item{log10_BF}{Base-10 logarithm of the Bayes factor}

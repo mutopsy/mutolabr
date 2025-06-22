@@ -14,6 +14,7 @@
 #' @return A tibble with one row per model comparison. Columns include:
 #' \describe{
 #'   \item{effect}{The effect excluded from the full model}
+#'   \item{type}{Indicates whether the term is Fixed or random effect}
 #'   \item{BF}{Bayes factor for the null (exclusion) over the alternative hypothesis}
 #'   \item{error}{Estimated numerical error}
 #'   \item{log10_BF}{Base-10 logarithm of the Bayes factor}
@@ -59,6 +60,7 @@ summary_generalTestBF <- function(x){
     full_model_vars <- unlist(strsplit(full_model_vars, "\\+")) %>% unique()
   }
 
+  fixed <- full_model_vars[!str_detect(full_model_vars, "s")]
   rn <- res_BF %>% as.data.frame() %>% rownames()
 
   BF_df <- res_BF %>%
@@ -78,7 +80,8 @@ summary_generalTestBF <- function(x){
       log10_BF = log(BF, 10),
       BF = BF %>% signif(3)
     ) %>%
-    arrange(effect)
+    arrange(effect) %>%
+    mutate(type = if_else(effect %in% fixed, "fixed", "random"), .after = "effect")
 
   names(variables) <- colnames(res_BF@data)[2:(length(variables)+1)]
 
