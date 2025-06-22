@@ -29,19 +29,22 @@
 #' @examples
 #' \dontrun{
 #'   library(BayesFactor)
-#'   # Simulated data with subject, 2 factors, and outcome
 #'   set.seed(123)
 #'   dat <- data.frame(
-#'     id = rep(1:30, each = 4),
-#'     A = rep(c("low", "high"), times = 60),
-#'     B = rep(c("left", "right"), each = 2, times = 30),
+#'     id = as.factor(rep(1:30, each = 4)),
+#'     A = as.factor(rep(c("low", "high"), times = 60)),
+#'     B = as.factor(rep(c("left", "right"), each = 2, times = 30)),
 #'     y = rnorm(120)
 #'   )
+#'
 #'   res <- generalTestBF(
-#'     dat,
-#'     y ~ A + B + A:B + id + A:id + B:id, data = sleep, whichModels = "top")
+#'     y ~ A + B + A:B + id + A:id + B:id,
+#'     data = dat,
+#'     whichRandom = c("id", "A:id", "B:id"),
+#'     whichModels = "top"
+#'   )
+#'
 #'   summary_generalTestBF(res)
-#' }
 #'
 #' @export
 
@@ -78,7 +81,7 @@ summary_generalTestBF <- function(x){
     ) %>%
     arrange(effect) %>%
     mutate(
-      effect = str_replace_all(effect, variables),
+      # effect = str_replace_all(effect, variables),
       favor = if_else(BF > 1, "alt.", "null"),
       evidence = "anecdotal",
       evidence = if_else(abs(log10_BF) > log(3, 10), "moderate", evidence),
