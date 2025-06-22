@@ -51,6 +51,8 @@ For details on each function, refer to [the function references](https://mutopsy
 * `pcor_test_all`: Perform Partial Correlation Tests with Frequentist Methods [[Document](https://mutopsy.github.io/mutolabr/reference/pcor_test_all.html)]
 * `contrast_test`: Perform Contrast Tests with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test.html)]
 * `trend_test`: Perform Trend Analysis using Contrast Test with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/trend_test.html)]
+* `summary_generalTestBF`: Summarize Results from `generalTestBF` (beta version) [[Document](https://mutopsy.github.io/mutolabr/reference/summary_generalTestBF.html)]
+* `rmANOVA_bf`: Perform Bayesian Repeated-Measures ANOVA Using `generalTestBF` [[Document](https://mutopsy.github.io/mutolabr/reference/rmANOVA_bf.html)]
 
 ### Compute Summary Statistics
 
@@ -61,7 +63,13 @@ For details on each function, refer to [the function references](https://mutopsy
 * `hdi`: Compute the Highest Density Interval (HDI) [[Document](https://mutopsy.github.io/mutolabr/reference/hdi.html)]
 * `pdir`: Probability of Direction (pd) Calculation [[Document](https://mutopsy.github.io/mutolabr/reference/pdir.html)]
 
+### Others
+* `theme_gg0`: A Default ggplot2 Theme [[Document](https://mutopsy.github.io/mutolabr/reference/theme_gg0.html)]
+
 ## Version History
+
+### v1.4.0 (2025-06-22)   
+- Implemented `rmANOVA_bf()`, `summary_generalTestBF`, and `theme_gg0`.
 
 ### v1.3.0 (2025-04-30)   
 - Implemented `pcor_test_all()`.
