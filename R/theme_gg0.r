@@ -11,12 +11,13 @@
 #'   theme_gg0()
 #' @export
 
-theme_gg0 <- function(){
+theme_gg0 <- function(...){
   out <- theme_bw() +
     theme(
       panel.grid = element_blank(),
       axis.text = element_text(color = "black"),
-      legend.title = element_blank()
+      legend.title = element_blank(),
+      ...
   )
   return(out)
 }

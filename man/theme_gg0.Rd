@@ -4,7 +4,7 @@
 \alias{theme_gg0}
 \title{A Default ggplot2 Theme}
 \usage{
-theme_gg0()
+theme_gg0(...)
 }
 \value{
 A \code{ggplot2} theme object.
