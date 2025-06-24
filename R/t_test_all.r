@@ -187,7 +187,7 @@ t_test_all <- function(
     out$mean_y <- mean(y)
     out$diff <- mean(x) - mean(y)
 
-    if(paired){
+    if(paired & cor){
       out$cor_xy <- cor(x,y)
     }
   }
