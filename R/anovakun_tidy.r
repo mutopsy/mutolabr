@@ -11,11 +11,11 @@
 #'
 #' @param dataset A data frame containing the input data in long (tidy) format.
 #' @param design A character string specifying the experimental design (e.g., "As", "ABs", "sA", "sAB", "AsB", etc.).
-#' @param ... Additional arguments passed to \code{\link{anovakun}}. The number of levels for each factor
-#'   is automatically calculated from \code{dataset} and \code{design}, and does not need to be specified manually.
 #' @param alpha Significance level. Defaults to 0.05.
 #' @param inc_allvar Logical. If \code{TRUE}, all columns will be included in the output. Defaults to \code{FALSE}.
 #' @param do_round Logical. If \code{TRUE}, numeric values in the output will be rounded for readability. Defaults to \code{TRUE}.
+#' @param ... Additional arguments passed to \code{\link{anovakun}}. The number of levels for each factor
+#'   is automatically calculated from \code{dataset} and \code{design}, and does not need to be specified manually.
 #'
 #' @return A data frame containing the results of ANOVA, including F-statistics, p-values, effect sizes,
 #' and sphericity indices (if applicable).
@@ -26,6 +26,8 @@
 #'
 #' @seealso \code{\link{anovakun}} for the original function wrapped by this helper.
 #'
+#' @import stringr
+#' @import dplyr
 #' @export
 
 anovakun_tidy <- function(
@@ -33,7 +35,8 @@ anovakun_tidy <- function(
     design,
     alpha = 0.05,
     inc_allvar = FALSE,
-    do_round = TRUE
+    do_round = TRUE,
+    ...
     ){
 
   ncol <- ncol(dataset)
@@ -50,7 +53,8 @@ anovakun_tidy <- function(
     c(
       list(dataset, design),
       as.list(nfct),
-      list(long = TRUE, nopost = TRUE, eta = TRUE, peta = TRUE, geta = TRUE, tech = TRUE, cm = TRUE)
+      list(long = TRUE, nopost = TRUE, eta = TRUE, peta = TRUE, geta = TRUE, tech = TRUE, cm = TRUE),
+      list(...)
     )
   )
 
@@ -108,7 +112,8 @@ anovakun_tidy <- function(
       effect, df1, df2, SS1, SS2, MS1, MS2, F, p, everything()
     ) %>%
     dplyr::left_join(sph, by = "effect") %>%
-    dplyr::mutate(epsilon_CM = if_else(is.na(epsilon_CM), 1, epsilon_CM))
+    dplyr::mutate(epsilon_CM = if_else(is.na(epsilon_CM), 1, epsilon_CM)) %>%
+    dplyr::mutate(effect = effect %>% stringr::str_replace_all(" x ", ":"))
 
   if(do_round){
     atbl <- atbl %>%
@@ -131,7 +136,7 @@ anovakun_tidy <- function(
 
   if(!inc_allvar){
     atbl <- atbl %>%
-      dplyr::select(effect, df1, df2, F, p, sig, peta2, cohens_f, epsilon_CM)
+      dplyr::select(effect, df1, df2, F, p, sig, eta2, peta2, cohens_f, epsilon_CM)
 
   }
 

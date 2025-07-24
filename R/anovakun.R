@@ -18,7 +18,7 @@
 #'
 #' @param dataset A data frame containing the input data.
 #' @param design A character string specifying the experimental design (e.g., "As", "ABs", "sA", "sAB", "AsB", etc.).
-#' @param ... Additional arguments passed to internal functions.
+#' @param ... Numbers of levels of each factor.
 #' @param long Logical. Whether the data is in long format.
 #' @param type2 Logical. Whether to use Type II sums of squares (default is FALSE for Type III).
 #' @param nopost Logical. If TRUE, skips post hoc tests.

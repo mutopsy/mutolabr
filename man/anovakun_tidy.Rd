@@ -9,7 +9,8 @@ anovakun_tidy(
   design,
   alpha = 0.05,
   inc_allvar = FALSE,
-  do_round = TRUE
+  do_round = TRUE,
+  ...
 )
 }
 \arguments{

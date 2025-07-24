@@ -47,7 +47,8 @@ streamlining common usage patterns in mutolab and formatting the results for eas
 <span>  <span class="va">design</span>,</span>
 <span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  inc_allvar <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span>  do_round <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  do_round <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -102,14 +103,14 @@ automatically infers the number of factor levels, simplifies output, and adds fo
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">data_snakemr</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
 <span class="r-in"><span>  <span class="fu">anovakun_tidy</span><span class="op">(</span><span class="st">"sABC"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A 2*2*5 within-participants ANOVA was performed.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 effect  df1   df2      F     p sig peta2 cohens_f epsilon_CM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                shape 1.00 23.00  37.31 0.000   * 0.619    1.274      1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                 face 1.00 23.00  98.23 0.000   * 0.810    2.067      1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                angle 1.60 36.83 201.16 0.000   * 0.897    2.957      0.400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4         shape x face 1.00 23.00   9.72 0.005   * 0.297    0.650      1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        shape x angle 3.45 79.26   6.91 0.000   * 0.231    0.548      0.861</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6         face x angle 4.00 92.00   3.87 0.006   * 0.144    0.410      1.001</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7 shape x face x angle 4.00 92.00   1.37 0.249  ns 0.056    0.244      1.092</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             effect  df1   df2      F     p sig  eta2 peta2 cohens_f epsilon_CM</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            shape 1.00 23.00  37.31 0.000   * 0.019 0.619    1.274      1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             face 1.00 23.00  98.23 0.000   * 0.025 0.810    2.067      1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            angle 1.60 36.83 201.16 0.000   * 0.458 0.897    2.957      0.400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4       shape:face 1.00 23.00   9.72 0.005   * 0.003 0.297    0.650      1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      shape:angle 3.45 79.26   6.91 0.000   * 0.003 0.231    0.548      0.861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6       face:angle 4.00 92.00   3.87 0.006   * 0.002 0.144    0.410      1.001</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7 shape:face:angle 4.00 92.00   1.37 0.249  ns 0.001 0.056    0.244      1.092</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

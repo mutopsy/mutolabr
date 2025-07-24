@@ -61,7 +61,7 @@ anovakun(
 
 \item{design}{A character string specifying the experimental design (e.g., "As", "ABs", "sA", "sAB", "AsB", etc.).}
 
-\item{...}{Additional arguments passed to internal functions.}
+\item{...}{Numbers of levels of each factor.}
 
 \item{long}{Logical. Whether the data is in long format.}
 
