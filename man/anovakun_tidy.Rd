@@ -32,7 +32,7 @@ A data frame containing the results of ANOVA, including F-statistics, p-values, 
 and sphericity indices (if applicable).
 }
 \description{
-This function serves as a wrapper around \code{\link{anovakun}} (version 4.8.9),
+This function serves as a wrapper around \code{\link{anovakun_}} (version 4.8.9),
 streamlining common usage patterns in mutolab and formatting the results for easier interpretation.
 }
 \details{

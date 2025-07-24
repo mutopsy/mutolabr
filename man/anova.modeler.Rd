@@ -50,3 +50,4 @@
 \description{
 Default method for anova.modeler
 }
+\keyword{internal}

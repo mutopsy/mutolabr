@@ -314,7 +314,7 @@ elematch <- function(Mstrings, stex){
 }
 
 #' S3 generic for expand.gmatrix
-#' @export
+#' @keywords internal
 expand.gmatrix <- function(...){
   elem <- list(...)
   if(is.list(elem[[1]])) elem <- unlist(elem, recursive = FALSE)
@@ -779,7 +779,7 @@ qlambda.ncf <- function (Fratio, ndf, ddf, conf.level = 0.95, tol = 1e-09, JmpPr
 }
 
 #' Default method for anova.modeler
-#' @export
+#' @keywords internal
 anova.modeler <- function(dat, design, factnames = NA, type2 = FALSE, dmat = NULL, flev = NULL, cellN = NULL, full.elem = NA,
                           epsi.effect = NA, lb = FALSE, gg = FALSE, hf = FALSE, cm = FALSE, auto = FALSE, autov = NULL, mau = FALSE, har = FALSE,
                           iga = FALSE, ciga = FALSE, eta = FALSE, peta = FALSE, geta = NA, eps = FALSE, peps = FALSE, geps = NA, omega = FALSE,
@@ -1951,7 +1951,7 @@ boot.inter <- function(dat, design, factnames = NA, type2 = FALSE, dmat = NULL, 
 }
 
 #' S3 generic for anova.output
-#' @export
+#' @keywords internal
 anova.output <- function(maxfact, exe.info, baseresults, mainresults, postresults = NA, sep = " "){
   cat("\n")
   cat(sprintf(exe.info[1]), sep = "\n")

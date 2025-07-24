@@ -9,3 +9,4 @@
 \description{
 S3 generic for expand.gmatrix
 }
+\keyword{internal}

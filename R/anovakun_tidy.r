@@ -1,6 +1,6 @@
 #' A wrapper for anovakun (version 4.8.9) with improved usability and formatting
 #'
-#' This function serves as a wrapper around \code{\link{anovakun}} (version 4.8.9),
+#' This function serves as a wrapper around \code{\link{anovakun_}} (version 4.8.9),
 #' streamlining common usage patterns in mutolab and formatting the results for easier interpretation.
 #'
 #' While the core computation is delegated to the original \code{anovakun} function, this wrapper
