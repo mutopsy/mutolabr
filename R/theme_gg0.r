@@ -9,6 +9,7 @@
 #' ggplot(mtcars, aes(x = wt, y = mpg)) +
 #'   geom_point() +
 #'   theme_gg0()
+#' @import ggplot2
 #' @export
 
 theme_gg0 <- function(...){

@@ -1,0 +1,24 @@
+# mutolabr 1.5.0 (2025-07-24)
+* Implemented `anovakun()`, a direct copy of `anovakun` version 4.8.9, originally developed by Prof. Ryuta Iseki (Taisho University, Japan). Redistribution and minor modifications of the original function are permitted under the terms specified by the original author, provided that such modifications are clearly stated. This implementation includes no modifications to the computational logic and complies with that policy. For details, see [the function documentation](https://mutopsy.github.io/mutolabr/reference/anovakun.html); the original documentation by Prof. Iseki is available at: https://riseki.cloudfree.jp/?ANOVA%E5%90%9B
+
+* Implemented `anovakun_tidy()`, a wrapper around `anovakun()` that improves usability. This function automatically determines the number of factor levels from the dataset, formats the output as a tidy data frame, and adds commonly used effect size measures and rounding options to facilitate reporting and interpretation.
+
+# mutolabr 1.4.0 (2025-06-22)   
+* Implemented `rmANOVA_bf()`, `summary_generalTestBF()`, and `theme_gg0()`.
+
+# mutolabr 1.3.0 (2025-04-30)   
+* Implemented `pcor_test_all()`.
+* Refined output formatting in `cor_test_all()` when using the Kendall method.
+
+# mutolabr 1.2.1 (2025-03-28)   
+* Refined output formatting in `contrast_test()`.
+
+# mutolabr 1.2.0 (2025-03-27)   
+* Implemented `trend_test()`.
+
+# mutolabr 1.1.0 (2025-03-26)   
+* Implemented `contrast_test()`.
+
+# mutolabr 1.0.0 (2025-03-26)   
+* Initial release of `mutolabr` package.
+* Implemented `t_test_all()`, `cor_test_all()`, `summary_stat()`, `var_desc()`, `sd_desc()`, `mode_stat()`, `hdi()`, and `pdir()`.
