@@ -17,7 +17,7 @@
 #' For methodological details and rationale, please refer to the original documentation of `anovakun` version 4.8.9.
 #'
 #' @param dataset A data frame containing the input data.
-#' @param design A character string specifying the experimental design (e.g., "A", "AB", "ABB", etc.).
+#' @param design A character string specifying the experimental design (e.g., "As", "ABs", "sA", "sAB", "AsB", etc.).
 #' @param ... Additional arguments passed to internal functions.
 #' @param long Logical. Whether the data is in long format.
 #' @param type2 Logical. Whether to use Type II sums of squares (default is FALSE for Type III).

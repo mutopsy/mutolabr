@@ -59,7 +59,7 @@ anovakun(
 \arguments{
 \item{dataset}{A data frame containing the input data.}
 
-\item{design}{A character string specifying the experimental design (e.g., "A", "AB", "ABB", etc.).}
+\item{design}{A character string specifying the experimental design (e.g., "As", "ABs", "sA", "sAB", "AsB", etc.).}
 
 \item{...}{Additional arguments passed to internal functions.}
 
