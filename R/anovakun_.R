@@ -33,7 +33,7 @@
 #' @examples
 #'
 #'  data_snakemr %>%
-#'    anovakun("sABC", 2, 2, 5, long = TRUE)
+#'    anovakun_("sABC", 2, 2, 5, long = TRUE)
 #'
 #' @seealso
 #' The original documentation for `anovakun` by Prof. Ryuta Iseki is available at:
@@ -43,7 +43,7 @@
 #' @import tidyr
 #' @export
 
-anovakun <- function(dataset, design, ..., long = FALSE, type2 = FALSE, nopost = FALSE, tech = FALSE, data.frame = FALSE, copy = FALSE,
+anovakun_ <- function(dataset, design, ..., long = FALSE, type2 = FALSE, nopost = FALSE, tech = FALSE, data.frame = FALSE, copy = FALSE,
 	holm = FALSE, hc = FALSE, s2r = FALSE, s2d = FALSE, fs1 = FALSE, fs2r = FALSE, fs2d = FALSE, welch = FALSE, criteria = FALSE,
 	lb = FALSE, gg = FALSE, hf = FALSE, cm = FALSE, auto = FALSE, mau = FALSE, har = FALSE, iga = FALSE, ciga = FALSE,
 	eta = FALSE, peta = FALSE, geta = NA, eps = FALSE, peps = FALSE, geps = NA, omega = FALSE, omegana = FALSE, pomega = FALSE,

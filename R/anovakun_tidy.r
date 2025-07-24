@@ -14,7 +14,7 @@
 #' @param alpha Significance level. Defaults to 0.05.
 #' @param inc_allvar Logical. If \code{TRUE}, all columns will be included in the output. Defaults to \code{FALSE}.
 #' @param do_round Logical. If \code{TRUE}, numeric values in the output will be rounded for readability. Defaults to \code{TRUE}.
-#' @param ... Additional arguments passed to \code{\link{anovakun}}. The number of levels for each factor
+#' @param ... Additional arguments passed to \code{\link{anovakun_}}. The number of levels for each factor
 #'   is automatically calculated from \code{dataset} and \code{design}, and does not need to be specified manually.
 #'
 #' @return A data frame containing the results of ANOVA, including F-statistics, p-values, effect sizes,
@@ -24,7 +24,7 @@
 #' data_snakemr %>%
 #'   anovakun_tidy("sABC")
 #'
-#' @seealso \code{\link{anovakun}} for the original function wrapped by this helper.
+#' @seealso \code{\link{anovakun_}} for the original function wrapped by this helper.
 #'
 #' @import stringr
 #' @import dplyr
@@ -49,7 +49,7 @@ anovakun_tidy <- function(
   text_nfct <- nfct %>% paste(collapse = "*")
 
   res <- do.call(
-    anovakun,
+    anovakun_,
     c(
       list(dataset, design),
       as.list(nfct),

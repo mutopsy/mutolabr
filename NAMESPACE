@@ -3,7 +3,7 @@
 S3method(anova,modeler)
 S3method(anova,output)
 S3method(expand,gmatrix)
-export(anovakun)
+export(anovakun_)
 export(anovakun_tidy)
 export(contrast_test)
 export(cor_test_all)

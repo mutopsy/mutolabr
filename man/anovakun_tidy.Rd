@@ -24,7 +24,7 @@ anovakun_tidy(
 
 \item{do_round}{Logical. If \code{TRUE}, numeric values in the output will be rounded for readability. Defaults to \code{TRUE}.}
 
-\item{...}{Additional arguments passed to \code{\link{anovakun}}. The number of levels for each factor
+\item{...}{Additional arguments passed to \code{\link{anovakun_}}. The number of levels for each factor
 is automatically calculated from \code{dataset} and \code{design}, and does not need to be specified manually.}
 }
 \value{
@@ -48,5 +48,5 @@ data_snakemr \%>\%
 
 }
 \seealso{
-\code{\link{anovakun}} for the original function wrapped by this helper.
+\code{\link{anovakun_}} for the original function wrapped by this helper.
 }
