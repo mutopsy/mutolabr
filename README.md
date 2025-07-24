@@ -32,6 +32,7 @@ This package requires:
 * `BayesFactor`  
 * `effectsize`
 * `withr`
+* `ggplot2`
 
 ## Usage
 
