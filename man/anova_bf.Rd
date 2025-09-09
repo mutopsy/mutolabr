@@ -69,10 +69,10 @@ If \code{summarize = FALSE}, returns the \code{BayesFactor} object produced by
 \code{generalTestBF()}.
 }
 \description{
-Bayesian (Mixed / Repeated-Measures) ANOVA Wrapper Using \code{BayesFactor::generalTestBF}
+Bayesian ANOVA Wrapper Using \code{BayesFactor::generalTestBF}
 }
 \details{
-Runs a Bayesian ANOVA for mixed or repeated-measures designs via
+Runs a Bayesian ANOVA for between-participants, within-participants, or mixed designs via
 \code{BayesFactor::generalTestBF(..., whichModels = "top")}, given a compact
 design string (e.g., \code{"sABC"}, \code{"ABsC"}). One subject column, one
 dependent variable column, and factor columns in between are assumed.
@@ -97,15 +97,15 @@ models with one term removed) and summarized via \code{mutolabr::summary_general
 \examples{
 # Example 1: between-participants design (design = "ABs")
 
-anova_bf(data_fict_between, design = "ABs")
+anova_bf(data_fict_between, design = "ABs", seed = 610, progress = FALSE)
 
 # Example 2: within-participants design (design = "sAB")
 
-anova_bf(data_fict_within, design = "sAB")
+anova_bf(data_fict_within, design = "sAB", seed = 610, progress = FALSE)
 
 # Example 3: mixed design (between = A, within = C)
 
-anova_bf(data_fict_mixed, design = "AsB")
+anova_bf(data_fict_mixed, design = "AsB", seed = 610, progress = FALSE)
 
 }
 \seealso{

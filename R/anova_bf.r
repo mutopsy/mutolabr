@@ -74,15 +74,15 @@
 #' @examples
 #' # Example 1: between-participants design (design = "ABs")
 #'
-#' anova_bf(data_fict_between, design = "ABs")
+#' anova_bf(data_fict_between, design = "ABs", seed = 610, progress = FALSE)
 #'
 #' # Example 2: within-participants design (design = "sAB")
 #'
-#' anova_bf(data_fict_within, design = "sAB")
+#' anova_bf(data_fict_within, design = "sAB", seed = 610, progress = FALSE)
 #'
 #' # Example 3: mixed design (between = A, within = C)
 #'
-#' anova_bf(data_fict_mixed, design = "AsB")
+#' anova_bf(data_fict_mixed, design = "AsB", seed = 610, progress = FALSE)
 #'
 #' @export
 
