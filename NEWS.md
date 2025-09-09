@@ -1,3 +1,6 @@
+# mutolabr 1.6.0 (2025-09-09)
+* Implemented `anova_bf()`.
+
 # mutolabr 1.5.0 (2025-07-24)
 * Implemented `anovakun()`, a direct copy of `anovakun` version 4.8.9, originally developed by Prof. Ryuta Iseki (Taisho University, Japan). Redistribution and minor modifications of the original function are permitted under the terms specified by the original author, provided that such modifications are clearly stated. This implementation includes no modifications to the computational logic and complies with that policy. For details, see [the function documentation](https://mutopsy.github.io/mutolabr/reference/anovakun.html); the original documentation by Prof. Iseki is available at: https://riseki.cloudfree.jp/?ANOVA%E5%90%9B
 
