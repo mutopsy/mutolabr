@@ -95,7 +95,6 @@ The Bayes factors are computed with \code{whichModels = "top"} (full model vs.
 models with one term removed) and summarized via \code{mutolabr::summary_generalTestBF()}.
 }
 \examples{
-\dontrun{
 # Example 1: between-participants design (design = "ABs")
 
 anova_bf(data_fict_between, design = "ABs")
@@ -107,7 +106,6 @@ anova_bf(data_fict_within, design = "sAB")
 # Example 3: mixed design (between = A, within = C)
 
 anova_bf(data_fict_mixed, design = "AsB")
-}
 
 }
 \seealso{

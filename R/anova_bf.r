@@ -72,7 +72,6 @@
 #' @importFrom stringr str_count
 #'
 #' @examples
-#' \dontrun{
 #' # Example 1: between-participants design (design = "ABs")
 #'
 #' anova_bf(data_fict_between, design = "ABs")
@@ -84,7 +83,6 @@
 #' # Example 3: mixed design (between = A, within = C)
 #'
 #' anova_bf(data_fict_mixed, design = "AsB")
-#' }
 #'
 #' @export
 
