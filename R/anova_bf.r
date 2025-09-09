@@ -1,8 +1,8 @@
 #' Perform Bayesian ANOVA Using generalTestBF
 #'
-#' Bayesian (Mixed / Repeated-Measures) ANOVA Wrapper Using \code{BayesFactor::generalTestBF}
+#' Bayesian ANOVA Wrapper Using \code{BayesFactor::generalTestBF}
 #'
-#' Runs a Bayesian ANOVA for mixed or repeated-measures designs via
+#' Runs a Bayesian ANOVA for between-participants, within-participants, or mixed designs via
 #' \code{BayesFactor::generalTestBF(..., whichModels = "top")}, given a compact
 #' design string (e.g., \code{"sABC"}, \code{"ABsC"}). One subject column, one
 #' dependent variable column, and factor columns in between are assumed.
