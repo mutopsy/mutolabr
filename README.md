@@ -57,7 +57,7 @@ For details on each function, refer to [the function references](https://mutopsy
 * `anovakun_`: Perform ANOVA using the anovakun procedure (version 4.8.9). [[Document](https://mutopsy.github.io/mutolabr/reference/anovakun_.html)]
   * **Note:** This function is a direct copy of [`anovakun`](https://riseki.cloudfree.jp/?ANOVA%E5%90%9B), developed by Prof. Ryuta Iseki. Redistribution and minor modifications are permitted under the original author's policy, provided that such modifications are clearly stated.
 * `anovakun_tidy`: A wrapper for anovakun with improved usability and formatting. [[Document](https://mutopsy.github.io/mutolabr/reference/anovakun_tidy.html)]
-* `anova_bf`: Perform Bayesian ANOVA Using generalTestBF. [[Document](https://mutopsy.github.io/mutolabr/reference/anovakun_bf.html)]
+* `anova_bf`: Perform Bayesian ANOVA Using generalTestBF. [[Document](https://mutopsy.github.io/mutolabr/reference/anova_bf.html)]
 
 ### Compute Summary Statistics
 
