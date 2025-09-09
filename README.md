@@ -54,10 +54,10 @@ For details on each function, refer to [the function references](https://mutopsy
 * `contrast_test`: Perform Contrast Tests with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test.html)]
 * `trend_test`: Perform Trend Analysis using Contrast Test with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/trend_test.html)]
 * `summary_generalTestBF`: Summarize Results from `generalTestBF` (beta version) [[Document](https://mutopsy.github.io/mutolabr/reference/summary_generalTestBF.html)]
-* `rmANOVA_bf`: Perform Bayesian Repeated-Measures ANOVA Using `generalTestBF` [[Document](https://mutopsy.github.io/mutolabr/reference/rmANOVA_bf.html)]
 * `anovakun_`: Perform ANOVA using the anovakun procedure (version 4.8.9). [[Document](https://mutopsy.github.io/mutolabr/reference/anovakun_.html)]
   * **Note:** This function is a direct copy of [`anovakun`](https://riseki.cloudfree.jp/?ANOVA%E5%90%9B), developed by Prof. Ryuta Iseki. Redistribution and minor modifications are permitted under the original author's policy, provided that such modifications are clearly stated.
 * `anovakun_tidy`: A wrapper for anovakun with improved usability and formatting. [[Document](https://mutopsy.github.io/mutolabr/reference/anovakun_tidy.html)]
+* `anova_bf`: Perform Bayesian ANOVA Using generalTestBF. [[Document](https://mutopsy.github.io/mutolabr/reference/anovakun_bf.html)]
 
 ### Compute Summary Statistics
 
