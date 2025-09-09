@@ -190,6 +190,29 @@ anova_bf <- function(
       y = (y - mean(y))/sd(y)
     )
 
+
+  if(nfct_between >= 1){
+    freq <- data_for_bf %>%
+      distinct(s, across(all_of(fctname_b))) %>%
+      count(s)
+
+    if(sum(freq$n != 1) != 0){
+      warning("Inconsistent data: Some subjects belong to multiple levels of between-subject factors.")
+    }
+  }
+
+  if(nfct_within >= 1){
+    freq <- data_for_bf %>%
+      dplyr::group_by(s, across(all_of(fctname_w))) %>%
+      dplyr::summarise(n = n(), .groups = "drop") %>%
+      tidyr::complete()
+
+    if(sum(freq$n != 1) != 0){
+      warning("Inconsistent data: Some subject × within-subject factor combinations do not occur exactly once.
+This may indicate missing or duplicated measurements.")
+    }
+  }
+
   if (!is.null(seed)) {
     res_BF <- withr::with_seed(
       seed,
