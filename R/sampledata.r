@@ -33,6 +33,22 @@
 #' @keywords datasets
 "data_fict_between"
 
+#' Example dataset: data_fict_within
+#'
+#' This is a fictitious dataset for 2*2 within-participants ANOVA.
+#'
+#' @format A data frame with 64 rows and 4 variables:
+#' \describe{
+#'   \item{participant}{Participant ID}
+#'   \item{condition}{Condition (\code{"control"} or \code{"experimental"})}
+#'   \item{time}{Time (\code{"pre"} or \code{"post"})}
+#'   \item{score}{Test score}
+#' }
+#'
+#' @usage data(data_fict_within)
+#' @keywords datasets
+"data_fict_within"
+
 #' Example dataset: data_fict_mixed
 #'
 #' This is a fictitious dataset for 2*2 mixed-design ANOVA.
