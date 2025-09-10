@@ -35,7 +35,6 @@
 #' @param detailed Logical. Whether to return detailed results (\code{TRUE}) or
 #'   minimal output (\code{FALSE}, default).
 #' @param fullbayes Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).
-#' @param ... Additional arguments passed to `cor.test()`.
 #'
 #' @return A list containing:
 #' \describe{
@@ -57,7 +56,6 @@
 #'                         rscale_bf = "ultrawide")
 #' results$all  # View detailed results in a tidy format
 #' results$table_BF10  # View Bayes factor matrix
-#' @import stats
 #' @importFrom dplyr mutate arrange %>% filter if_else transmute left_join rename select n everything join_by
 #' @importFrom tidyr drop_na
 #' @importFrom BayesFactor correlationBF
@@ -72,8 +70,7 @@ cor_test_all <- function(
     method = c("pearson", "kendall", "spearman"),
     exact = NULL, conf.level = 0.95, alpha = 0.05, continuity = FALSE,
     rscale_est = "ultrawide", rscale_bf = "ultrawide",
-    iterations = 10000, map_density_n = 512, detailed = FALSE, fullbayes = FALSE,
-    ...
+    iterations = 10000, map_density_n = 512, detailed = FALSE, fullbayes = FALSE
 ){
 
   method <- method[1]

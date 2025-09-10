@@ -51,8 +51,9 @@
 #' weight <- c(1, -2, 1)
 #' contrast_test(dat, weight, paired = TRUE)
 #'
-#' @import dplyr
-#' @import tidyr
+#' @importFrom dplyr mutate group_by ungroup summarise select_if select n %>%
+#' @importFrom tidyr pivot_longer drop_na
+#' @importFrom stats pt qt
 #' @export
 
 contrast_test <- function(
@@ -168,7 +169,7 @@ contrast_test <- function(
 
   SS_C <- sum(smry$n*(b * smry$weight)^2)
 
-  # C^2 / sum(smry$weight^2 / smry$n) ## SSの同値表現??
+  # C^2 / sum(smry$weight^2 / smry$n) ## SSの同値表現??nが等しくないときは上記コードは間違い。
 
   MS_C <- SS_C / 1
 
@@ -232,7 +233,7 @@ contrast_test <- function(
       cat("Contrast analysis for independent samples")
     }
     cat("\n-----------------------------------------------\n")
-    cat(paste0("Mean = (", paste0(format(smry$mean, digit = 4, nsmall = 2), collapse = ", "), ")\n"))
+    cat(paste0("Mean = (", paste0(format(smry$mean, digits = 4, nsmall = 2), collapse = ", "), ")\n"))
     if(paired){
       cat(paste0("N = ", nrow(dat), "\n"))
     } else{

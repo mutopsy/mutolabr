@@ -4,7 +4,7 @@
 \alias{expand.gmatrix}
 \title{S3 generic for expand.gmatrix}
 \usage{
-\method{expand}{gmatrix}(...)
+expand.gmatrix(...)
 }
 \description{
 S3 generic for expand.gmatrix

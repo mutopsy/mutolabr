@@ -26,8 +26,10 @@
 #'
 #' @seealso \code{\link{anovakun_}} for the original function wrapped by this helper.
 #'
-#' @import stringr
-#' @import dplyr
+#' @importFrom dplyr summarise across mutate filter select left_join if_else everything rename %>%
+#' @importFrom tidyr fill
+#' @importFrom tibble tibble
+#' @importFrom stringr str_replace_all
 #' @export
 
 anovakun_tidy <- function(

@@ -25,8 +25,7 @@ cor_test_all(
   iterations = 10000,
   map_density_n = 512,
   detailed = FALSE,
-  fullbayes = FALSE,
-  ...
+  fullbayes = FALSE
 )
 }
 \arguments{
@@ -81,8 +80,6 @@ Passed to \code{BayesFactor::correlationBF()}.}
 minimal output (\code{FALSE}, default).}
 
 \item{fullbayes}{Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).}
-
-\item{...}{Additional arguments passed to \code{cor.test()}.}
 }
 \value{
 A list containing:

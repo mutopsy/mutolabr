@@ -4,11 +4,9 @@
 #' controlling for one or more covariates using frequentist methods.
 #' The function returns correlation estimates along with confidence intervals.
 #' Note: Bayesian methods are not supported in the current version.
-
 #'
 #' @param dat A data frame or matrix containing numeric variables of interest.
 #' @param control A data frame, matrix, or numeric vector containing covariates to control for.
-#' @param cor Logical. If `TRUE`, computes frequentist correlation coefficients (default: `TRUE`).
 #' @param triangle Character. Specifies which part of the correlation matrix to return:
 #' `"upper"`, `"lower"`, or `"full"` (default: `"upper"`).
 #' @param alternative Character. Specifies the alternative hypothesis for the frequentist test:
@@ -16,6 +14,9 @@
 #' @param method Character. Specifies the correlation method for the frequentist test:
 #' `"pearson"`, `"kendall"`, or `"spearman"` (default: `"pearson"`).
 #' @param conf.level Numeric. The confidence level for confidence intervals (default: `0.95`).
+#' @param alpha Numeric. Significance level. Defaults to 0.05.
+#' @param detailed Logical. Whether to return detailed results (\code{TRUE}) or
+#'   minimal output (\code{FALSE}, default).
 #'
 #' @return A list containing:
 #' \describe{
@@ -30,10 +31,10 @@
 #' results$all  # View detailed results in a tidy format
 #' results$table_cor  # View partial correlation matrix
 #'
-#' @import stats
-#' @import dplyr
-#' @import tidyr
-#' @import ppcor
+#' @importFrom stats pt qnorm cor.test
+#' @importFrom dplyr mutate arrange filter transmute rename select left_join if_else %>% join_by everything select_if
+#' @importFrom tidyr drop_na
+#' @importFrom ppcor pcor.test
 #' @export
 
 pcor_test_all <- function(
@@ -42,8 +43,7 @@ pcor_test_all <- function(
     triangle = c("upper", "lower", "full"),
     alternative = c("two.sided", "less", "greater"),
     method = c("pearson", "kendall", "spearman"),
-    conf.level = 0.95,
-    ...
+    conf.level = 0.95, alpha = 0.05, detailed = FALSE
 ){
 
   cor <- TRUE
@@ -88,15 +88,15 @@ pcor_test_all <- function(
       S = NA_real_,
       z = NA_real_,
       p = NA_real_,
+      sig = NA_character_,
       n_pair = NA_real_,
       n_na = NA_real_
     )
 
-  interval <- c(NA_real_, NA_real_)
-
   for(i in 1:ncol(dat)){
     for(j in 1:ncol(dat)){
       if(j > i){
+        interval <- c(NA_real_, NA_real_)
         index_valid <- (dat[,c(i,j)] %>% is.na() %>% rowSums()) == 0
         mat <- dat[,c(i,j)] %>%
           tidyr::drop_na() %>% # Pair-wise exclusion
@@ -245,11 +245,29 @@ pcor_test_all <- function(
     }
   }
 
+  out$sig <- dplyr::if_else(out$p < alpha, "*", "ns")
+
+  if(!detailed){
+    out <- out %>%
+      dplyr::transmute(
+        row = row,
+        col = col,
+        cor = cor %>% round(3),
+        lower = lower %>% round(3),
+        upper = upper %>% round(3),
+        t = t %>% round(2),
+        df = df,
+        p = p %>% round(3),
+        sig = sig,
+        n_pair = n_pair
+      )
+  }
+
   out <- out %>%
-    select_if(~ !any(is.na(.))) %>%
-    left_join(d.varnames, by = join_by(x$row == y$num)) %>%
+    dplyr::select_if(~ !any(is.na(.))) %>%
+    dplyr::left_join(d.varnames, by = dplyr::join_by(x$row == y$num)) %>%
     dplyr::rename(var_row = "varname") %>%
-    left_join(d.varnames, by = join_by(x$col == y$num)) %>%
+    dplyr::left_join(d.varnames, by = dplyr::join_by(x$col == y$num)) %>%
     dplyr::rename(var_col = "varname") %>%
     dplyr::select("var_row", "var_col", everything())
 
@@ -259,6 +277,8 @@ pcor_test_all <- function(
   mattmp <- matrix(nrow = ncol(dat), ncol = ncol(dat))
   colnames(mattmp) <- var.label
   rownames(mattmp) <- var.label
+
+  out <- out[, setdiff(names(out), c("sig", "favor", "evidence"))]
 
   for(i in 2:(ncol(out)-4+1)) out_with_table[[i]] <- mattmp
 

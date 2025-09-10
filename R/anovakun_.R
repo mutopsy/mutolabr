@@ -39,8 +39,6 @@
 #' The original documentation for `anovakun` by Prof. Ryuta Iseki is available at:
 #' \url{https://riseki.cloudfree.jp/?ANOVA%E5%90%9B}
 #'
-#' @import dplyr
-#' @import tidyr
 #' @export
 
 anovakun_ <- function(dataset, design, ..., long = FALSE, type2 = FALSE, nopost = FALSE, tech = FALSE, data.frame = FALSE, copy = FALSE,

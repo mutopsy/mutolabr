@@ -64,8 +64,8 @@
 #' @seealso \code{\link[BayesFactor]{generalTestBF}},
 #'   \code{\link{summary_generalTestBF}}
 #'
-#' @import dplyr
-#' @import tidyr
+#' @importFrom dplyr summarise across select starts_with group_by distinct count mutate all_of %>%
+#' @importFrom tidyr drop_na complete
 #' @importFrom BayesFactor generalTestBF
 #' @importFrom withr with_seed
 #' @importFrom stats as.formula

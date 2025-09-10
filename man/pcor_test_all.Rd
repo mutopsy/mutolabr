@@ -11,7 +11,8 @@ pcor_test_all(
   alternative = c("two.sided", "less", "greater"),
   method = c("pearson", "kendall", "spearman"),
   conf.level = 0.95,
-  ...
+  alpha = 0.05,
+  detailed = FALSE
 )
 }
 \arguments{
@@ -30,7 +31,10 @@ pcor_test_all(
 
 \item{conf.level}{Numeric. The confidence level for confidence intervals (default: \code{0.95}).}
 
-\item{cor}{Logical. If \code{TRUE}, computes frequentist correlation coefficients (default: \code{TRUE}).}
+\item{alpha}{Numeric. Significance level. Defaults to 0.05.}
+
+\item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
+minimal output (\code{FALSE}, default).}
 }
 \value{
 A list containing:

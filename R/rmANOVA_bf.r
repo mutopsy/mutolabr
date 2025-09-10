@@ -32,7 +32,7 @@
 #' The subject column is automatically renamed to `"s"`, factor columns to `"fw1"`, `"fw2"`, etc.,
 #' and the outcome variable to `"y"` internally for formula construction.
 #'
-#' @import dplyr
+#' @importFrom dplyr mutate %>%
 #' @importFrom BayesFactor generalTestBF
 #' @importFrom withr with_seed
 #' @importFrom stats as.formula
