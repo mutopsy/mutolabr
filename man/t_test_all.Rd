@@ -35,7 +35,8 @@ t_test_all(
   rscale_bf = "medium",
   iterations = 10000,
   map_density_n = 512,
-  verbose = TRUE
+  verbose = TRUE,
+  detailed = FALSE
 )
 }
 \arguments{
@@ -103,6 +104,9 @@ Options: \code{"ultrawide"}, \code{"wide"}, \code{"medium"}, or a positive real 
 \item{map_density_n}{Integer. Number of bins for MAP density estimation.}
 
 \item{verbose}{Logical. If \code{TRUE}, prints additional messages.}
+
+\item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
+minimal output (\code{FALSE}, default).}
 }
 \value{
 A data frame containing test statistics, effect sizes, confidence intervals, and Bayesian estimates.

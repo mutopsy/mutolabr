@@ -33,7 +33,8 @@ t_test_all_tidy(
   rscale_bf = "medium",
   iterations = 10000,
   map_density_n = 512,
-  verbose = TRUE
+  verbose = TRUE,
+  detailed = FALSE
 )
 }
 \arguments{
@@ -82,6 +83,9 @@ Defaults are \code{Inf} and \code{"medium"}, respectively. Passed to \code{t_tes
 \item{iterations, map_density_n}{Integer. MCMC iterations and grid size for MAP density. Passed to \code{t_test_all}.}
 
 \item{verbose}{Logical. If \code{TRUE}, print additional messages (default \code{TRUE}).}
+
+\item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
+minimal output (\code{FALSE}, default).}
 }
 \value{
 The object returned by \code{\link{t_test_all}} (test statistics, effect sizes,

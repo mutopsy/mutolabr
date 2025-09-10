@@ -37,6 +37,8 @@
 #' @param iterations Integer. Number of MCMC iterations for Bayesian estimation.
 #' @param map_density_n Integer. Number of bins for MAP density estimation.
 #' @param verbose Logical. If `TRUE`, prints additional messages.
+#' @param detailed Logical. Whether to return detailed results (\code{TRUE}) or
+#'   minimal output (\code{FALSE}, default).
 #'
 #' @return A data frame containing test statistics, effect sizes, confidence intervals, and Bayesian estimates.
 #'
@@ -77,7 +79,7 @@ t_test_all <- function(
     cohens_d = NULL, cohens_d_EAP = FALSE, cohens_d_MAP = FALSE, cohens_d_MED = FALSE,
     cohens_dz = TRUE, cohens_dz_EAP = FALSE, cohens_dz_MAP = FALSE, cohens_dz_MED = FALSE,
     rscale_est = Inf, rscale_bf = "medium",
-    iterations = 10000, map_density_n = 512, verbose = TRUE
+    iterations = 10000, map_density_n = 512, verbose = TRUE, detailed = FALSE
 ){
 
   # initialization
@@ -139,6 +141,9 @@ t_test_all <- function(
     cohens_dz_upper = NA_real_,
     pd = NA_real_,
     BF10 = NA_real_,
+    log10_BF10 = NA_real_,
+    favor = NA_character_,
+    evidence = NA_character_,
     n_x = NA_real_,
     n_y =  NA_real_,
     n_pair = NA_real_,
@@ -400,11 +405,18 @@ t_test_all <- function(
     )
 
     out$BF10 <- exp(bf_est@bayesFactor$bf)
+    out$log10_BF10 <- log10(out$BF10)
+    out <- out %>%
+      mutate(
+        favor = if_else(BF10 > 1, "alt.", "null"),
+        evidence = "anecdotal",
+        evidence = if_else(abs(log10_BF10) > log(3, 10), "moderate", evidence),
+        evidence = if_else(abs(log10_BF10) > log(10, 10), "strong", evidence),
+        evidence = if_else(abs(log10_BF10) > log(30, 10), "very strong", evidence),
+        evidence = if_else(abs(log10_BF10) > log(100, 10), "extreme", evidence)
+      )
 
   }
-
-  out <- out %>%
-    select_if(~ !any(is.na(.)))
 
   if (verbose) {
     cat("\n-----------------------------------------------\n")
@@ -489,7 +501,8 @@ t_test_all <- function(
       if(rscale_show == "ultrawide") rscale_show <- sqrt(2)
 
       cat(
-        "\nBF_10 = ", out$BF10, " (rscale = ",rscale_show,")", sep = ""
+        "\n\nBF_10 = ", out$BF10, " in favor of H",as.numeric(out$favor == "alt."), "(", out$evidence, ")",
+        "\nrscale = ",rscale_show, sep = ""
       )
 
       cat(
@@ -684,6 +697,26 @@ t_test_all <- function(
           sep = "")
     }
   }
+
+  if(!detailed){
+    out <- out %>%
+      dplyr::transmute(
+        diff = diff,
+        t = t %>% round(2),
+        df = df,
+        p = p %>% round(3),
+        cohens_d = cohens_d %>% round(3),
+        cohens_dz = cohens_dz %>% round(3),
+        BF10 = BF10,
+        log10_BF10 = log10_BF10,
+        favor = favor,
+        evidence = evidence,
+        pd = pd %>% round(3)
+      )
+  }
+
+  out <- out %>%
+    select_if(~ !any(is.na(.)))
 
   return(invisible(out))
   }

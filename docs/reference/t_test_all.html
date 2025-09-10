@@ -73,7 +73,8 @@ confidence intervals, Bayesian credible intervals, probability of direction (pd)
 <span>  rscale_bf <span class="op">=</span> <span class="st">"medium"</span>,</span>
 <span>  iterations <span class="op">=</span> <span class="fl">10000</span>,</span>
 <span>  map_density_n <span class="op">=</span> <span class="fl">512</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  detailed <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -207,6 +208,11 @@ Options: <code>"ultrawide"</code>, <code>"wide"</code>, <code>"medium"</code>, o
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
 <dd><p>Logical. If <code>TRUE</code>, prints additional messages.</p></dd>
 
+
+<dt id="arg-detailed">detailed<a class="anchor" aria-label="anchor" href="#arg-detailed"></a></dt>
+<dd><p>Logical. Whether to return detailed results (<code>TRUE</code>) or
+minimal output (<code>FALSE</code>, default).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -231,6 +237,7 @@ Options: <code>"ultrawide"</code>, <code>"wide"</code>, <code>"medium"</code>, o
 <span class="r-out co"><span class="r-pr">#&gt;</span> n_x = 30, n_y = 30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> t = -2.416334, df = 56.0632, p = 0.01895871</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = -0.04710376</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean of y = 0.6312346</span>
@@ -259,8 +266,11 @@ Options: <code>"ultrawide"</code>, <code>"wide"</code>, <code>"medium"</code>, o
 <span class="r-out co"><span class="r-pr">#&gt;</span> n_x = 30, n_y = 30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> t = -2.416334, df = 56.0632, p = 0.01895871</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pd = 0.9902</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 2.869844 (rscale = 0.7071068)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 2.869844 in favor of H1(anecdotal)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rscale = 0.7071068</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note: BF is sensitive to the rscale parameter of the prior.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = -0.04710376</span>
@@ -322,7 +332,9 @@ Options: <code>"ultrawide"</code>, <code>"wide"</code>, <code>"medium"</code>, o
 <span class="r-out co"><span class="r-pr">#&gt;</span> t = -4.448914, df = 29, p = 0.0001169206</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = 0.7175137</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pd = 0.9999</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 225.371 (rscale = 0.7071068)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 225.371 in favor of H1(extreme)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rscale = 0.7071068</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note: BF is sensitive to the rscale parameter of the prior.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = -0.04710376</span>

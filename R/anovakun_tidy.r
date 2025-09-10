@@ -112,7 +112,11 @@ anovakun_tidy <- function(
       effect, df1, df2, SS1, SS2, MS1, MS2, F, p, everything()
     ) %>%
     dplyr::left_join(sph, by = "effect") %>%
-    dplyr::mutate(epsilon_CM = if_else(is.na(epsilon_CM), 1, epsilon_CM)) %>%
+    dplyr::mutate(
+      epsilon_CM = if_else(is.na(epsilon_CM), 1, epsilon_CM),
+      epsilon_CM = if_else(epsilon_CM > 1, 1, epsilon_CM)
+
+      ) %>%
     dplyr::mutate(effect = effect %>% stringr::str_replace_all(" x ", ":"))
 
   if(do_round){

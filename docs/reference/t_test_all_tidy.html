@@ -77,7 +77,8 @@ checks for consistency, and then calls <code><a href="t_test_all.html">t_test_al
 <span>  rscale_bf <span class="op">=</span> <span class="st">"medium"</span>,</span>
 <span>  iterations <span class="op">=</span> <span class="fl">10000</span>,</span>
 <span>  map_density_n <span class="op">=</span> <span class="fl">512</span>,</span>
-<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  detailed <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -162,6 +163,11 @@ Defaults are <code>Inf</code> and <code>"medium"</code>, respectively. Passed to
 <dt id="arg-verbose">verbose<a class="anchor" aria-label="anchor" href="#arg-verbose"></a></dt>
 <dd><p>Logical. If <code>TRUE</code>, print additional messages (default <code>TRUE</code>).</p></dd>
 
+
+<dt id="arg-detailed">detailed<a class="anchor" aria-label="anchor" href="#arg-detailed"></a></dt>
+<dd><p>Logical. Whether to return detailed results (<code>TRUE</code>) or
+minimal output (<code>FALSE</code>, default).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -201,6 +207,7 @@ confidence/credible intervals, and Bayesian estimates).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> n_x = 10, n_y = 10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> t = 1.140387, df = 16.70605, p = 0.2702108</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean of x = 0.1280118</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean of y = -0.4289174</span>
@@ -214,10 +221,8 @@ confidence/credible intervals, and Bayesian estimates).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the frequentist confidence interval.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Confidence level = 0.95)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   x y    mean_x     mean_y      diff diff_lower diff_upper        t       df</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 A B 0.1280118 -0.4289174 0.5569292 -0.4748208   1.588679 1.140387 16.70605</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           p  cohens_d cohens_d_lower cohens_d_upper n_x n_y n_na_x n_na_y</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.2702108 0.5099968     -0.3887892       1.395195  10  10      0      0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        diff    t       df    p cohens_d</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.5569292 1.14 16.70605 0.27     0.51</span>
 <span class="r-in"><span><span class="co"># Paired-samples t-test</span></span></span>
 <span class="r-in"><span><span class="fu">t_test_all_tidy</span><span class="op">(</span><span class="va">dat</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -243,10 +248,8 @@ confidence/credible intervals, and Bayesian estimates).</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the frequentist confidence interval.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Confidence level = 0.95)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   x y    mean_x     mean_y      diff diff_lower diff_upper        t df</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 A B 0.1280118 -0.4289174 0.5569292 -0.4818373   1.595696 1.212844  9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           p    cor_xy cohens_dz cohens_dz_lower cohens_dz_upper n_pair n_na</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.2560624 0.1206803 0.3835348      -0.2586486        1.025718     10    0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        diff    t df     p cohens_dz</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.5569292 1.21  9 0.256     0.384</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
