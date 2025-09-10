@@ -262,3 +262,9 @@ This may indicate missing or duplicated measurements.")
     return(res_BF)
   }
 }
+
+utils::globalVariables(c(
+  "s","y","bf","BF","BF10","log10_BF","log10_BF10","evidence","favor","type",
+  "cilmdv","cilmv","cimlv","cindv","cinv","variable","value","mean_group","mean_id",
+  "obs","group_mutolabr","auto","cohens_f"
+))

@@ -18,11 +18,14 @@ cor_test_all(
   method = c("pearson", "kendall", "spearman"),
   exact = NULL,
   conf.level = 0.95,
+  alpha = 0.05,
   continuity = FALSE,
   rscale_est = "ultrawide",
   rscale_bf = "ultrawide",
   iterations = 10000,
   map_density_n = 512,
+  detailed = FALSE,
+  fullbayes = FALSE,
   ...
 )
 }
@@ -58,6 +61,8 @@ or \code{"bayes_hdi"} (highest density interval based on the posterior distribut
 
 \item{conf.level}{Numeric. The confidence level for frequentist intervals or credibility level for Bayesian intervals (default: \code{0.95}).}
 
+\item{alpha}{Numeric. Significance level. Defaults to 0.05.}
+
 \item{continuity}{Logical. If \code{TRUE}, applies a continuity correction for Kendall correlations (default: \code{FALSE}).}
 
 \item{rscale_est}{Numeric or character. Specifies the Cauchy prior scale for Bayesian estimation of the posterior distribution.
@@ -71,6 +76,11 @@ Passed to \code{BayesFactor::correlationBF()}.}
 \item{iterations}{Integer. Number of MCMC samples for Bayesian estimation (default: \code{10000}).}
 
 \item{map_density_n}{Integer. Number of bins for MAP density estimation (default: \code{512}).}
+
+\item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
+minimal output (\code{FALSE}, default).}
+
+\item{fullbayes}{Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).}
 
 \item{...}{Additional arguments passed to \code{cor.test()}.}
 }

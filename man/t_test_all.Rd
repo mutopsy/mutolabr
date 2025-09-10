@@ -14,6 +14,7 @@ t_test_all(
   ci = c("freq", "bayes_central", "bayes_hdi"),
   alternative = c("two.sided", "less", "greater"),
   conf.level = 0.95,
+  alpha = 0.05,
   pd = FALSE,
   bf = FALSE,
   cor = TRUE,
@@ -36,7 +37,8 @@ t_test_all(
   iterations = 10000,
   map_density_n = 512,
   verbose = TRUE,
-  detailed = FALSE
+  detailed = FALSE,
+  fullbayes = FALSE
 )
 }
 \arguments{
@@ -58,6 +60,8 @@ t_test_all(
 \item{alternative}{Character. Specifies the alternative hypothesis for the frequentist test: \code{"two.sided"}, \code{"less"}, or \code{"greater"} (default: \code{"two.sided"}).}
 
 \item{conf.level}{Numeric. The confidence level for frequentist intervals or credibility level for Bayesian intervals (default: \code{0.95}).}
+
+\item{alpha}{Numeric. Significance level. Defaults to 0.05.}
 
 \item{pd}{Logical. If \code{TRUE}, computes the probability of direction (pd) based on posterior distributions (default: \code{FALSE}).}
 
@@ -107,6 +111,8 @@ Options: \code{"ultrawide"}, \code{"wide"}, \code{"medium"}, or a positive real 
 
 \item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
 minimal output (\code{FALSE}, default).}
+
+\item{fullbayes}{Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).}
 }
 \value{
 A data frame containing test statistics, effect sizes, confidence intervals, and Bayesian estimates.

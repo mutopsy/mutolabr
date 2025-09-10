@@ -52,6 +52,7 @@ confidence intervals, Bayesian credible intervals, probability of direction (pd)
 <span>  ci <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"freq"</span>, <span class="st">"bayes_central"</span>, <span class="st">"bayes_hdi"</span><span class="op">)</span>,</span>
 <span>  alternative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"two.sided"</span>, <span class="st">"less"</span>, <span class="st">"greater"</span><span class="op">)</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
 <span>  pd <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  bf <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  cor <span class="op">=</span> <span class="cn">TRUE</span>,</span>
@@ -74,7 +75,8 @@ confidence intervals, Bayesian credible intervals, probability of direction (pd)
 <span>  iterations <span class="op">=</span> <span class="fl">10000</span>,</span>
 <span>  map_density_n <span class="op">=</span> <span class="fl">512</span>,</span>
 <span>  verbose <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span>  detailed <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  detailed <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  fullbayes <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -117,6 +119,10 @@ confidence intervals, Bayesian credible intervals, probability of direction (pd)
 
 <dt id="arg-conf-level">conf.level<a class="anchor" aria-label="anchor" href="#arg-conf-level"></a></dt>
 <dd><p>Numeric. The confidence level for frequentist intervals or credibility level for Bayesian intervals (default: <code>0.95</code>).</p></dd>
+
+
+<dt id="arg-alpha">alpha<a class="anchor" aria-label="anchor" href="#arg-alpha"></a></dt>
+<dd><p>Numeric. Significance level. Defaults to 0.05.</p></dd>
 
 
 <dt id="arg-pd">pd<a class="anchor" aria-label="anchor" href="#arg-pd"></a></dt>
@@ -213,6 +219,10 @@ Options: <code>"ultrawide"</code>, <code>"wide"</code>, <code>"medium"</code>, o
 <dd><p>Logical. Whether to return detailed results (<code>TRUE</code>) or
 minimal output (<code>FALSE</code>, default).</p></dd>
 
+
+<dt id="arg-fullbayes">fullbayes<a class="anchor" aria-label="anchor" href="#arg-fullbayes"></a></dt>
+<dd><p>Logical. Whether to show only Bayesian results (<code>TRUE</code>) or both frequentist and Bayesian results (<code>FALSE</code>, default).</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -245,8 +255,8 @@ minimal output (<code>FALSE</code>, default).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Diff (x-y) = -0.6783383</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.240695, -0.1159818]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d = -0.62389485</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.139925, -0.1027481]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d = -0.6238948</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.13992, -0.1027481]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the frequentist confidence interval.</span>
@@ -269,7 +279,7 @@ minimal output (<code>FALSE</code>, default).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pd = 0.9902</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 2.869844 in favor of H1(anecdotal)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 2.869844 in favor of H1 (anecdotal)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rscale = 0.7071068</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note: BF is sensitive to the rscale parameter of the prior.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
@@ -280,12 +290,12 @@ minimal output (<code>FALSE</code>, default).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MAP of diff = -0.6916485</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.22348, -0.1196791]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d = -0.62389485</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cohen's d = -0.6238948</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> MAP of delta = -0.6500264</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.1427925, -0.1035713]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.142792, -0.1035713]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the Beyesian posterior highest density interval.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the Bayesian posterior highest density interval.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Probability = 0.95)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The posterior was approximated using 10000 samples,</span>
@@ -333,7 +343,7 @@ minimal output (<code>FALSE</code>, default).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> r_(x,y) = 0.7175137</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> pd = 0.9999</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 225.371 in favor of H1(extreme)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> BF_10 = 225.371 in favor of H1 (extreme)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> rscale = 0.7071068</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note: BF is sensitive to the rscale parameter of the prior.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
@@ -349,7 +359,7 @@ minimal output (<code>FALSE</code>, default).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CI = [-1.231449, -0.4140352]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -----------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the Beyesian central posterior interval.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> The CI represents the Bayesian central posterior interval.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Probability = 0.95)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Note:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> The posterior was approximated using 10000 samples,</span>

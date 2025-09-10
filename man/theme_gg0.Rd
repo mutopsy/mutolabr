@@ -6,6 +6,9 @@
 \usage{
 theme_gg0(...)
 }
+\arguments{
+\item{...}{Passed to \code{ggplot2::theme}.}
+}
 \value{
 A \code{ggplot2} theme object.
 }

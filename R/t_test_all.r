@@ -13,6 +13,7 @@
 #' `"bayes_central"` (Bayesian central credible interval), or `"bayes_hdi"` (highest density interval based on the posterior distribution) (default: `"freq"`).
 #' @param alternative Character. Specifies the alternative hypothesis for the frequentist test: `"two.sided"`, `"less"`, or `"greater"` (default: `"two.sided"`).
 #' @param conf.level Numeric. The confidence level for frequentist intervals or credibility level for Bayesian intervals (default: `0.95`).
+#' @param alpha Numeric. Significance level. Defaults to 0.05.
 #' @param pd Logical. If `TRUE`, computes the probability of direction (pd) based on posterior distributions (default: `FALSE`).
 #' @param bf Logical. If `TRUE`, computes Bayes factors for the presence of a difference versus the null hypothesis (default: `FALSE`).
 #' @param cor Logical. If `TRUE`, computes Pearson correlation for paired samples.
@@ -39,6 +40,7 @@
 #' @param verbose Logical. If `TRUE`, prints additional messages.
 #' @param detailed Logical. Whether to return detailed results (\code{TRUE}) or
 #'   minimal output (\code{FALSE}, default).
+#' @param fullbayes Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).
 #'
 #' @return A data frame containing test statistics, effect sizes, confidence intervals, and Bayesian estimates.
 #'
@@ -63,29 +65,38 @@
 #' t_test_all(x, y, paired = TRUE, diff_MAP = TRUE, cohens_dz_MAP = TRUE,
 #'            bf = TRUE, pd = TRUE, ci = "bayes_central", rscale_bf = "medium")
 #'
-#' @import effectsize
-#' @import BayesFactor
-#' @import dplyr
+#' @importFrom effectsize cohens_d repeated_measures_d
+#' @importFrom BayesFactor ttestBF
+#' @importFrom dplyr mutate transmute select_if if_else %>%
+#' @importFrom tidyr drop_na
 #' @export
 
 t_test_all <- function(
     x, y = NULL, var.label = c("x", "y"), paired = F, var.equal = FALSE, mu = 0,
     ci = c("freq","bayes_central",  "bayes_hdi"),
     alternative = c("two.sided", "less", "greater"),
-    conf.level = 0.95,
+    conf.level = 0.95, alpha = 0.05,
     pd = FALSE, bf = FALSE, cor = TRUE,
     mean_x_EAP = FALSE, mean_x_MAP = FALSE, mean_x_MED = FALSE,
     diff_EAP = FALSE, diff_MAP = FALSE, diff_MED = FALSE,
     cohens_d = NULL, cohens_d_EAP = FALSE, cohens_d_MAP = FALSE, cohens_d_MED = FALSE,
     cohens_dz = TRUE, cohens_dz_EAP = FALSE, cohens_dz_MAP = FALSE, cohens_dz_MED = FALSE,
     rscale_est = Inf, rscale_bf = "medium",
-    iterations = 10000, map_density_n = 512, verbose = TRUE, detailed = FALSE
+    iterations = 10000, map_density_n = 512, verbose = TRUE, detailed = FALSE, fullbayes = FALSE
 ){
 
   # initialization
 
   alternative <- alternative[1]
   ci <- ci[1]
+
+  if(fullbayes){
+    if(ci == "freq") ci <- "bayes_hdi"
+    if(!pd & !bf){
+      bf <- TRUE
+      pd <- TRUE
+    }
+  }
 
   if(is.null(y)){
     paired <- FALSE
@@ -126,6 +137,7 @@ t_test_all <- function(
     t = NA_real_,
     df = NA_real_,
     p = NA_real_,
+    sig = NA_character_,
     cor_xy = NA_real_,
     cohens_d = NA_real_,
     cohens_d_EAP = NA_real_,
@@ -157,7 +169,7 @@ t_test_all <- function(
   if(paired){
     tmp <- length(x)
     d2 <- data.frame(x = x, y = y) %>%
-      drop_na() # Pair-wise exclusion
+      tidyr::drop_na() # Pair-wise exclusion
     x <- d2$x
     y <- d2$y
     out$n_pair <- nrow(d2)
@@ -407,13 +419,13 @@ t_test_all <- function(
     out$BF10 <- exp(bf_est@bayesFactor$bf)
     out$log10_BF10 <- log10(out$BF10)
     out <- out %>%
-      mutate(
-        favor = if_else(BF10 > 1, "alt.", "null"),
+      dplyr::mutate(
+        favor = dplyr::if_else(BF10 > 1, "alt.", "null"),
         evidence = "anecdotal",
-        evidence = if_else(abs(log10_BF10) > log(3, 10), "moderate", evidence),
-        evidence = if_else(abs(log10_BF10) > log(10, 10), "strong", evidence),
-        evidence = if_else(abs(log10_BF10) > log(30, 10), "very strong", evidence),
-        evidence = if_else(abs(log10_BF10) > log(100, 10), "extreme", evidence)
+        evidence = dplyr::if_else(abs(log10_BF10) > log(3, 10), "moderate", evidence),
+        evidence = dplyr::if_else(abs(log10_BF10) > log(10, 10), "strong", evidence),
+        evidence = dplyr::if_else(abs(log10_BF10) > log(30, 10), "very strong", evidence),
+        evidence = dplyr::if_else(abs(log10_BF10) > log(100, 10), "extreme", evidence)
       )
 
   }
@@ -474,12 +486,14 @@ t_test_all <- function(
       if(out$n_na_x > 0|out$n_na_y > 0) cat("(Note: NAs were removed.)\n")
     }
 
-    cat(
-      "\nt = ", out$t, ", ",
-      "df = ", out$df, ", ",
-      "p = ", out$p,
-      sep = ""
-    )
+    if(!fullbayes){
+      cat(
+        "\nt = ", out$t, ", ",
+        "df = ", out$df, ", ",
+        "p = ", out$p,
+        sep = ""
+      )
+    }
 
     if(!is.null(out$cor_xy)){
       cat(
@@ -600,7 +614,7 @@ t_test_all <- function(
 
     if(cohens_d){
       cat(
-        "\nCohen's d = ", out$cohens_d, 5, "",
+        "\nCohen's d = ", out$cohens_d, "",
         sep = ""
       )
     }
@@ -628,7 +642,7 @@ t_test_all <- function(
 
     if(cohens_d|cohens_d_EAP|cohens_d_MAP|cohens_d_MED){
       cat(
-        "\nCI = [", out$cohens_d_lower, 5,", ",out$cohens_d_upper,"]",
+        "\nCI = [", out$cohens_d_lower,", ",out$cohens_d_upper,"]",
         sep = ""
       )
     }
@@ -683,12 +697,12 @@ t_test_all <- function(
     }
 
     if(ci == "bayes_central"){
-      cat("Note:\nThe CI represents the Beyesian central posterior interval.")
+      cat("Note:\nThe CI represents the Bayesian central posterior interval.")
       cat("\n(Probability = ",conf.level,")\n", sep = "")
     }
 
     if(ci == "bayes_hdi"){
-      cat("Note:\nThe CI represents the Beyesian posterior highest density interval.")
+      cat("Note:\nThe CI represents the Bayesian posterior highest density interval.")
       cat("\n(Probability = ",conf.level,")\n", sep = "")
     }
 
@@ -698,6 +712,15 @@ t_test_all <- function(
     }
   }
 
+  out$sig <- dplyr::if_else(out$p < alpha, "*", "ns")
+
+  if(fullbayes){
+    out <- out %>%
+      dplyr::mutate(
+        t = NA_real_, df = NA_real_, p = NA_real_, sig = NA_character_
+      )
+  }
+
   if(!detailed){
     out <- out %>%
       dplyr::transmute(
@@ -705,18 +728,19 @@ t_test_all <- function(
         t = t %>% round(2),
         df = df,
         p = p %>% round(3),
+        sig = sig,
         cohens_d = cohens_d %>% round(3),
         cohens_dz = cohens_dz %>% round(3),
-        BF10 = BF10,
+        pd = pd %>% round(3),
+        BF10 = BF10 %>% round(3),
         log10_BF10 = log10_BF10,
         favor = favor,
-        evidence = evidence,
-        pd = pd %>% round(3)
+        evidence = evidence
       )
   }
 
   out <- out %>%
-    select_if(~ !any(is.na(.)))
+    dplyr::select_if(~ !any(is.na(.)))
 
   return(invisible(out))
   }

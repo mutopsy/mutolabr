@@ -12,6 +12,7 @@ t_test_all_tidy(
   ci = c("freq", "bayes_central", "bayes_hdi"),
   alternative = c("two.sided", "less", "greater"),
   conf.level = 0.95,
+  alpha = 0.05,
   pd = FALSE,
   bf = FALSE,
   cor = TRUE,
@@ -34,7 +35,8 @@ t_test_all_tidy(
   iterations = 10000,
   map_density_n = 512,
   verbose = TRUE,
-  detailed = FALSE
+  detailed = FALSE,
+  fullbayes = FALSE
 )
 }
 \arguments{
@@ -58,6 +60,8 @@ or \code{"bayes_hdi"}. Default is \code{c("freq","bayes_central","bayes_hdi")}. 
 Default is \code{"two.sided"}. Passed to \code{t_test_all}.}
 
 \item{conf.level}{Numeric. Confidence/credibility level (default \code{0.95}). Passed to \code{t_test_all}.}
+
+\item{alpha}{Numeric. Significance level. Defaults to 0.05.}
 
 \item{pd, bf, cor}{Logical flags. Whether to compute probability of direction (pd), Bayes factors, or correlation
 (for paired samples). Passed to \code{t_test_all}.}
@@ -86,6 +90,8 @@ Defaults are \code{Inf} and \code{"medium"}, respectively. Passed to \code{t_tes
 
 \item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
 minimal output (\code{FALSE}, default).}
+
+\item{fullbayes}{Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).}
 }
 \value{
 The object returned by \code{\link{t_test_all}} (test statistics, effect sizes,

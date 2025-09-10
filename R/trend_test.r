@@ -27,7 +27,7 @@
 #' # Perform trend analysis for 1st and 2nd order trends
 #' trend_test(dat, order = 1:2)
 #'
-#' @import dplyr
+#' @importFrom dplyr bind_rows mutate
 #' @import tidyr
 #' @export
 

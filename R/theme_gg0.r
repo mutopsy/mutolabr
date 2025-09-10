@@ -3,6 +3,7 @@
 #' Returns a simplified ggplot2 theme based on \code{theme_bw()}, with grid lines removed,
 #' black axis text, and no legend title. This theme is useful for producing cleaner, publication-ready plots.
 #'
+#' @param ... Passed to `ggplot2::theme`.
 #' @return A \code{ggplot2} theme object.
 #' @examples
 #' library(ggplot2)
@@ -13,8 +14,8 @@
 #' @export
 
 theme_gg0 <- function(...){
-  out <- theme_bw() +
-    theme(
+  out <- ggplot2::theme_bw() +
+    ggplot2::theme(
       panel.grid = element_blank(),
       axis.text = element_text(color = "black"),
       legend.title = element_blank(),

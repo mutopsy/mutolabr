@@ -19,6 +19,7 @@
 #' @param alternative Character. Alternative hypothesis: \code{"two.sided"}, \code{"less"}, or \code{"greater"}.
 #'   Default is \code{"two.sided"}. Passed to \code{t_test_all}.
 #' @param conf.level Numeric. Confidence/credibility level (default \code{0.95}). Passed to \code{t_test_all}.
+#' @param alpha Numeric. Significance level. Defaults to 0.05.
 #' @param pd,bf,cor Logical flags. Whether to compute probability of direction (pd), Bayes factors, or correlation
 #'   (for paired samples). Passed to \code{t_test_all}.
 #' @param mean_x_EAP,mean_x_MAP,mean_x_MED Logical. Report posterior summaries for group means.
@@ -34,9 +35,9 @@
 #'   Defaults are \code{Inf} and \code{"medium"}, respectively. Passed to \code{t_test_all}.
 #' @param iterations,map_density_n Integer. MCMC iterations and grid size for MAP density. Passed to \code{t_test_all}.
 #' @param verbose Logical. If \code{TRUE}, print additional messages (default \code{TRUE}).
-#'
 #' @param detailed Logical. Whether to return detailed results (\code{TRUE}) or
 #'   minimal output (\code{FALSE}, default).
+#' @param fullbayes Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).
 #'
 #' @return The object returned by \code{\link{t_test_all}} (test statistics, effect sizes,
 #'   confidence/credible intervals, and Bayesian estimates).
@@ -73,7 +74,7 @@ t_test_all_tidy <- function(
     dataset, paired = F, var.equal = FALSE, mu = 0,
     ci = c("freq","bayes_central",  "bayes_hdi"),
     alternative = c("two.sided", "less", "greater"),
-    conf.level = 0.95,
+    conf.level = 0.95, alpha = 0.05,
     pd = FALSE, bf = FALSE, cor = TRUE,
     mean_x_EAP = FALSE, mean_x_MAP = FALSE, mean_x_MED = FALSE,
     diff_EAP = FALSE, diff_MAP = FALSE, diff_MED = FALSE,
@@ -81,7 +82,7 @@ t_test_all_tidy <- function(
     cohens_dz = TRUE, cohens_dz_EAP = FALSE, cohens_dz_MAP = FALSE, cohens_dz_MED = FALSE,
     rscale_est = Inf, rscale_bf = "medium",
     iterations = 10000, map_density_n = 512, verbose = TRUE,
-    detailed = FALSE
+    detailed = FALSE, fullbayes = FALSE
 ){
 
   # initialization
@@ -146,14 +147,15 @@ t_test_all_tidy <- function(
   out <- t_test_all(
     x = x, y = y, var.label = var.label, paired = paired, var.equal = var.equal,
     ci = ci,  alternative = alternative,
-    conf.level = conf.level,
+    conf.level = conf.level, alpha = alpha,
     pd = pd, bf = bf, cor = cor,
     mean_x_EAP = mean_x_EAP, mean_x_MAP = mean_x_MAP, mean_x_MED = mean_x_MED,
     diff_EAP = diff_EAP, diff_MAP = diff_MAP, diff_MED = diff_MED,
     cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
     cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
     rscale_est = rscale_est, rscale_bf = rscale_bf,
-    iterations = iterations, map_density_n = map_density_n, verbose = verbose, detailed = detailed
+    iterations = iterations, map_density_n = map_density_n, verbose = verbose,
+    detailed = detailed, fullbayes = fullbayes
   )
 
   return(out)
