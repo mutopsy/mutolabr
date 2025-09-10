@@ -501,7 +501,7 @@ t_test_all <- function(
       if(rscale_show == "ultrawide") rscale_show <- sqrt(2)
 
       cat(
-        "\n\nBF_10 = ", out$BF10, " in favor of H",as.numeric(out$favor == "alt."), "(", out$evidence, ")",
+        "\n\nBF_10 = ", out$BF10, " in favor of H",as.numeric(out$favor == "alt."), " (", out$evidence, ")",
         "\nrscale = ",rscale_show, sep = ""
       )
 
