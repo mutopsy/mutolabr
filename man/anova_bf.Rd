@@ -12,7 +12,7 @@ anova_bf(
   rscaleCont = "medium",
   rscaleEffects = NULL,
   method = "auto",
-  progress = TRUE,
+  progress = FALSE,
   multicore = FALSE,
   summarize = TRUE,
   inc_ranef = FALSE,
@@ -41,7 +41,7 @@ Examples: \code{"sAB"} (two within), \code{"ABsC"} (two between, one within).}
 \item{method}{Method for computing Bayes factors; see \code{BayesFactor::generalTestBF()}.
 Default \code{"auto"}.}
 
-\item{progress}{Logical; show progress bar? Default \code{TRUE}.}
+\item{progress}{Logical; show progress bar? Default \code{FALSE}.}
 
 \item{multicore}{Logical; use multicore processing? Default \code{FALSE}.}
 

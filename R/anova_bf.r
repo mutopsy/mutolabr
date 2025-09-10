@@ -21,7 +21,7 @@
 #' @param rscaleEffects Optional vector of prior scales for individual effects.
 #' @param method Method for computing Bayes factors; see \code{BayesFactor::generalTestBF()}.
 #'   Default \code{"auto"}.
-#' @param progress Logical; show progress bar? Default \code{TRUE}.
+#' @param progress Logical; show progress bar? Default \code{FALSE}.
 #' @param multicore Logical; use multicore processing? Default \code{FALSE}.
 #' @param summarize Logical; if \code{TRUE} (default), return a summarized tibble;
 #'   if \code{FALSE}, return the raw \code{BayesFactor} result.
@@ -94,7 +94,7 @@ anova_bf <- function(
     rscaleCont = "medium",
     rscaleEffects = NULL,
     method = "auto",
-    progress = TRUE,
+    progress = FALSE,
     multicore = FALSE,
     summarize = TRUE,
     inc_ranef = FALSE,
@@ -208,7 +208,7 @@ anova_bf <- function(
       tidyr::complete()
 
     if(sum(freq$n != 1) != 0){
-      warning("Inconsistent data: Some subject × within-subject factor combinations do not occur exactly once.
+      warning("Inconsistent data: Some subject x within-subject factor combinations do not occur exactly once.
 This may indicate missing or duplicated measurements.")
     }
   }
