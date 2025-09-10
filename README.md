@@ -30,9 +30,9 @@ This package requires:
 * `dplyr`  
 * `tidyr`  
 * `BayesFactor`  
-* `effectsize`
-* `withr`
-* `ggplot2`
+* `effectsize`  
+* `withr`  
+* `ggplot2`  
 
 ## Usage
 
@@ -49,6 +49,7 @@ For details on each function, refer to [the function references](https://mutopsy
 ### Statistical Tests
 
 * `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all.html)]
+* `t_test_all_tidy`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation from Tidy Data [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all_tidy.html)]
 * `cor_test_all`: Perform Correlation Tests with Frequentist and Bayesian Methods [[Document](https://mutopsy.github.io/mutolabr/reference/cor_test_all.html)]
 * `pcor_test_all`: Perform Partial Correlation Tests with Frequentist Methods [[Document](https://mutopsy.github.io/mutolabr/reference/pcor_test_all.html)]
 * `contrast_test`: Perform Contrast Tests with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test.html)]
