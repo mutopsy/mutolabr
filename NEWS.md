@@ -1,3 +1,6 @@
+# mutolabr 1.8.0 (2025-09-20)
+* Implemented `t_test_all_tidy_by_group()` and `p_to_holmalpha()`.
+
 # mutolabr 1.7.0 (2025-09-10)
 * Implemented `t_test_all_tidy()`.
 

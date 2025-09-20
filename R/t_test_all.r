@@ -137,6 +137,7 @@ t_test_all <- function(
     t = NA_real_,
     df = NA_real_,
     p = NA_real_,
+    alpha = alpha,
     sig = NA_character_,
     cor_xy = NA_real_,
     cohens_d = NA_real_,
@@ -717,7 +718,7 @@ t_test_all <- function(
   if(fullbayes){
     out <- out %>%
       dplyr::mutate(
-        t = NA_real_, df = NA_real_, p = NA_real_, sig = NA_character_
+        t = NA_real_, df = NA_real_, p = NA_real_, alpha = NA_real_, sig = NA_character_
       )
   }
 
@@ -728,6 +729,7 @@ t_test_all <- function(
         t = t %>% round(2),
         df = df,
         p = p %>% round(3),
+        alpha = alpha,
         sig = sig,
         cohens_d = cohens_d %>% round(3),
         cohens_dz = cohens_dz %>% round(3),
