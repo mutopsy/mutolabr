@@ -3,6 +3,7 @@
 
 # mutolabr 1.7.0 (2025-09-10)
 * Implemented `t_test_all_tidy()`.
+* Minor bug fixed.
 
 # mutolabr 1.6.0 (2025-09-09)
 * Implemented `anova_bf()`.
