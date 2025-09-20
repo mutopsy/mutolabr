@@ -49,7 +49,8 @@ For details on each function, refer to [the function references](https://mutopsy
 ### Statistical Tests
 
 * `t_test_all`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all.html)]
-* `t_test_all_tidy`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation from Tidy Data [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all_tidy.html)]
+* `t_test_all_tidy`: Perform Frequentist and Bayesian t-tests with Effect Size Estimation from Tidy Data [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all_tidy_grouped.html)]
+* `t_test_all_tidy_grouped`: Run multiple t-tests by groups on tidy data [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all_tidy.html)]
 * `cor_test_all`: Perform Correlation Tests with Frequentist and Bayesian Methods [[Document](https://mutopsy.github.io/mutolabr/reference/cor_test_all.html)]
 * `pcor_test_all`: Perform Partial Correlation Tests with Frequentist Methods [[Document](https://mutopsy.github.io/mutolabr/reference/pcor_test_all.html)]
 * `contrast_test`: Perform Contrast Tests with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test.html)]
@@ -66,6 +67,7 @@ For details on each function, refer to [the function references](https://mutopsy
 * `var_desc`: Compute Population Variance [[Document](https://mutopsy.github.io/mutolabr/reference/var_desc.html)]
 * `sd_desc`: Compute Population Standard Deviation [[Document](https://mutopsy.github.io/mutolabr/reference/sd_desc.html)]
 * `mode_stat`: Compute the Mode of a Distribution [[Document](https://mutopsy.github.io/mutolabr/reference/mode_stat.html)]
+* `p_to_holmalpha`: Compute step-down critical alpha values using Holm's method [[Document](https://mutopsy.github.io/mutolabr/reference/p_to_holmalpha.html)]
 * `hdi`: Compute the Highest Density Interval (HDI) [[Document](https://mutopsy.github.io/mutolabr/reference/hdi.html)]
 * `pdir`: Probability of Direction (pd) Calculation [[Document](https://mutopsy.github.io/mutolabr/reference/pdir.html)]
 
