@@ -109,6 +109,7 @@ t_test_all_tidy_grouped <- function(
 
     if(holm && "alpha" %in% colnames(out)){
       out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
+      out$sig <- if_else(out$p < out$alpha, "*", "ns")
     }
 
   } else{
