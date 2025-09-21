@@ -1,3 +1,6 @@
+# mutolabr 1.8.1 (2025-09-21)
+* Minor bug fixed.
+
 # mutolabr 1.8.0 (2025-09-20)
 * Implemented `t_test_all_tidy_grouped()` and `p_to_holmalpha()`.
 
