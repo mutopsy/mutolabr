@@ -1,3 +1,7 @@
+# mutolabr 1.8.2 (2025-09-22)
+* Support one-sample design for `t_test_all_tidy` and `t_test_all_tidy_grouped`.
+* Make testthat for `t_test_all_tidy` and `t_test_all_tidy_grouped`.
+
 # mutolabr 1.8.1 (2025-09-21)
 * Minor bug fixed.
 
