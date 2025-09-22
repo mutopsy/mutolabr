@@ -104,11 +104,12 @@ t_test_all_tidy_grouped <- function(
             cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
             cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
             rscale_est = rscale_est, rscale_bf = rscale_bf,
-            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
+            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
             detailed = detailed, fullbayes = fullbayes
           )
         ) %>%
-        ungroup()
+        ungroup() %>%
+        as.data.frame()
 
       if(holm && "alpha" %in% colnames(out)){
         out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
@@ -126,9 +127,21 @@ t_test_all_tidy_grouped <- function(
         cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
         cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
         rscale_est = rscale_est, rscale_bf = rscale_bf,
-        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
+        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
         detailed = detailed, fullbayes = fullbayes
       )
+    }
+
+    if(show_table){
+      print(out)
+      if(paired){
+        cat("design: paired")
+      } else if(var.equal){
+        cat("design: two samples (equal variance)")
+      } else{
+        cat("design: two samples (unequal variance)")
+      }
+
     }
 
   } else{
@@ -162,11 +175,12 @@ t_test_all_tidy_grouped <- function(
             cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
             cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
             rscale_est = rscale_est, rscale_bf = rscale_bf,
-            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
+            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
             detailed = detailed, fullbayes = fullbayes
           )
         ) %>%
-        ungroup()
+        ungroup() %>%
+        as.data.frame()
 
       if(holm && "alpha" %in% colnames(out)){
         out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
@@ -184,12 +198,16 @@ t_test_all_tidy_grouped <- function(
         cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
         cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
         rscale_est = rscale_est, rscale_bf = rscale_bf,
-        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
+        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
         detailed = detailed, fullbayes = fullbayes
       )
     }
+    if(show_table){
+      print(out)
+      cat("design: one sample")
+    }
   }
 
-  return(out)
+  return(invisible(out))
 }
 
