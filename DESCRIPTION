@@ -1,6 +1,6 @@
 Package: mutolabr
 Title: Convenient R Functions Frequently Used in mutolab
-Version: 1.8.1
+Version: 1.8.2
 Authors@R: 
     person("Hiroyuki", "Muto", , "mutopsy@omu.ac.jp", role = c("aut", "cre"))
 Description: Convenient R functions frequently used in mutolab.
@@ -10,5 +10,8 @@ URL: https://github.com/mutopsy/mutolabr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Depends: R (>= 4.1.0), dplyr, tidyr, BayesFactor, effectsize, ppcor, withr, stringr, tibble, ggplot2
-Suggests: lmerTest
+Suggests: 
+    lmerTest,
+    testthat (>= 3.0.0)
 LazyData: true
+Config/testthat/edition: 3
