@@ -41,7 +41,7 @@
 #' @export
 
 t_test_all_tidy_grouped <- function(
-    dataset, n_group_col = 1, paired = F, var.equal = FALSE, mu = 0,
+    dataset, n_group_col = 1, paired = F, var.equal = FALSE, onesample = FALSE, mu = 0,
     ci = c("freq","bayes_central",  "bayes_hdi"),
     alternative = c("two.sided", "less", "greater"),
     conf.level = 0.95, alpha = 0.05, holm = FALSE,
@@ -51,7 +51,7 @@ t_test_all_tidy_grouped <- function(
     cohens_d = NULL, cohens_d_EAP = FALSE, cohens_d_MAP = FALSE, cohens_d_MED = FALSE,
     cohens_dz = TRUE, cohens_dz_EAP = FALSE, cohens_dz_MAP = FALSE, cohens_dz_MED = FALSE,
     rscale_est = Inf, rscale_bf = "medium",
-    iterations = 10000, map_density_n = 512,
+    iterations = 10000, map_density_n = 512, show_table = TRUE,
     detailed = FALSE, fullbayes = FALSE
 ){
 
@@ -65,56 +65,59 @@ t_test_all_tidy_grouped <- function(
     stop("'n_group_col' must be a non-negative integer.")
   }
 
-  if(ncol != (3 + n_group_col)){
-    stop("The dataset must contain exactly three columns plus numbers of group colmuns, in this exact order: participant ID, ... (group columns), independent variable, and dependent variable.")
-  }
+  if(!onesample){
+    # Two-sample or paired t-tests --------------------------------------
 
-  if(!is.numeric(dataset[[3 + n_group_col]])){
-    stop("The dependent variable must be numeric.")
-  }
-
-  dataset[[1]] <- as.factor(dataset[[1]])
-  dataset[[2 + n_group_col]] <- as.factor(dataset[[2 + n_group_col]]) %>% droplevels()
-
-  levels_label <- dataset[[2 + n_group_col]] %>% na.omit() %>% unique()
-  nlevel <- nlevels(dataset[[2 + n_group_col]])
-
-  if(nlevel != 2){
-    stop("The independent variable must have exactly two levels.")
-  }
-
-  ## Pass to t_test_all_tidy
-
-  if(n_group_col >= 1){
-    group_cols <- colnames(dataset)[2:(n_group_col+1)]
-
-    out <- dataset %>%
-      group_by(across(all_of(group_cols))) %>%
-      group_modify(
-        ~ t_test_all_tidy(
-          dataset = .x, paired = paired, var.equal = var.equal,
-          ci = ci,  alternative = alternative,
-          conf.level = conf.level, alpha = alpha,
-          pd = pd, bf = bf, cor = cor,
-          mean_x_EAP = mean_x_EAP, mean_x_MAP = mean_x_MAP, mean_x_MED = mean_x_MED,
-          diff_EAP = diff_EAP, diff_MAP = diff_MAP, diff_MED = diff_MED,
-          cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
-          cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
-          rscale_est = rscale_est, rscale_bf = rscale_bf,
-          iterations = iterations, map_density_n = map_density_n, verbose = FALSE,
-          detailed = detailed, fullbayes = fullbayes
-        )
-      ) %>%
-      ungroup()
-
-    if(holm && "alpha" %in% colnames(out)){
-      out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
-      out$sig <- if_else(out$p < out$alpha, "*", "ns")
+    if(ncol != (3 + n_group_col)){
+      stop("The dataset must contain exactly three columns plus numbers of group colmuns, in this exact order: participant ID, ... (group columns), independent variable, and dependent variable.")
     }
 
-  } else{
-    out <- t_test_all_tidy(
-        dataset = dataset, paired = paired, var.equal = var.equal,
+    if(!is.numeric(dataset[[3 + n_group_col]])){
+      stop("The dependent variable must be numeric.")
+    }
+
+    dataset[[1]] <- as.factor(dataset[[1]])
+    dataset[[2 + n_group_col]] <- as.factor(dataset[[2 + n_group_col]]) %>% droplevels()
+
+    levels_label <- dataset[[2 + n_group_col]] %>% na.omit() %>% unique()
+    nlevel <- nlevels(dataset[[2 + n_group_col]])
+
+    if(nlevel != 2){
+      stop("The independent variable must have exactly two levels.")
+    }
+
+    ## Pass to t_test_all_tidy
+
+    if(n_group_col >= 1){
+      group_cols <- colnames(dataset)[2:(n_group_col+1)]
+
+      out <- dataset %>%
+        group_by(across(all_of(group_cols))) %>%
+        group_modify(
+          ~ t_test_all_tidy(
+            dataset = .x, paired = paired, var.equal = var.equal, mu = mu,
+            ci = ci,  alternative = alternative,
+            conf.level = conf.level, alpha = alpha,
+            pd = pd, bf = bf, cor = cor,
+            mean_x_EAP = mean_x_EAP, mean_x_MAP = mean_x_MAP, mean_x_MED = mean_x_MED,
+            diff_EAP = diff_EAP, diff_MAP = diff_MAP, diff_MED = diff_MED,
+            cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
+            cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
+            rscale_est = rscale_est, rscale_bf = rscale_bf,
+            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
+            detailed = detailed, fullbayes = fullbayes
+          )
+        ) %>%
+        ungroup()
+
+      if(holm && "alpha" %in% colnames(out)){
+        out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
+        out$sig <- if_else(out$p < out$alpha, "*", "ns")
+      }
+
+    } else{
+      out <- t_test_all_tidy(
+        dataset = dataset, paired = paired, var.equal = var.equal, mu = mu,
         ci = ci,  alternative = alternative,
         conf.level = conf.level, alpha = alpha,
         pd = pd, bf = bf, cor = cor,
@@ -123,10 +126,70 @@ t_test_all_tidy_grouped <- function(
         cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
         cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
         rscale_est = rscale_est, rscale_bf = rscale_bf,
-        iterations = iterations, map_density_n = map_density_n, verbose = FALSE,
+        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
         detailed = detailed, fullbayes = fullbayes
       )
+    }
+
+  } else{
+    # One sample t-tests --------------------------------------
+
+    if(ncol != (2 + n_group_col)){
+      stop("The dataset must contain exactly two columns plus numbers of group colmuns, in this exact order: participant ID, ... (group columns), and dependent variable.")
+    }
+
+    if(!is.numeric(dataset[[2 + n_group_col]])){
+      stop("The dependent variable must be numeric.")
+    }
+
+    dataset[[1]] <- as.factor(dataset[[1]])
+
+    ## Pass to t_test_all_tidy
+
+    if(n_group_col >= 1){
+      group_cols <- colnames(dataset)[2:(n_group_col+1)]
+
+      out <- dataset %>%
+        group_by(across(all_of(group_cols))) %>%
+        group_modify(
+          ~ t_test_all_tidy(
+            dataset = .x, paired = paired, var.equal = var.equal, onesample = TRUE, mu = mu,
+            ci = ci,  alternative = alternative,
+            conf.level = conf.level, alpha = alpha,
+            pd = pd, bf = bf, cor = cor,
+            mean_x_EAP = mean_x_EAP, mean_x_MAP = mean_x_MAP, mean_x_MED = mean_x_MED,
+            diff_EAP = diff_EAP, diff_MAP = diff_MAP, diff_MED = diff_MED,
+            cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
+            cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
+            rscale_est = rscale_est, rscale_bf = rscale_bf,
+            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
+            detailed = detailed, fullbayes = fullbayes
+          )
+        ) %>%
+        ungroup()
+
+      if(holm && "alpha" %in% colnames(out)){
+        out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
+        out$sig <- if_else(out$p < out$alpha, "*", "ns")
+      }
+
+    } else{
+      out <- t_test_all_tidy(
+        dataset = dataset, paired = paired, var.equal = var.equal, onesample = TRUE, mu = mu,
+        ci = ci,  alternative = alternative,
+        conf.level = conf.level, alpha = alpha,
+        pd = pd, bf = bf, cor = cor,
+        mean_x_EAP = mean_x_EAP, mean_x_MAP = mean_x_MAP, mean_x_MED = mean_x_MED,
+        diff_EAP = diff_EAP, diff_MAP = diff_MAP, diff_MED = diff_MED,
+        cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
+        cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
+        rscale_est = rscale_est, rscale_bf = rscale_bf,
+        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = show_table,
+        detailed = detailed, fullbayes = fullbayes
+      )
+    }
   }
 
   return(out)
 }
+
