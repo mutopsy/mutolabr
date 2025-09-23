@@ -1,5 +1,6 @@
-# mutolabr 1.8.3 (2025-09-23)
+# mutolabr 1.8.4 (2025-09-23)
 * Minor fix for print methods for `t_test_all_tidy` and `t_test_all_tidy_grouped`.
+* Correct typos of documents.
 
 # mutolabr 1.8.2 (2025-09-22)
 * Support one-sample design for `t_test_all_tidy` and `t_test_all_tidy_grouped`.

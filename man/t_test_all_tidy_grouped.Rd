@@ -125,7 +125,7 @@ error rate at \code{alpha}. P-values themselves are not adjusted.
 }
 \examples{
 # Example with one grouping variable:
-head(data_fixt_mixed)
+head(data_fict_mixed)
 t_test_all_tidy_grouped(data_fict_mixed, paired = TRUE, n_group_col = 1)
 
 }

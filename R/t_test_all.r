@@ -727,7 +727,7 @@ t_test_all <- function(
       dplyr::transmute(
         diff = diff,
         t = t %>% round(2),
-        df = df,
+        df = df %>% round(2),
         p = p %>% round(3),
         alpha = alpha,
         sig = sig,

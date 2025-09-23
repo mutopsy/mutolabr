@@ -7,7 +7,7 @@
 p_to_holmalpha(p, sig.level = 0.05, na.rm = FALSE, warn = TRUE)
 }
 \arguments{
-\item{p}{A numeric vector of p-values. Must be within \link{0, 1}.}
+\item{p}{A numeric vector of p-values. Must be within \eqn{[0, 1]}.}
 
 \item{sig.level}{Overall significance level (family-wise error rate),
 a single numeric value between 0 and 1. Default is 0.05.}

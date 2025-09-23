@@ -6,7 +6,7 @@
 #' p-values, this function returns the maximum allowable alpha for each
 #' test under Holm's method.
 #'
-#' @param p A numeric vector of p-values. Must be within [0, 1].
+#' @param p A numeric vector of p-values. Must be within \eqn{[0, 1]}.
 #' @param sig.level Overall significance level (family-wise error rate),
 #'   a single numeric value between 0 and 1. Default is 0.05.
 #' @param na.rm Logical. If \code{TRUE}, missing values in \code{p} are removed

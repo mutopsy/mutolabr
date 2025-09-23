@@ -32,7 +32,7 @@
 #'
 #' @examples
 #' # Example with one grouping variable:
-#' head(data_fixt_mixed)
+#' head(data_fict_mixed)
 #' t_test_all_tidy_grouped(data_fict_mixed, paired = TRUE, n_group_col = 1)
 #'
 #' @seealso \code{\link{t_test_all_tidy}}, \code{\link{t_test_all}}
@@ -105,7 +105,7 @@ t_test_all_tidy_grouped <- function(
             cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
             rscale_est = rscale_est, rscale_bf = rscale_bf,
             iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_design = FALSE,
-            detailed = detailed, fullbayes = fullbayes
+            detailed = TRUE, fullbayes = fullbayes
           )
         ) %>%
         ungroup() %>%
@@ -114,6 +114,28 @@ t_test_all_tidy_grouped <- function(
       if(holm && "alpha" %in% colnames(out)){
         out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
         out$sig <- if_else(out$p < out$alpha, "*", "ns")
+      }
+
+      if(!detailed){
+        first_col <- names(out)[1]
+        out <- out %>%
+          dplyr::transmute(
+            !!first_col := .data[[first_col]],
+            diff = diff,
+            dplyr::across(dplyr::any_of("t"), ~ round(.x, 2)),
+            dplyr::across(dplyr::any_of("df"), ~ round(.x, 2)),
+            dplyr::across(dplyr::any_of("p"), ~ round(.x, 3)),
+            alpha = alpha,
+            dplyr::across(dplyr::any_of("alpha"), ~ .x),
+            dplyr::across(dplyr::any_of("sig"), ~ .x),
+            dplyr::across(dplyr::any_of("cohens_d"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("cohens_dz"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("pd"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("BF10"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("log10_BF10"), ~ .x),
+            dplyr::across(dplyr::any_of("favor"), ~ .x),
+            dplyr::across(dplyr::any_of("evidence"), ~ .x)
+          )
       }
 
     } else{
@@ -175,7 +197,7 @@ t_test_all_tidy_grouped <- function(
             cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
             rscale_est = rscale_est, rscale_bf = rscale_bf,
             iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_design = FALSE,
-            detailed = detailed, fullbayes = fullbayes
+            detailed = FALSE, fullbayes = fullbayes
           )
         ) %>%
         ungroup() %>%
@@ -184,6 +206,25 @@ t_test_all_tidy_grouped <- function(
       if(holm && "alpha" %in% colnames(out)){
         out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
         out$sig <- if_else(out$p < out$alpha, "*", "ns")
+      }
+
+      if(!detailed){
+        out <- out %>%
+          dplyr::transmute(
+            diff = diff,
+            t = t %>% round(2),
+            df = df,
+            p = p %>% round(3),
+            alpha = alpha,
+            sig = sig,
+            cohens_d = cohens_d %>% round(3),
+            cohens_dz = cohens_dz %>% round(3),
+            pd = pd %>% round(3),
+            BF10 = BF10 %>% round(3),
+            log10_BF10 = log10_BF10,
+            favor = favor,
+            evidence = evidence
+          )
       }
 
     } else{
