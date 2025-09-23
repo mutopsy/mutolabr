@@ -11,7 +11,7 @@ test_that("independent two-sample (unequal variance, default) runs", {
   x <- dat[dat$cond=="A","y"]
   y <- dat[dat$cond=="B","y"]
 
-  res1 <- t_test_all_tidy(dat, paired = FALSE, show_table = FALSE)
+  res1 <- t_test_all_tidy(dat, paired = FALSE, show_design = FALSE)
   res2 <- t_test_all(x,y, paired = FALSE, verbose = FALSE)
 
   testthat::expect_equal(res1, res2)
@@ -28,7 +28,7 @@ test_that("paired runs", {
   x <- dat[dat$cond=="A","y"]
   y <- dat[dat$cond=="B","y"]
 
-  res1 <- t_test_all_tidy(dat, paired = TRUE, show_table = FALSE)
+  res1 <- t_test_all_tidy(dat, paired = TRUE, show_design = FALSE)
   res2 <- t_test_all(x,y, paired = TRUE, verbose = FALSE)
 
   testthat::expect_equal(res1, res2)
@@ -44,8 +44,8 @@ test_that("one-sample runs", {
   )
   y <- dat$y
 
-  res1 <- t_test_all_tidy(dat, onesample = TRUE, show_table = FALSE)
-  res2 <- t_test_all_tidy(dat[,c("id", "y")], onesample = TRUE, show_table = FALSE)
+  res1 <- t_test_all_tidy(dat, onesample = TRUE, show_design = FALSE)
+  res2 <- t_test_all_tidy(dat[,c("id", "y")], onesample = TRUE, show_design = FALSE)
   res3 <- t_test_all(x = y,y = NULL, verbose = FALSE)
 
   testthat::expect_equal(res1, res2)

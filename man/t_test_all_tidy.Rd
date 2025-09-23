@@ -8,6 +8,7 @@ t_test_all_tidy(
   dataset,
   paired = F,
   var.equal = FALSE,
+  onesample = FALSE,
   mu = 0,
   ci = c("freq", "bayes_central", "bayes_hdi"),
   alternative = c("two.sided", "less", "greater"),
@@ -34,7 +35,8 @@ t_test_all_tidy(
   rscale_bf = "medium",
   iterations = 10000,
   map_density_n = 512,
-  verbose = TRUE,
+  verbose = FALSE,
+  show_design = TRUE,
   detailed = FALSE,
   fullbayes = FALSE
 )
@@ -50,6 +52,8 @@ t_test_all_tidy(
 \item{paired}{Logical. If \code{TRUE}, a paired t-test is performed (default \code{FALSE}).}
 
 \item{var.equal}{Logical. If \code{TRUE}, the two-sample t-test assumes equal variances (default \code{FALSE}).}
+
+\item{onesample}{Logical. If \code{TRUE}, a one-sample t-test is performed (default \code{FALSE}).}
 
 \item{mu}{Numeric. Null hypothesis value for the mean difference (default \code{0}).}
 
@@ -86,7 +90,9 @@ Defaults are \code{Inf} and \code{"medium"}, respectively. Passed to \code{t_tes
 
 \item{iterations, map_density_n}{Integer. MCMC iterations and grid size for MAP density. Passed to \code{t_test_all}.}
 
-\item{verbose}{Logical. If \code{TRUE}, print additional messages (default \code{TRUE}).}
+\item{verbose}{Logical. If \code{TRUE}, print additional messages (default \code{FALSE}).}
+
+\item{show_design}{Logical. If \code{TRUE}, show message of design (default \code{TRUE}).}
 
 \item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
 minimal output (\code{FALSE}, default).}
@@ -99,7 +105,8 @@ confidence/credible intervals, and Bayesian estimates).
 }
 \description{
 A wrapper around \code{\link{t_test_all}} that accepts tidy-format data frames
-with exactly three columns (participant ID, independent variable, dependent variable).
+with exactly three columns (participant ID, independent variable, dependent variable)
+or two columns only for one-sample design (participant ID, dependent variable).
 The function automatically reshapes the data (long \eqn{\rightarrow} wide for paired designs),
 checks for consistency, and then calls \code{t_test_all()} with the extracted vectors.
 }

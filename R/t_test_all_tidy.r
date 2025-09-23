@@ -37,7 +37,7 @@
 #'   Defaults are \code{Inf} and \code{"medium"}, respectively. Passed to \code{t_test_all}.
 #' @param iterations,map_density_n Integer. MCMC iterations and grid size for MAP density. Passed to \code{t_test_all}.
 #' @param verbose Logical. If \code{TRUE}, print additional messages (default \code{FALSE}).
-#' @param show_table Logical. If \code{TRUE}, print table with design (default \code{TRUE}).
+#' @param show_design Logical. If \code{TRUE}, show message of design (default \code{TRUE}).
 #' @param detailed Logical. Whether to return detailed results (\code{TRUE}) or
 #'   minimal output (\code{FALSE}, default).
 #' @param fullbayes Logical. Whether to show only Bayesian results (\code{TRUE}) or both frequentist and Bayesian results (\code{FALSE}, default).
@@ -84,7 +84,7 @@ t_test_all_tidy <- function(
     cohens_d = NULL, cohens_d_EAP = FALSE, cohens_d_MAP = FALSE, cohens_d_MED = FALSE,
     cohens_dz = TRUE, cohens_dz_EAP = FALSE, cohens_dz_MAP = FALSE, cohens_dz_MED = FALSE,
     rscale_est = Inf, rscale_bf = "medium",
-    iterations = 10000, map_density_n = 512, verbose = FALSE, show_table = TRUE,
+    iterations = 10000, map_density_n = 512, verbose = FALSE, show_design = TRUE,
     detailed = FALSE, fullbayes = FALSE
 ){
 
@@ -164,7 +164,7 @@ t_test_all_tidy <- function(
       detailed = detailed, fullbayes = fullbayes
     )
 
-    if(show_table){
+    if(show_design){
 
       if(paired){
         cat("design: paired")
@@ -225,7 +225,7 @@ t_test_all_tidy <- function(
       iterations = iterations, map_density_n = map_density_n, verbose = verbose,
       detailed = detailed, fullbayes = fullbayes
     )
-    if(show_table){
+    if(show_design){
       cat("design: one sample")
       print(out)
     }

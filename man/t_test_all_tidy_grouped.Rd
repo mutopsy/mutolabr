@@ -9,6 +9,7 @@ t_test_all_tidy_grouped(
   n_group_col = 1,
   paired = F,
   var.equal = FALSE,
+  onesample = FALSE,
   mu = 0,
   ci = c("freq", "bayes_central", "bayes_hdi"),
   alternative = c("two.sided", "less", "greater"),
@@ -36,6 +37,7 @@ t_test_all_tidy_grouped(
   rscale_bf = "medium",
   iterations = 10000,
   map_density_n = 512,
+  show_design = TRUE,
   detailed = FALSE,
   fullbayes = FALSE
 )
@@ -50,6 +52,8 @@ and a numeric dependent variable (in that order).}
 \item{paired}{Logical. If \code{TRUE}, a paired t-test is performed (default \code{FALSE}).}
 
 \item{var.equal}{Logical. If \code{TRUE}, the two-sample t-test assumes equal variances (default \code{FALSE}).}
+
+\item{onesample}{Logical. If \code{TRUE}, a one-sample t-test is performed (default \code{FALSE}).}
 
 \item{mu}{Numeric. Null hypothesis value for the mean difference (default \code{0}).}
 
@@ -93,6 +97,8 @@ Defaults are \code{Inf} and \code{"medium"}, respectively. Passed to \code{t_tes
 
 \item{iterations, map_density_n}{Integer. MCMC iterations and grid size for MAP density. Passed to \code{t_test_all}.}
 
+\item{show_design}{Logical. If \code{TRUE}, show message of design (default \code{TRUE}).}
+
 \item{detailed}{Logical. Whether to return detailed results (\code{TRUE}) or
 minimal output (\code{FALSE}, default).}
 
@@ -119,6 +125,7 @@ error rate at \code{alpha}. P-values themselves are not adjusted.
 }
 \examples{
 # Example with one grouping variable:
+head(data_fixt_mixed)
 t_test_all_tidy_grouped(data_fict_mixed, paired = TRUE, n_group_col = 1)
 
 }

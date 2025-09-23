@@ -51,7 +51,7 @@ t_test_all_tidy_grouped <- function(
     cohens_d = NULL, cohens_d_EAP = FALSE, cohens_d_MAP = FALSE, cohens_d_MED = FALSE,
     cohens_dz = TRUE, cohens_dz_EAP = FALSE, cohens_dz_MAP = FALSE, cohens_dz_MED = FALSE,
     rscale_est = Inf, rscale_bf = "medium",
-    iterations = 10000, map_density_n = 512, show_table = TRUE,
+    iterations = 10000, map_density_n = 512, show_design = TRUE,
     detailed = FALSE, fullbayes = FALSE
 ){
 
@@ -104,7 +104,7 @@ t_test_all_tidy_grouped <- function(
             cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
             cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
             rscale_est = rscale_est, rscale_bf = rscale_bf,
-            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
+            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_design = FALSE,
             detailed = detailed, fullbayes = fullbayes
           )
         ) %>%
@@ -127,20 +127,19 @@ t_test_all_tidy_grouped <- function(
         cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
         cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
         rscale_est = rscale_est, rscale_bf = rscale_bf,
-        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
+        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_design = FALSE,
         detailed = detailed, fullbayes = fullbayes
       )
     }
 
-    if(show_table){
+    if(show_design){
       if(paired){
-        cat("design: paired")
+        message("design: paired")
       } else if(var.equal){
-        cat("design: two samples (equal variance)")
+        message("design: two samples (equal variance)")
       } else{
-        cat("design: two samples (unequal variance)")
+        message("design: two samples (unequal variance)")
       }
-      print(out)
 
     }
 
@@ -175,7 +174,7 @@ t_test_all_tidy_grouped <- function(
             cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
             cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
             rscale_est = rscale_est, rscale_bf = rscale_bf,
-            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
+            iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_design = FALSE,
             detailed = detailed, fullbayes = fullbayes
           )
         ) %>%
@@ -198,16 +197,16 @@ t_test_all_tidy_grouped <- function(
         cohens_d = cohens_d, cohens_d_EAP = cohens_d_EAP, cohens_d_MAP = cohens_d_MAP, cohens_d_MED = cohens_d_MED,
         cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
         rscale_est = rscale_est, rscale_bf = rscale_bf,
-        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_table = FALSE,
+        iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_design = FALSE,
         detailed = detailed, fullbayes = fullbayes
       )
     }
-    if(show_table){
-      cat("design: one sample")
-      print(out)
+    if(show_design){
+      message("design: one sample")
+
     }
   }
 
-  return(invisible(out))
+  return(out)
 }
 
