@@ -167,13 +167,12 @@ t_test_all_tidy <- function(
     if(show_design){
 
       if(paired){
-        cat("design: paired")
+        message("design: paired")
       } else if(var.equal){
-        cat("design: two samples (equal variance)")
+        message("design: two samples (equal variance)")
       } else{
-        cat("design: two samples (unequal variance)")
+        message("design: two samples (unequal variance)")
       }
-      print(out)
 
     }
 
@@ -226,11 +225,11 @@ t_test_all_tidy <- function(
       detailed = detailed, fullbayes = fullbayes
     )
     if(show_design){
-      cat("design: one sample")
-      print(out)
+      message("design: one sample")
+
     }
   }
 
-  return(invisible(out))
+  return(out)
   }
 
