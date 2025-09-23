@@ -133,7 +133,6 @@ t_test_all_tidy_grouped <- function(
     }
 
     if(show_table){
-      print(out)
       if(paired){
         cat("design: paired")
       } else if(var.equal){
@@ -141,6 +140,7 @@ t_test_all_tidy_grouped <- function(
       } else{
         cat("design: two samples (unequal variance)")
       }
+      print(out)
 
     }
 
@@ -203,8 +203,8 @@ t_test_all_tidy_grouped <- function(
       )
     }
     if(show_table){
-      print(out)
       cat("design: one sample")
+      print(out)
     }
   }
 
