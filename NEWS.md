@@ -1,3 +1,7 @@
+# mutolabr 1.9.0 (2025-11-20)
+* Added new functions for calculating visual angles.
+* Specifically, implemented `visualangle()`, `inch_to_cm()`, `radian_to_degree()`, and `degree_to_radian()`.
+
 # mutolabr 1.8.4 (2025-09-23)
 * Minor fix for print methods for `t_test_all_tidy` and `t_test_all_tidy_grouped`.
 * Correct typos of documents.
