@@ -72,6 +72,10 @@ For details on each function, refer to [the function references](https://mutopsy
 * `pdir`: Probability of Direction (pd) Calculation [[Document](https://mutopsy.github.io/mutolabr/reference/pdir.html)]
 
 ### Others
+* `visualangle`: Compute visual angle or stimulus size in pixels [[Document](https://mutopsy.github.io/mutolabr/reference/visualangle.html)]
+* `radian_to_degree`: Convert radians to degrees [[Document](https://mutopsy.github.io/mutolabr/reference/radian_to_degree.html)]
+* `degree_to_radian`: CConvert degrees to radians [[Document](https://mutopsy.github.io/mutolabr/reference/degree_to_radian.html)]
+* `diaginch_to_cm`: Convert Display Diagonal Size (inch) to Width and Height (cm) [[Document](https://mutopsy.github.io/mutolabr/reference/diaginch_to_cm.html)]
 * `theme_gg0`: A Default ggplot2 Theme [[Document](https://mutopsy.github.io/mutolabr/reference/theme_gg0.html)]
 
 ## Version History
