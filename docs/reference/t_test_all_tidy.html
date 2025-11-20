@@ -15,7 +15,7 @@ checks for consistency, and then calls t_test_all() with the extracted vectors."
 
     <a class="navbar-brand me-2" href="../index.html">mutolabr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.8.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.9.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -220,11 +220,13 @@ confidence/credible intervals, and Bayesian estimates).</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Independent-samples t-test</span></span></span>
 <span class="r-in"><span><span class="fu">t_test_all_tidy</span><span class="op">(</span><span class="va">dat</span>, paired <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> design: two samples (unequal variance)       diff    t       df    p alpha sig cohens_d</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.5569292 1.14 16.70605 0.27  0.05  ns     0.51</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> design: two samples (unequal variance)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        diff    t    df    p alpha sig cohens_d</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.5569292 1.14 16.71 0.27  0.05  ns     0.51</span>
 <span class="r-in"><span><span class="co"># Paired-samples t-test</span></span></span>
 <span class="r-in"><span><span class="fu">t_test_all_tidy</span><span class="op">(</span><span class="va">dat</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> design: paired       diff    t df     p alpha sig cohens_dz</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> design: paired</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        diff    t df     p alpha sig cohens_dz</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.5569292 1.21  9 0.256  0.05  ns     0.384</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

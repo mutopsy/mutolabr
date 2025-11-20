@@ -17,6 +17,8 @@
 <url><loc>https://github.com/mutopsy/mutolabr/reference/data_fict_mixed.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/data_fict_within.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/data_snakemr.html</loc></url>
+<url><loc>https://github.com/mutopsy/mutolabr/reference/degree_to_radian.html</loc></url>
+<url><loc>https://github.com/mutopsy/mutolabr/reference/diaginch_to_cm.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/expand.gmatrix.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/hdi.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/index.html</loc></url>
@@ -26,6 +28,7 @@
 <url><loc>https://github.com/mutopsy/mutolabr/reference/pcor_test_all.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/pdir.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/p_to_holmalpha.html</loc></url>
+<url><loc>https://github.com/mutopsy/mutolabr/reference/radian_to_degree.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/rmANOVA_bf.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/sd_desc.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/summary_generalTestBF.html</loc></url>
@@ -37,5 +40,6 @@
 <url><loc>https://github.com/mutopsy/mutolabr/reference/t_test_all_tidy.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/t_test_all_tidy_grouped.html</loc></url>
 <url><loc>https://github.com/mutopsy/mutolabr/reference/var_desc.html</loc></url>
+<url><loc>https://github.com/mutopsy/mutolabr/reference/visualangle.html</loc></url>
 </urlset>
 
