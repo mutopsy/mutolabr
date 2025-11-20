@@ -2,7 +2,7 @@
 % Please edit documentation in R/visualangle.r
 \name{visualangle}
 \alias{visualangle}
-\title{Compute visual angle or stimulus size in pixels}
+\title{Convert between stimulus size (pixels) and visual angle (degrees)}
 \usage{
 visualangle(
   distance_cm,
@@ -13,47 +13,51 @@ visualangle(
 )
 }
 \arguments{
-\item{distance_cm}{Viewing distance (cm).}
+\item{distance_cm}{Viewing distance from the screen in centimeters.}
 
-\item{monitor_cm}{Physical size of the monitor (cm) along the relevant
-dimension (e.g., width).}
+\item{monitor_cm}{Physical width of the monitor (cm) that corresponds to \code{monitor_px}.}
 
-\item{monitor_px}{Number of pixels along the same dimension as
-\code{monitor_cm}.}
+\item{monitor_px}{Horizontal pixel resolution corresponding to \code{monitor_cm}.}
 
-\item{stim_px}{Stimulus size in pixels. Set to \code{NULL} if you want to
-compute \code{stim_px} from \code{stim_angle_deg}.}
+\item{stim_px}{Stimulus size in pixels. Provide this to compute visual angle.}
 
-\item{stim_angle_deg}{Stimulus size in degrees. Set to \code{NULL} if you
-want to compute \code{stim_angle_deg} from \code{stim_px}.}
+\item{stim_angle_deg}{Stimulus size in degrees of visual angle.
+Provide this to compute stimulus size in pixels.}
 }
 \value{
-If \code{stim_px} is provided: a numeric vector of visual angles (degrees). \cr
-If \code{stim_angle_deg} is provided: a numeric vector of stimulus sizes (pixels).
+A data frame with three columns:
+\describe{
+\item{stim_px}{Stimulus size in pixels.}
+\item{stim_angle_deg}{Stimulus visual angle in degrees.}
+\item{stim_cm}{Stimulus size in centimeters.}
+}
 }
 \description{
-If \code{stim_px} is provided and \code{stim_angle_deg} is \code{NULL},
-the function returns the visual angle of the stimulus in degrees.
-If \code{stim_angle_deg} is provided and \code{stim_px} is \code{NULL},
-the function returns the stimulus size in pixels that subtends the
-specified visual angle.
+This function converts either:
+\itemize{
+\item stimulus size in pixels (\code{stim_px}) to visual angle in degrees, or
+\item visual angle in degrees (\code{stim_angle_deg}) to stimulus size in pixels,
+}
+given the viewing distance and the monitor's physical and pixel dimensions.
 }
 \details{
-Exactly one of \code{stim_px} and \code{stim_angle_deg} must be non-NULL.
+Exactly one of \code{stim_px} or \code{stim_angle_deg} must be supplied.
+The function returns a data frame containing stimulus size in pixels,
+visual angle in degrees, and the corresponding physical size in centimeters.
 }
 \examples{
-# 1) px -> degree
+# Convert 100 px to degrees at 60 cm viewing distance
 visualangle(
   distance_cm = 60,
-  monitor_cm = 53.1,
+  monitor_cm = 53,
   monitor_px = 1920,
-  stim_px = 200
+  stim_px = 100
 )
 
-# 2) degree -> px
+# Convert 5 degrees to pixels
 visualangle(
   distance_cm = 60,
-  monitor_cm = 53.1,
+  monitor_cm = 53,
   monitor_px = 1920,
   stim_angle_deg = 5
 )
