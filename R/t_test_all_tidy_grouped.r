@@ -197,7 +197,7 @@ t_test_all_tidy_grouped <- function(
             cohens_dz = cohens_dz, cohens_dz_EAP = cohens_dz_EAP, cohens_dz_MAP = cohens_dz_MAP, cohens_dz_MED = cohens_dz_MED,
             rscale_est = rscale_est, rscale_bf = rscale_bf,
             iterations = iterations, map_density_n = map_density_n, verbose = FALSE, show_design = FALSE,
-            detailed = FALSE, fullbayes = fullbayes
+            detailed = TRUE, fullbayes = fullbayes
           )
         ) %>%
         ungroup() %>%
@@ -209,22 +209,43 @@ t_test_all_tidy_grouped <- function(
       }
 
       if(!detailed){
+        # out <- out %>%
+        #   dplyr::transmute(
+        #     mean = mean_x,
+        #     t = t %>% round(2),
+        #     df = df,
+        #     p = p %>% round(3),
+        #     alpha = alpha,
+        #     sig = sig,
+        #     cohens_d = cohens_d %>% round(3),
+        #     cohens_dz = cohens_dz %>% round(3),
+        #     pd = pd %>% round(3),
+        #     BF10 = BF10 %>% round(3),
+        #     log10_BF10 = log10_BF10,
+        #     favor = favor,
+        #     evidence = evidence
+        #   )
+
+        first_col <- names(out)[1]
         out <- out %>%
           dplyr::transmute(
-            diff = diff,
-            t = t %>% round(2),
-            df = df,
-            p = p %>% round(3),
+            !!first_col := .data[[first_col]],
+            mean = mean_x,
+            dplyr::across(dplyr::any_of("t"), ~ round(.x, 2)),
+            dplyr::across(dplyr::any_of("df"), ~ round(.x, 2)),
+            dplyr::across(dplyr::any_of("p"), ~ round(.x, 3)),
             alpha = alpha,
-            sig = sig,
-            cohens_d = cohens_d %>% round(3),
-            cohens_dz = cohens_dz %>% round(3),
-            pd = pd %>% round(3),
-            BF10 = BF10 %>% round(3),
-            log10_BF10 = log10_BF10,
-            favor = favor,
-            evidence = evidence
+            dplyr::across(dplyr::any_of("alpha"), ~ .x),
+            dplyr::across(dplyr::any_of("sig"), ~ .x),
+            dplyr::across(dplyr::any_of("cohens_d"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("cohens_dz"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("pd"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("BF10"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("log10_BF10"), ~ .x),
+            dplyr::across(dplyr::any_of("favor"), ~ .x),
+            dplyr::across(dplyr::any_of("evidence"), ~ .x)
           )
+
       }
 
     } else{

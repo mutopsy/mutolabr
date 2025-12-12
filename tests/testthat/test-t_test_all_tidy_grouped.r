@@ -40,3 +40,25 @@ test_that("paired runs", {
     res2_2
   )
 })
+
+
+test_that("one-sample runs", {
+  dat <- data_fict_between %>%
+    dplyr::select(-group)
+  dat_man <- dat %>% filter(gender == "man") %>% dplyr::select(-gender)
+  dat_wom <- dat %>% filter(gender == "woman") %>% dplyr::select(-gender)
+
+  res1 <- t_test_all_tidy_grouped(dat, onesample = TRUE, mu = 30, show_design = FALSE)
+  res2_1 <- t_test_all_tidy(dat_man, onesample = TRUE, mu = 30, show_design = FALSE)
+  res2_2 <- t_test_all_tidy(dat_wom, onesample = TRUE, mu = 30, show_design = FALSE)
+
+  testthat::expect_equal(
+    res1 %>% slice(1) %>% dplyr::select(-gender, -mean),
+    res2_1
+  )
+
+  testthat::expect_equal(
+    res1 %>% slice(2) %>% dplyr::select(-gender, -mean),
+    res2_2
+  )
+})
