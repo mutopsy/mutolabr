@@ -1,3 +1,6 @@
+# mutolabr 1.9.1 (2025-12-12)
+* Fixed a bug in `t_test_all_tidy_grouped()` that caused errors when specifying a one-sample t-test.
+
 # mutolabr 1.9.0 (2025-11-20)
 * Added new functions for calculating visual angles.
 * Specifically, implemented `visualangle()`, `inch_to_cm()`, `radian_to_degree()`, and `degree_to_radian()`.
