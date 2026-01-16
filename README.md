@@ -53,8 +53,7 @@ For details on each function, refer to [the function references](https://mutopsy
 * `t_test_all_tidy_grouped`: Run multiple t-tests by groups on tidy data [[Document](https://mutopsy.github.io/mutolabr/reference/t_test_all_tidy.html)]
 * `cor_test_all`: Perform Correlation Tests with Frequentist and Bayesian Methods [[Document](https://mutopsy.github.io/mutolabr/reference/cor_test_all.html)]
 * `pcor_test_all`: Perform Partial Correlation Tests with Frequentist Methods [[Document](https://mutopsy.github.io/mutolabr/reference/pcor_test_all.html)]
-* `contrast_test`: Perform Contrast Tests with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test.html)]
-* `trend_test`: Perform Trend Analysis using Contrast Test with Frequentist Method [[Document](https://mutopsy.github.io/mutolabr/reference/trend_test.html)]
+* `contrast_test_tidy`: Planned contrast test for tidy-format data using explicit sum-of-squares decomposition [[Document](https://mutopsy.github.io/mutolabr/reference/contrast_test_tidy.html)]
 * `summary_generalTestBF`: Summarize Results from `generalTestBF` (beta version) [[Document](https://mutopsy.github.io/mutolabr/reference/summary_generalTestBF.html)]
 * `anovakun_`: Perform ANOVA using the anovakun procedure (version 4.8.9). [[Document](https://mutopsy.github.io/mutolabr/reference/anovakun_.html)]
   * **Note:** This function is a direct copy of [`anovakun`](https://riseki.cloudfree.jp/?ANOVA%E5%90%9B), developed by Prof. Ryuta Iseki. Redistribution and minor modifications are permitted under the original author's policy, provided that such modifications are clearly stated.
