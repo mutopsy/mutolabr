@@ -1,3 +1,7 @@
+# mutolabr 1.10.0 (2026-01-16)
+* Implemented `contrast_test_tidy()`, a new planned-contrast test for tidy-format data.
+* Removed `contrast_test()` and `trend_test()`, which were based on an earlier incorrect contrast implementation.
+
 # mutolabr 1.9.1 (2025-12-12)
 * Fixed a bug in `t_test_all_tidy_grouped()` that caused errors when specifying a one-sample t-test.
 
