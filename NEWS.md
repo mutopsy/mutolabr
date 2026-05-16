@@ -1,3 +1,6 @@
+# mutolabr 1.11.0 (2026-05-16)
+* Implemented `logit()` and `inv_logit()`.
+
 # mutolabr 1.10.0 (2026-01-16)
 * Implemented `contrast_test_tidy()`, a new planned-contrast test for tidy-format data.
 * Removed `contrast_test()` and `trend_test()`, which were based on an earlier incorrect contrast implementation.
