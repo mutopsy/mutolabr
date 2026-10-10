@@ -7,6 +7,7 @@
 anova_bf(
   dataset,
   design,
+  iterations = 10000,
   rscaleFixed = "medium",
   rscaleRandom = "nuisance",
   rscaleCont = "medium",
@@ -29,6 +30,8 @@ and the columns in between are factors (between/within are inferred from \code{d
 exactly one \code{"s"} (for subjects). Letters left of \code{"s"} are
 between-subject factors; letters right of \code{"s"} are within-subject factors.
 Examples: \code{"sAB"} (two within), \code{"ABsC"} (two between, one within).}
+
+\item{iterations}{How many Monte Carlo simulations to generate. Default \code{10000}.}
 
 \item{rscaleFixed}{Prior scale for fixed effects. Default \code{"medium"}.}
 
@@ -60,7 +63,8 @@ for exclusion of each term from the full model, with columns:
 \describe{
 \item{effect}{Effect removed from the full model (fixed or, optionally, random).}
 \item{BF}{Bayes factor for the null (exclusion) vs. alternative (full).}
-\item{error}{Estimated numerical error.}
+\item{se_BF}{Estimated numerical standard error of the Bayes Factor (calculated by multiplying BF by error)}
+\item{error}{Estimated numerical relative error of the Bayes Factor}
 \item{log10_BF}{Base-10 logarithm of BF.}
 \item{favor}{Whether data favor the null or alternative.}
 \item{evidence}{Evidence category (e.g., "anecdotal", "moderate", ...).}

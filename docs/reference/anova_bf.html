@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">mutolabr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.12.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,6 +42,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">anova_bf</span><span class="op">(</span></span>
 <span>  <span class="va">dataset</span>,</span>
 <span>  <span class="va">design</span>,</span>
+<span>  iterations <span class="op">=</span> <span class="fl">10000</span>,</span>
 <span>  rscaleFixed <span class="op">=</span> <span class="st">"medium"</span>,</span>
 <span>  rscaleRandom <span class="op">=</span> <span class="st">"nuisance"</span>,</span>
 <span>  rscaleCont <span class="op">=</span> <span class="st">"medium"</span>,</span>
@@ -71,6 +72,10 @@ and the columns in between are factors (between/within are inferred from <code>d
 exactly one <code>"s"</code> (for subjects). Letters left of <code>"s"</code> are
 between-subject factors; letters right of <code>"s"</code> are within-subject factors.
 Examples: <code>"sAB"</code> (two within), <code>"ABsC"</code> (two between, one within).</p></dd>
+
+
+<dt id="arg-iterations">iterations<a class="anchor" aria-label="anchor" href="#arg-iterations"></a></dt>
+<dd><p>How many Monte Carlo simulations to generate. Default <code>10000</code>.</p></dd>
 
 
 <dt id="arg-rscalefixed">rscaleFixed<a class="anchor" aria-label="anchor" href="#arg-rscalefixed"></a></dt>
@@ -126,8 +131,11 @@ for exclusion of each term from the full model, with columns:</p><dl><dt>effect<
 <dt>BF</dt>
 <dd><p>Bayes factor for the null (exclusion) vs. alternative (full).</p></dd>
 
+<dt>se_BF</dt>
+<dd><p>Estimated numerical standard error of the Bayes Factor (calculated by multiplying BF by error)</p></dd>
+
 <dt>error</dt>
-<dd><p>Estimated numerical error.</p></dd>
+<dd><p>Estimated numerical relative error of the Bayes Factor</p></dd>
 
 <dt>log10_BF</dt>
 <dd><p>Base-10 logarithm of BF.</p></dd>
@@ -173,32 +181,32 @@ models with one term removed) and summarized via <code><a href="summary_generalT
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Example 1: between-participants design (design = "ABs")</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">anova_bf</span><span class="op">(</span><span class="va">data_fict_between</span>, design <span class="op">=</span> <span class="st">"ABs"</span>, seed <span class="op">=</span> <span class="fl">610</span>, progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   effect       type       BF error log10_BF favor evidence </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> group        fixed   6.15  0.015   0.789  alt.  moderate </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> gender       fixed 223     0.018   2.35   alt.  extreme  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> group:gender fixed   0.882 0.02   -<span style="color: #BB0000;">0.054</span><span style="color: #BB0000; text-decoration: underline;">5</span> null  anecdotal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   effect       type       BF  se_BF error log10_BF favor evidence </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> group        fixed   6.15  0.093<span style="text-decoration: underline;">0</span> 0.015   0.789  alt.  moderate </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> gender       fixed 223     3.95   0.018   2.35   alt.  extreme  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> group:gender fixed   0.882 0.017<span style="text-decoration: underline;">3</span> 0.02   -<span style="color: #BB0000;">0.054</span><span style="color: #BB0000; text-decoration: underline;">5</span> null  anecdotal</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 2: within-participants design (design = "sAB")</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">anova_bf</span><span class="op">(</span><span class="va">data_fict_within</span>, design <span class="op">=</span> <span class="st">"sAB"</span>, seed <span class="op">=</span> <span class="fl">610</span>, progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   effect         type          BF error log10_BF favor evidence   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> condition      fixed       1.13  0.26   0.053<span style="text-decoration: underline;">6</span> alt.  anecdotal  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> time           fixed 2<span style="text-decoration: underline;">760</span>000     0.26   6.44   alt.  extreme    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> condition:time fixed      41.6   0.26   1.62   alt.  very strong</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   effect         type          BF      se_BF error log10_BF favor evidence   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> condition      fixed       1.13      0.290  0.26   0.053<span style="text-decoration: underline;">6</span> alt.  anecdotal  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> time           fixed 2<span style="text-decoration: underline;">760</span>000    <span style="text-decoration: underline;">708</span>104.     0.26   6.44   alt.  extreme    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> condition:time fixed      41.6      10.9    0.26   1.62   alt.  very strong</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Example 3: mixed design (between = A, within = C)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">anova_bf</span><span class="op">(</span><span class="va">data_fict_mixed</span>, design <span class="op">=</span> <span class="st">"AsB"</span>, seed <span class="op">=</span> <span class="fl">610</span>, progress <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   effect           type     BF error log10_BF favor evidence </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> gender           fixed  1.45 0.075    0.160 alt.  anecdotal</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> condition        fixed  4.37 0.056    0.641 alt.  moderate </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> gender:condition fixed  2.22 0.071    0.347 alt.  anecdotal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   effect           type     BF se_BF error log10_BF favor evidence </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> gender           fixed  1.45 0.108 0.075    0.160 alt.  anecdotal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> condition        fixed  4.37 0.247 0.056    0.641 alt.  moderate </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> gender:condition fixed  2.22 0.159 0.071    0.347 alt.  anecdotal</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

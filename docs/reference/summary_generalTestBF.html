@@ -11,7 +11,7 @@ and classifies the strength of evidence based on the log BF scale.'><script src=
 
     <a class="navbar-brand me-2" href="../index.html">mutolabr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.11.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.12.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,10 +79,13 @@ and classifies the strength of evidence based on the log BF scale.</p>
 <dd><p>Indicates whether the term is Fixed or random effect</p></dd>
 
 <dt>BF</dt>
-<dd><p>Bayes factor for the null (exclusion) over the alternative hypothesis</p></dd>
+<dd><p>Bayes factor for the alternative over null (exclusion) hypothesis</p></dd>
+
+<dt>se_BF</dt>
+<dd><p>Estimated numerical standard error of the Bayes Factor (calculated by multiplying BF by error)</p></dd>
 
 <dt>error</dt>
-<dd><p>Estimated numerical error</p></dd>
+<dd><p>Estimated numerical relative error of the Bayes Factor</p></dd>
 
 <dt>log10_BF</dt>
 <dd><p>Base-10 logarithm of the Bayes factor</p></dd>
@@ -115,15 +118,15 @@ and classifies the strength of evidence based on the log BF scale.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">summary_generalTestBF</span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   effect type      BF error log10_BF favor evidence   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> A      fixed 0.239  0.043   -<span style="color: #BB0000;">0.622</span> null  moderate   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> B      fixed 0.248  0.039   -<span style="color: #BB0000;">0.605</span> null  moderate   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> id     fixed 0.033<span style="text-decoration: underline;">1</span> 0.038   -<span style="color: #BB0000;">1.48</span>  null  very strong</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> A:B    fixed 0.477  0.022   -<span style="color: #BB0000;">0.321</span> null  anecdotal  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> A:id   fixed 0.473  0.028   -<span style="color: #BB0000;">0.325</span> null  anecdotal  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> B:id   fixed 4.87   0.024    0.687 alt.  moderate   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 6 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   effect type      BF   se_BF error log10_BF favor evidence   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> A      fixed 0.239  0.010<span style="text-decoration: underline;">2</span>  0.043   -<span style="color: #BB0000;">0.622</span> null  moderate   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> B      fixed 0.248  0.009<span style="text-decoration: underline;">57</span> 0.039   -<span style="color: #BB0000;">0.605</span> null  moderate   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> id     fixed 0.033<span style="text-decoration: underline;">1</span> 0.001<span style="text-decoration: underline;">27</span> 0.038   -<span style="color: #BB0000;">1.48</span>  null  very strong</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> A:B    fixed 0.477  0.010<span style="text-decoration: underline;">7</span>  0.022   -<span style="color: #BB0000;">0.321</span> null  anecdotal  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> A:id   fixed 0.473  0.013<span style="text-decoration: underline;">2</span>  0.028   -<span style="color: #BB0000;">0.325</span> null  anecdotal  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> B:id   fixed 4.87   0.117   0.024    0.687 alt.  moderate   </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

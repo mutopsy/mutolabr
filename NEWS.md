@@ -1,3 +1,7 @@
+# mutolabr 1.12.0 (2026-10-10)
+* Added an `iterations` argument to `anova_bf()` to control the number of iterations used for Bayes factor estimation.
+* Added `se_BF` to the output of `anova_bf()`, providing the estimated numerical standard error of the Bayes factor.
+
 # mutolabr 1.11.0 (2026-05-16)
 * Implemented `logit()` and `inv_logit()`.
 
