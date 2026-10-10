@@ -16,8 +16,9 @@
 #' \describe{
 #'   \item{effect}{The effect excluded from the full model}
 #'   \item{type}{Indicates whether the term is Fixed or random effect}
-#'   \item{BF}{Bayes factor for the null (exclusion) over the alternative hypothesis}
-#'   \item{error}{Estimated numerical error}
+#'   \item{BF}{Bayes factor for the alternative over null (exclusion) hypothesis}
+#'   \item{se_BF}{Standard error of Bayes Factor (calculated by multiplying BF by error)}
+#'   \item{error}{Estimated numerical relative error of the Bayes Factor}
 #'   \item{log10_BF}{Base-10 logarithm of the Bayes factor}
 #'   \item{favor}{Indicates whether data favor the null or alternative hypothesis}
 #'   \item{evidence}{Strength of evidence ("anecdotal", "moderate", "strong", "very strong", "extreme")}
@@ -77,6 +78,7 @@ summary_generalTestBF <- function(x, inc_ranef = FALSE){
       ),
       effect = factor(effect, levels = full_model_vars),
       BF = 1/bf,
+      se_BF = BF * error,
       error = error %>% signif(2),
       log10_BF = log(BF, 10),
       BF = BF %>% signif(3)
