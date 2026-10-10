@@ -15,6 +15,7 @@
 #'   exactly one \code{"s"} (for subjects). Letters left of \code{"s"} are
 #'   between-subject factors; letters right of \code{"s"} are within-subject factors.
 #'   Examples: \code{"sAB"} (two within), \code{"ABsC"} (two between, one within).
+#' @param iterations How many Monte Carlo simulations to generate. Default \code{10000}.
 #' @param rscaleFixed Prior scale for fixed effects. Default \code{"medium"}.
 #' @param rscaleRandom Prior scale for random effects. Default \code{"nuisance"}.
 #' @param rscaleCont Prior scale for continuous covariates. Default \code{"medium"}.
@@ -89,6 +90,7 @@
 anova_bf <- function(
     dataset,
     design,
+    iterations = 10000,
     rscaleFixed = "medium",
     rscaleRandom = "nuisance",
     rscaleCont = "medium",
@@ -220,6 +222,7 @@ This may indicate missing or duplicated measurements.")
         data = data_for_bf,
         as.formula(paste0("y ~ ", paste(full_model_vars, collapse = " + "))),
         whichRandom = rand_vars,
+        iterations = iterations,
         rscaleFixed = rscaleFixed,
         rscaleRandom = rscaleRandom,
         rscaleCont = rscaleCont,
@@ -235,6 +238,7 @@ This may indicate missing or duplicated measurements.")
       data = data_for_bf,
       as.formula(paste0("y ~ ", paste(full_model_vars, collapse = " + "))),
       whichRandom = rand_vars,
+      iterations = iterations,
       rscaleFixed = rscaleFixed,
       rscaleRandom = rscaleRandom,
       rscaleCont = rscaleCont,
