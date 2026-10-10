@@ -36,7 +36,8 @@
 #'   \describe{
 #'     \item{effect}{Effect removed from the full model (fixed or, optionally, random).}
 #'     \item{BF}{Bayes factor for the null (exclusion) vs. alternative (full).}
-#'     \item{error}{Estimated numerical error.}
+#'   \item{se_BF}{Standard error of Bayes Factor (calculated by multiplying BF by error)}
+#'   \item{error}{Estimated numerical relative error of the Bayes Factor}
 #'     \item{log10_BF}{Base-10 logarithm of BF.}
 #'     \item{favor}{Whether data favor the null or alternative.}
 #'     \item{evidence}{Evidence category (e.g., "anecdotal", "moderate", ...).}
