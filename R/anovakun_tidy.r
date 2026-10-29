@@ -18,7 +18,9 @@
 #'   is automatically calculated from \code{dataset} and \code{design}, and does not need to be specified manually.
 #'
 #' @return A data frame containing the results of ANOVA, including F-statistics, p-values, effect sizes,
-#' and sphericity indices (if applicable).
+#' and sphericity indices (if applicable). The `sig` column indicates statistical significance
+#' based on `alpha` (`*` for significant and `ns` for non-significant results),
+#' with `<` appended when the p-value is below .001.
 #'
 #' @examples
 #' data_snakemr %>%
@@ -109,7 +111,8 @@ anovakun_tidy <- function(
     dplyr::select(-is_error) %>%
     dplyr::mutate(
       cohens_f = sqrt(SS1/SS2),
-      sig = if_else(p < alpha, "*", "ns")
+      sig = dplyr::if_else(p < alpha, "*", "ns"),
+      sig = dplyr::if_else(p < 0.001, paste0(sig,"<"), sig)
     ) %>%
     dplyr::select(
       effect, df1, df2, SS1, SS2, MS1, MS2, F, p, everything()

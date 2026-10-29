@@ -224,6 +224,7 @@ contrast_test_tidy <- function(
       Fv = MS1/MS2,
       p = pf(Fv, df1 = df1, df2 = df2, lower.tail = FALSE),
       sig = dplyr::if_else(p < alpha, "*", "ns"),
+      sig = dplyr::if_else(p < 0.001, paste0(sig,"<"), sig),
       eta2 = SS_Ac/SS_total,
       peta2 = SS_Ac/(SS_Ac + SS_E),
       cohens_f = sqrt(SS_Ac/SS_E)

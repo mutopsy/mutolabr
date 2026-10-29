@@ -114,7 +114,8 @@ t_test_all_tidy_grouped <- function(
 
       if(holm && "alpha" %in% colnames(out)){
         out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
-        out$sig <- if_else(out$p < out$alpha, "*", "ns")
+        out$sig <- dplyr::if_else(out$p < out$alpha, "*", "ns")
+        out$sig <- dplyr::if_else(out$p < 0.001, paste0(out$sig, "<"), out$sig)
       }
 
       if(!detailed){
@@ -206,7 +207,8 @@ t_test_all_tidy_grouped <- function(
 
       if(holm && "alpha" %in% colnames(out)){
         out$alpha <- p_to_holmalpha(out$p, sig.level = alpha)
-        out$sig <- if_else(out$p < out$alpha, "*", "ns")
+        out$sig <- dplyr::if_else(out$p < out$alpha, "*", "ns")
+        out$sig <- dplyr::if_else(out$p < 0.001, paste0(out$sig, "<"), out$sig)
       }
 
       if(!detailed){
