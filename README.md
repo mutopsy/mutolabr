@@ -29,6 +29,7 @@ This package requires:
 * R (>= 4.1.0)  
 * `dplyr`  
 * `tidyr`  
+* `tibble`
 * `BayesFactor`  
 * `effectsize`  
 * `withr`  

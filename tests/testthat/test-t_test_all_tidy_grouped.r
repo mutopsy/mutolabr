@@ -11,12 +11,12 @@ test_that("independent two-sample (unequal variance, default) runs", {
   res2_2 <- t_test_all_tidy(dat_int, paired = FALSE, show_design = FALSE)
 
   testthat::expect_equal(
-    res1 %>% slice(1) %>% dplyr::select(-group),
+    res1 %>% slice(1) %>% dplyr::select(-group) %>% as.data.frame(),
     res2_1
     )
 
   testthat::expect_equal(
-    res1 %>% slice(2) %>% dplyr::select(-group),
+    res1 %>% slice(2) %>% dplyr::select(-group) %>% as.data.frame(),
     res2_2
   )
 })
@@ -31,12 +31,12 @@ test_that("paired runs", {
   res2_2 <- t_test_all_tidy(dat_wom, paired = TRUE, show_design = FALSE)
 
   testthat::expect_equal(
-    res1 %>% slice(1) %>% dplyr::select(-gender),
+    res1 %>% slice(1) %>% dplyr::select(-gender) %>% as.data.frame(),
     res2_1
   )
 
   testthat::expect_equal(
-    res1 %>% slice(2) %>% dplyr::select(-gender),
+    res1 %>% slice(2) %>% dplyr::select(-gender) %>% as.data.frame(),
     res2_2
   )
 })
@@ -53,12 +53,12 @@ test_that("one-sample runs", {
   res2_2 <- t_test_all_tidy(dat_wom, onesample = TRUE, mu = 30, show_design = FALSE)
 
   testthat::expect_equal(
-    res1 %>% slice(1) %>% dplyr::select(-gender, -mean),
+    res1 %>% slice(1) %>% dplyr::select(-gender, -mean) %>% as.data.frame(),
     res2_1
   )
 
   testthat::expect_equal(
-    res1 %>% slice(2) %>% dplyr::select(-gender, -mean),
+    res1 %>% slice(2) %>% dplyr::select(-gender, -mean) %>% as.data.frame(),
     res2_2
   )
 })

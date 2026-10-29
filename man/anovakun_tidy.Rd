@@ -29,7 +29,9 @@ is automatically calculated from \code{dataset} and \code{design}, and does not 
 }
 \value{
 A data frame containing the results of ANOVA, including F-statistics, p-values, effect sizes,
-and sphericity indices (if applicable).
+and sphericity indices (if applicable). The \code{sig} column indicates statistical significance
+based on \code{alpha} (\code{*} for significant and \code{ns} for non-significant results),
+with \code{<} appended when the p-value is below .001.
 }
 \description{
 This function serves as a wrapper around \code{\link{anovakun_}} (version 4.8.9),

@@ -1,3 +1,7 @@
+# mutolabr 1.12.1 (2026-10-29)
+* Replaced `round()` with `pillar::num()` in `anovakun_tidy()`, `contrast_test_tidy()`, `cor_test_all()`, `t_test_all()`, and `t_test_all_tidy_grouped()` to preserve full numerical precision while controlling the displayed number of digits.
+* Updated the sig column in `anovakun_tidy()`, `contrast_test_tidy()`, `t_test_all()`, `cor_test_all()`, and `t_test_all_tidy_grouped()` to append `<` when the p-value is below .001, regardless of the specified significance level (alpha).
+
 # mutolabr 1.12.0 (2026-10-10)
 * Added an `iterations` argument to `anova_bf()` to control the number of iterations used for Bayes factor estimation.
 * Added `se_BF` to the output of `anova_bf()`, providing the estimated numerical standard error of the Bayes factor.

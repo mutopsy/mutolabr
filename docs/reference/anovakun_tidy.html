@@ -9,7 +9,7 @@ streamlining common usage patterns in mutolab and formatting the results for eas
 
     <a class="navbar-brand me-2" href="../index.html">mutolabr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.12.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.12.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,7 +84,9 @@ is automatically calculated from <code>dataset</code> and <code>design</code>, a
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A data frame containing the results of ANOVA, including F-statistics, p-values, effect sizes,
-and sphericity indices (if applicable).</p>
+and sphericity indices (if applicable). The <code>sig</code> column indicates statistical significance
+based on <code>alpha</code> (<code>*</code> for significant and <code>ns</code> for non-significant results),
+with <code>&lt;</code> appended when the p-value is below .001.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -104,11 +106,11 @@ automatically infers the number of factor levels, simplifies output, and adds fo
 <span class="r-in"><span>  <span class="fu">anovakun_tidy</span><span class="op">(</span><span class="st">"sABC"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A 2*2*5 within-participants ANOVA was performed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             effect  df1   df2      F     p sig  eta2 peta2 cohens_f epsilon_CM</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1            shape 1.00 23.00  37.31 0.000   * 0.019 0.619    1.274      1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2             face 1.00 23.00  98.23 0.000   * 0.025 0.810    2.067      1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3            angle 1.60 36.83 201.16 0.000   * 0.458 0.897    2.957      0.400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            shape 1.00 23.00  37.31 0.000  *&lt; 0.019 0.619    1.274      1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             face 1.00 23.00  98.23 0.000  *&lt; 0.025 0.810    2.067      1.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            angle 1.60 36.83 201.16 0.000  *&lt; 0.458 0.897    2.957      0.400</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4       shape:face 1.00 23.00   9.72 0.005   * 0.003 0.297    0.650      1.000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5      shape:angle 3.45 79.26   6.91 0.000   * 0.003 0.231    0.548      0.861</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5      shape:angle 3.45 79.26   6.91 0.000  *&lt; 0.003 0.231    0.548      0.861</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6       face:angle 4.00 92.00   3.87 0.006   * 0.002 0.144    0.410      1.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7 shape:face:angle 4.00 92.00   1.37 0.249  ns 0.001 0.056    0.244      1.000</span>
 <span class="r-in"><span></span></span>
