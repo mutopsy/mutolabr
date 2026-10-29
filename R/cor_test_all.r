@@ -58,6 +58,7 @@
 #' results$table_BF10  # View Bayes factor matrix
 #' @importFrom dplyr mutate arrange %>% filter if_else transmute left_join rename select n everything join_by
 #' @importFrom tidyr drop_na
+#' @importFrom pillar num
 #' @importFrom BayesFactor correlationBF
 #' @export
 
@@ -253,18 +254,18 @@ cor_test_all <- function(
       dplyr::transmute(
         row = row,
         col = col,
-        cor = cor %>% round(3),
-        cor_EAP = cor_EAP %>% round(3),
-        cor_MAP = cor_MAP %>% round(3),
-        cor_MED = cor_MED %>% round(3),
-        lower = lower %>% round(3),
-        upper = upper %>% round(3),
-        t = t %>% round(2),
+        cor = cor %>% pillar::num(digits = 3),
+        cor_EAP = cor_EAP %>% pillar::num(digits = 3),
+        cor_MAP = cor_MAP %>% pillar::num(digits = 3),
+        cor_MED = cor_MED %>% pillar::num(digits = 3),
+        lower = lower %>% pillar::num(digits = 3),
+        upper = upper %>% pillar::num(digits = 3),
+        t = t %>% pillar::num(digits = 2),
         df = df,
-        p = p %>% round(3),
+        p = p %>% pillar::num(digits = 3),
         sig = sig,
-        pd = pd %>% round(3),
-        BF10 = BF10 %>% round(3),
+        pd = pd %>% pillar::num(digits = 3),
+        BF10 = BF10 %>% pillar::num(digits = 3),
         log10_BF10 = log10_BF10,
         favor = favor,
         evidence = evidence,

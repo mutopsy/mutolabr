@@ -726,15 +726,15 @@ t_test_all <- function(
     out <- out %>%
       dplyr::transmute(
         diff = diff,
-        t = t %>% round(2),
-        df = df %>% round(2),
-        p = p %>% round(3),
+        t = t %>% pillar::num(digits = 2),
+        df = df %>% pillar::num(digits = 2),
+        p = p %>% pillar::num(digits = 3),
         alpha = alpha,
         sig = sig,
-        cohens_d = cohens_d %>% round(3),
-        cohens_dz = cohens_dz %>% round(3),
-        pd = pd %>% round(3),
-        BF10 = BF10 %>% round(3),
+        cohens_d = cohens_d %>% pillar::num(digits = 3),
+        cohens_dz = cohens_dz %>% pillar::num(digits = 3),
+        pd = pd %>% pillar::num(digits = 3),
+        BF10 = BF10 %>% pillar::num(digits = 3),
         log10_BF10 = log10_BF10,
         favor = favor,
         evidence = evidence

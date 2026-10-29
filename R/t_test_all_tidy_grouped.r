@@ -38,6 +38,7 @@
 #' @seealso \code{\link{t_test_all_tidy}}, \code{\link{t_test_all}}
 #' @importFrom dplyr group_by ungroup group_modify across all_of %>%
 #' @importFrom stats na.omit
+#' @importFrom pillar num
 #' @export
 
 t_test_all_tidy_grouped <- function(
@@ -122,16 +123,16 @@ t_test_all_tidy_grouped <- function(
           dplyr::transmute(
             !!first_col := .data[[first_col]],
             diff = diff,
-            dplyr::across(dplyr::any_of("t"), ~ round(.x, 2)),
-            dplyr::across(dplyr::any_of("df"), ~ round(.x, 2)),
-            dplyr::across(dplyr::any_of("p"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("t"), ~ pillar::num(.x, digits = 2)),
+            dplyr::across(dplyr::any_of("df"), ~ pillar::num(.x, digits = 2)),
+            dplyr::across(dplyr::any_of("p"), ~ pillar::num(.x, digits = 3)),
             alpha = alpha,
             dplyr::across(dplyr::any_of("alpha"), ~ .x),
             dplyr::across(dplyr::any_of("sig"), ~ .x),
-            dplyr::across(dplyr::any_of("cohens_d"), ~ round(.x, 3)),
-            dplyr::across(dplyr::any_of("cohens_dz"), ~ round(.x, 3)),
-            dplyr::across(dplyr::any_of("pd"), ~ round(.x, 3)),
-            dplyr::across(dplyr::any_of("BF10"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("cohens_d"), ~ pillar::num(.x, digits = 3)),
+            dplyr::across(dplyr::any_of("cohens_dz"), ~ pillar::num(.x, digits = 3)),
+            dplyr::across(dplyr::any_of("pd"), ~ pillar::num(.x, digits = 3)),
+            dplyr::across(dplyr::any_of("BF10"), ~ pillar::num(.x, digits = 3)),
             dplyr::across(dplyr::any_of("log10_BF10"), ~ .x),
             dplyr::across(dplyr::any_of("favor"), ~ .x),
             dplyr::across(dplyr::any_of("evidence"), ~ .x)
@@ -231,16 +232,16 @@ t_test_all_tidy_grouped <- function(
           dplyr::transmute(
             !!first_col := .data[[first_col]],
             mean = mean_x,
-            dplyr::across(dplyr::any_of("t"), ~ round(.x, 2)),
-            dplyr::across(dplyr::any_of("df"), ~ round(.x, 2)),
-            dplyr::across(dplyr::any_of("p"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("t"), ~ pillar::num(.x, digits = 2)),
+            dplyr::across(dplyr::any_of("df"), ~ pillar::num(.x, digits = 2)),
+            dplyr::across(dplyr::any_of("p"), ~ pillar::num(.x, digits = 3)),
             alpha = alpha,
             dplyr::across(dplyr::any_of("alpha"), ~ .x),
             dplyr::across(dplyr::any_of("sig"), ~ .x),
-            dplyr::across(dplyr::any_of("cohens_d"), ~ round(.x, 3)),
-            dplyr::across(dplyr::any_of("cohens_dz"), ~ round(.x, 3)),
-            dplyr::across(dplyr::any_of("pd"), ~ round(.x, 3)),
-            dplyr::across(dplyr::any_of("BF10"), ~ round(.x, 3)),
+            dplyr::across(dplyr::any_of("cohens_d"), ~ pillar::num(.x, digits = 3)),
+            dplyr::across(dplyr::any_of("cohens_dz"), ~ pillar::num(.x, digits = 3)),
+            dplyr::across(dplyr::any_of("pd"), ~ pillar::num(.x, digits = 3)),
+            dplyr::across(dplyr::any_of("BF10"), ~ pillar::num(.x, digits = 3)),
             dplyr::across(dplyr::any_of("log10_BF10"), ~ .x),
             dplyr::across(dplyr::any_of("favor"), ~ .x),
             dplyr::across(dplyr::any_of("evidence"), ~ .x)

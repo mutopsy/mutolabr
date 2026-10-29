@@ -82,6 +82,7 @@
 #'
 #' @importFrom dplyr rename mutate group_by ungroup summarise left_join select n_distinct if_else
 #' @importFrom tidyr complete
+#' @importFrom pillar num
 #' @importFrom stats cov var pf
 #'
 #' @export
@@ -233,13 +234,13 @@ contrast_test_tidy <- function(
   if(do_round){
     out <- out %>%
       dplyr::mutate(
-        df1 = df1 %>% round(1), df2 = df2 %>% round(1),
-        SS1 = SS1 %>% round(2), SS2 = SS2 %>% round(2),
-        MS1 = MS1 %>% round(2), MS2 = MS2 %>% round(2),
-        Fv = Fv %>% round(2), p = p %>% round(3),
-        eta2 = eta2 %>% round(3),
-        peta2 = peta2 %>% round(3),
-        cohens_f = cohens_f %>% round(3)
+        df1 = df1 %>% pillar::num(digits = 1), df2 = df2 %>% pillar::num(digits = 1),
+        SS1 = SS1 %>% pillar::num(digits = 2), SS2 = SS2 %>% pillar::num(digits = 2),
+        MS1 = MS1 %>% pillar::num(digits = 2), MS2 = MS2 %>% pillar::num(digits = 2),
+        Fv = Fv %>% pillar::num(digits = 2), p = p %>% pillar::num(digits = 3),
+        eta2 = eta2 %>% pillar::num(digits = 3),
+        peta2 = peta2 %>% pillar::num(digits = 3),
+        cohens_f = cohens_f %>% pillar::num(digits = 3),
       )
   }
 
