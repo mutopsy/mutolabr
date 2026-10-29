@@ -58,7 +58,7 @@
 #' results$table_BF10  # View Bayes factor matrix
 #' @importFrom dplyr mutate arrange %>% filter if_else transmute left_join rename select n everything join_by
 #' @importFrom tidyr drop_na
-#' @importFrom pillar num
+#' @importFrom tibble num
 #' @importFrom BayesFactor correlationBF
 #' @export
 
@@ -100,6 +100,7 @@ cor_test_all <- function(
     col = 1:nvar
   ) %>%
     expand.grid() %>%
+    tibble::as_tibble() %>%
     dplyr::filter(col > row) %>%
     dplyr::arrange(row, col) %>%
     dplyr::mutate(
@@ -227,6 +228,7 @@ cor_test_all <- function(
   }
 
   out$sig <- dplyr::if_else(out$p < alpha, "*", "ns")
+  out$sig <- dplyr::if_else(out$p < 0.001, paste0(out$sig, "<"), out$sig)
 
 
   if(fullbayes){
@@ -254,18 +256,18 @@ cor_test_all <- function(
       dplyr::transmute(
         row = row,
         col = col,
-        cor = cor %>% pillar::num(digits = 3),
-        cor_EAP = cor_EAP %>% pillar::num(digits = 3),
-        cor_MAP = cor_MAP %>% pillar::num(digits = 3),
-        cor_MED = cor_MED %>% pillar::num(digits = 3),
-        lower = lower %>% pillar::num(digits = 3),
-        upper = upper %>% pillar::num(digits = 3),
-        t = t %>% pillar::num(digits = 2),
+        cor = cor %>% tibble::num(digits = 3),
+        cor_EAP = cor_EAP %>% tibble::num(digits = 3),
+        cor_MAP = cor_MAP %>% tibble::num(digits = 3),
+        cor_MED = cor_MED %>% tibble::num(digits = 3),
+        lower = lower %>% tibble::num(digits = 3),
+        upper = upper %>% tibble::num(digits = 3),
+        t = t %>% tibble::num(digits = 2),
         df = df,
-        p = p %>% pillar::num(digits = 3),
+        p = p %>% tibble::num(digits = 3),
         sig = sig,
-        pd = pd %>% pillar::num(digits = 3),
-        BF10 = BF10 %>% pillar::num(digits = 3),
+        pd = pd %>% tibble::num(digits = 3),
+        BF10 = BF10 %>% tibble::num(digits = 3),
         log10_BF10 = log10_BF10,
         favor = favor,
         evidence = evidence,

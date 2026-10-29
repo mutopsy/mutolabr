@@ -69,6 +69,7 @@
 #' @importFrom BayesFactor ttestBF
 #' @importFrom dplyr mutate transmute select_if if_else %>%
 #' @importFrom tidyr drop_na
+#' @importFrom tibble num
 #' @export
 
 t_test_all <- function(
@@ -714,6 +715,7 @@ t_test_all <- function(
   }
 
   out$sig <- dplyr::if_else(out$p < alpha, "*", "ns")
+  out$sig <- dplyr::if_else(out$p < 0.001, paste0(out$sig, "<"), out$sig)
 
   if(fullbayes){
     out <- out %>%
@@ -726,15 +728,15 @@ t_test_all <- function(
     out <- out %>%
       dplyr::transmute(
         diff = diff,
-        t = t %>% pillar::num(digits = 2),
-        df = df %>% pillar::num(digits = 2),
-        p = p %>% pillar::num(digits = 3),
+        t = t %>% tibble::num(digits = 2),
+        df = df %>% tibble::num(digits = 2),
+        p = p %>% tibble::num(digits = 3),
         alpha = alpha,
         sig = sig,
-        cohens_d = cohens_d %>% pillar::num(digits = 3),
-        cohens_dz = cohens_dz %>% pillar::num(digits = 3),
-        pd = pd %>% pillar::num(digits = 3),
-        BF10 = BF10 %>% pillar::num(digits = 3),
+        cohens_d = cohens_d %>% tibble::num(digits = 3),
+        cohens_dz = cohens_dz %>% tibble::num(digits = 3),
+        pd = pd %>% tibble::num(digits = 3),
+        BF10 = BF10 %>% tibble::num(digits = 3),
         log10_BF10 = log10_BF10,
         favor = favor,
         evidence = evidence
