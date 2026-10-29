@@ -30,8 +30,7 @@
 #'
 #' @importFrom dplyr summarise across mutate filter select left_join if_else everything rename %>%
 #' @importFrom tidyr fill
-#' @importFrom tibble tibble
-#' @importFrom pillar num
+#' @importFrom tibble tibble num
 #' @importFrom stringr str_replace_all
 #' @export
 
@@ -128,19 +127,19 @@ anovakun_tidy <- function(
   if(do_round){
     atbl <- atbl %>%
       dplyr::mutate(
-        df1 = df1 %>% pillar::num(digits = 2),
-        df2 = df2 %>% pillar::num(digits = 2),
-        SS1 = SS1 %>% pillar::num(digits = 2),
-        SS2 = SS2 %>% pillar::num(digits = 2),
-        MS1 = MS1 %>% pillar::num(digits = 2),
-        MS2 = MS2 %>% pillar::num(digits = 2),
-        F = F %>% pillar::num(digits = 2),
-        p = p %>% pillar::num(digits = 3),
-        eta2 = eta2 %>% pillar::num(digits = 3),
-        peta2 = peta2 %>% pillar::num(digits = 3),
-        geta2 = geta2 %>% pillar::num(digits = 3),
-        cohens_f = cohens_f %>% pillar::num(digits = 3),
-        epsilon_CM = epsilon_CM %>% pillar::num(digits = 3)
+        df1 = df1 %>% tibble::num(digits = 2),
+        df2 = df2 %>% tibble::num(digits = 2),
+        SS1 = SS1 %>% tibble::num(digits = 2),
+        SS2 = SS2 %>% tibble::num(digits = 2),
+        MS1 = MS1 %>% tibble::num(digits = 2),
+        MS2 = MS2 %>% tibble::num(digits = 2),
+        F = F %>% tibble::num(digits = 2),
+        p = p %>% tibble::num(digits = 3),
+        eta2 = eta2 %>% tibble::num(digits = 3),
+        peta2 = peta2 %>% tibble::num(digits = 3),
+        geta2 = geta2 %>% tibble::num(digits = 3),
+        cohens_f = cohens_f %>% tibble::num(digits = 3),
+        epsilon_CM = epsilon_CM %>% tibble::num(digits = 3)
       )
   }
 
